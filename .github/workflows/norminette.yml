@@ -1,10 +1,7 @@
-name: Norminette Checker (Direct Execution)
-
+---
 on:
   push:
-    branches: ["main"]  # ou votre branche par défaut
-  pull_request:
-    types: [opened, synchronize, reopened]
+    branches: ["main"]
 
 jobs:
   norminette-check:
