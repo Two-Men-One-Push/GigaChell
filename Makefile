@@ -6,12 +6,12 @@
 #    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/20 17:15:05 by ethebaul          #+#    #+#              #
-#    Updated: 2025/05/08 19:01:46 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/05/08 21:24:16 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BUILDIR		=	./.build/
-BUILDIR_DBG	=	./.build_dbg/
+BUILDIR		=	./build/
+BUILDIR_DBG	=	./build_dbg/
 HEADERS		=	./headers/
 
 VPATH		=	$(shell find ./srcs/ -type d):$(shell find ./.srcs_dbg/ -type d)
