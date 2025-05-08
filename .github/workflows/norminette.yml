@@ -1,4 +1,6 @@
 ---
+name: Norminette Check
+
 on:
   push:
 

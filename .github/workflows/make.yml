@@ -1,19 +1,21 @@
 ---
-    on:
-      push:
-    
-    jobs:
-      norminette-check:
-        runs-on: ubuntu-latest
-        name: "Make Check"
-    
-        steps:
-          - name: Checkout user code
-            uses: actions/checkout@v3
-    
-          - name: Execute Make
-            run: |
-                if ! make ; then
-                    echo "::error::Make encounter an error"
-                    exit 1
-                fi
+name: Make check
+
+on:
+  push:
+
+jobs:
+  norminette-check:
+    runs-on: ubuntu-latest
+    name: "Make Check"
+
+    steps:
+      - name: Checkout user code
+        uses: actions/checkout@v3
+
+      - name: Execute Make
+        run: |
+            if ! make ; then
+                echo "::error::Make encounter an error"
+                exit 1
+            fi
