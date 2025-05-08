@@ -22,7 +22,6 @@ jobs:
             python3 -m pip install norminette
 
       - name: Execute Norminette
-        id: run_norminette
         run: |
             output=$(norminette -RCheckForbiddenSourceHeader 2>&1)
             echo "$output"
