@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:52:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 23:06:29 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/08 17:12:21 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
-
 #include "env.h"
-#include "libft.h"
 
 int	env_init(t_env *env, char **envp)
 {

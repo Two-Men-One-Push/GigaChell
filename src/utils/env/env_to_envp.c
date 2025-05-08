@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env_to_envp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:32:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/01 00:17:31 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/08 17:12:29 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 #include "env.h"
-#include "libft.h"
-
 #include <stdio.h>
 
 void	fill_envp(char **env_tab, char **result)

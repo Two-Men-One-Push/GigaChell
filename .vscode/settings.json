@@ -1,5 +1,9 @@
 {
 	"C_Cpp.default.includePath": [
 		"./include"
-	]
+	],
+	"files.associations": {
+		"stdio.h": "c",
+		"env.h": "c"
+	}
 }

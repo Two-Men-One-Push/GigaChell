@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:12:48 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 23:57:54 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/08 17:12:34 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-
 #include "env.h"
 
 static void	*switch_action(int action, va_list args, t_env *env)

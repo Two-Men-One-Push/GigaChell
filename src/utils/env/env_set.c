@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:16:37 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 21:58:49 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/08 17:12:19 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-#include "libft.h"
 #include "env.h"
-
 #include <stdio.h>
 
 static int	replace_var(char **var, char *var_name, char *value)
