@@ -28,4 +28,5 @@ jobs:
             echo "$output"
             if echo "$output" | grep -q "Error"; then
                 echo "::error::Norminette detected errors in your code."  # Création d'une erreur annotée
+                exit 1
             fi
