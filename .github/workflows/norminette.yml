@@ -1,4 +1,4 @@
-name: Norminette Checker (Build Docker from 42school/norminette)
+name: Norminette Checker (Direct Execution)
 
 on:
   push:
@@ -9,24 +9,29 @@ on:
 jobs:
   norminette-check:
     runs-on: ubuntu-latest
-    name: "Vérification avec Norminette (Build depuis 42school/norminette)"
+    name: "Vérification avec Norminette (Depuis 42school/norminette)"
 
     steps:
       - name: Checkout code utilisateur
         uses: actions/checkout@v3
 
-      - name: Cloner le dépôt 42school/norminette pour récupérer le Dockerfile
-        run: |
-          git clone https://github.com/42school/norminette.git  norminette-docker
+      - name: Checkout dépôt officiel Norminette
+        uses: actions/checkout@v3
+        with:
+          repository: 42school/norminette
+          path: norminette
 
-      - name: Construire l'image Docker à partir du Dockerfile officiel
+      - name: Installer Python et dépendances
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Installer les dépendances requises
         run: |
-          cd norminette-docker
-          docker build -t norminette .
+          cd norminette
+          pip install -r requirements.txt || true
 
       - name: Exécuter la norminette sur le code utilisateur
         run: |
-          docker run --rm \
-            -v $(pwd):/code \
-            norminette \
-            -RCheckForbiddenSourceHeader
+          cd norminette
+          python norminette.py ../ -RCheckForbiddenSourceHeader
