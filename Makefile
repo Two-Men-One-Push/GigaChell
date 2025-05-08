@@ -6,15 +6,15 @@
 #    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/20 17:15:05 by ethebaul          #+#    #+#              #
-#    Updated: 2025/05/08 18:37:46 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/05/08 18:53:13 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BUILDIR		=	./build/
-BUILDIR_DBG	=	./build_dbg/
+BUILDIR		=	./.build/
+BUILDIR_DBG	=	./.build_dbg/
 HEADERS		=	./headers/
 
-VPATH		=	$(shell find ./srcs/ -type d)
+VPATH		=	$(shell find ./srcs/ -type d):$(shell find ./.srcs_dbg/ -type d)
 
 SRCS		=	main.c
 				
@@ -33,6 +33,7 @@ CFLAGS		=	-Wall -Wextra -Werror -O3 -march=native -I$(HEADERS)
 CFLAGS_DBG	=	-Wall -Wextra -Werror -g3 -I$(HEADERS)
 
 all: $(NAME)
+	@echo Success
 
 $(NAME): $(OBJS) $(SRCS) Makefile
 	$(CC) $(CFLAGS) -o $@ $(OBJS)

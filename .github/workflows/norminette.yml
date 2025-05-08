@@ -26,6 +26,6 @@ jobs:
             output=$(norminette -RCheckForbiddenSourceHeader 2>&1)
             echo "$output"
             if echo "$output" | grep -q "Error"; then
-                echo "::error::Norminette detected errors in your code."  # Création d'une erreur annotée
+                echo "::error::Norminette detected errors in your code."
                 exit 1
             fi
