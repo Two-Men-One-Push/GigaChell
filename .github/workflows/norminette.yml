@@ -1,7 +1,6 @@
 ---
 on:
   push:
-    branches: ["main"]
 
 jobs:
   norminette-check:
@@ -31,4 +30,4 @@ jobs:
       - name: Exécuter la norminette sur le code utilisateur
         run: |
           cd norminette
-          python norminette.py ../ -RCheckForbiddenSourceHeader
+          python __main__.py ../ -RCheckForbiddenSourceHeader
