@@ -1,19 +1,32 @@
----
+name: Norminette Checker (Build Docker from 42school/norminette)
+
 on:
   push:
+    branches: ["main"]  # ou votre branche par défaut
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   norminette-check:
     runs-on: ubuntu-latest
-    name: "Norminette"
+    name: "Vérification avec Norminette (Build depuis 42school/norminette)"
 
     steps:
-      - name: Checkout code
+      - name: Checkout code utilisateur
         uses: actions/checkout@v3
 
-      - name: Run Norminette via Docker
+      - name: Cloner le dépôt 42school/norminette pour récupérer le Dockerfile
+        run: |
+          git clone https://github.com/42school/norminette.git  norminette-docker
+
+      - name: Construire l'image Docker à partir du Dockerfile officiel
+        run: |
+          cd norminette-docker
+          docker build -t norminette .
+
+      - name: Exécuter la norminette sur le code utilisateur
         run: |
           docker run --rm \
-            -v $(pwd):/root/src \
-            42lambdas/norminette:latest \
+            -v $(pwd):/code \
+            norminette \
             -RCheckForbiddenSourceHeader
