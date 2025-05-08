@@ -1,18 +1,19 @@
 ---
-name: Norminette
-
 on:
   push:
 
 jobs:
-  check-norminette:
-    name: Norminette
+  norminette-check:
     runs-on: ubuntu-latest
+    name: "Norminette"
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Norminette
-        uses: 42School/norminette@main
-        with:
-          args: '-RCheckForbiddenSourceHeader'
+      - name: Run Norminette via Docker
+        run: |
+          docker run --rm \
+            -v $(pwd):/root/src \
+            42lambdas/norminette:latest \
+            -RCheckForbiddenSourceHeader
