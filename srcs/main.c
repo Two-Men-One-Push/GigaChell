@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getenvp.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 22:04:28 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/08 14:22:37 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/08 18:35:39 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "gigachell.h"
 
-char	**ft_getenvp(void)
+int	main(int ac, char **av, char **envp)
 {
-	return (env_handle(ENV_TO_ENVP));
+	(void)ac;
+	(void)av;
+	(void)envp;
+	return (0);
 }
-/**
-echo test | cat > out && (echo coucou || echo oui) || echo non
- */

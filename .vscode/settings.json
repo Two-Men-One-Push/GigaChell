@@ -4,6 +4,12 @@
 	],
 	"files.associations": {
 		"stdio.h": "c",
-		"env.h": "c"
+		"env.h": "c",
+		"gigachell.h": "c",
+		"stdlib.h": "c",
+		"utils.h": "c",
+		"readline.h": "c",
+		"stddef.h": "c",
+		"unistd.h": "c"
 	}
 }

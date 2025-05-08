@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initenv.c                                       :+:      :+:    :+:   */
+/*   gigachell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 22:05:23 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 22:06:14 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/08 18:20:58 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#ifndef GIGACHELL_H
+# define GIGACHELL_H
 
-int	ft_initenv(char **envp)
-{
-	return ((int)(unsigned long)env_handle(ENV_INIT, envp));
-}
+#endif
