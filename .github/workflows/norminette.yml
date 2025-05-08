@@ -5,29 +5,22 @@ on:
 jobs:
   norminette-check:
     runs-on: ubuntu-latest
-    name: "Vérification avec Norminette (Depuis 42school/norminette)"
+    name: "Norminette Check"
 
     steps:
-      - name: Checkout code utilisateur
+      - name: Checkout user code
         uses: actions/checkout@v3
 
-      - name: Checkout dépôt officiel Norminette
-        uses: actions/checkout@v3
-        with:
-          repository: 42school/norminette
-          path: norminette
-
-      - name: Installer Python et dépendances
+      - name: Install Python3
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+            python-version: "3.10"
 
-      - name: Installer les dépendances requises
+      - name: Install Norminette using pip
         run: |
-          cd norminette
-          pip install -r requirements.txt || true
+            python3 -m pip install --upgrade pip setuptools
+            python3 -m pip install norminette
 
-      - name: Exécuter la norminette sur le code utilisateur
+      - name: Execute Norminette
         run: |
-          cd norminette/norminette
-          python __main__.py ../../ -RCheckForbiddenSourceHeader
+            norminette -RCheckForbiddenSourceHeader
