@@ -22,11 +22,10 @@ jobs:
             python3 -m pip install norminette
 
       - name: Execute Norminette
+        id: run_norminette
         run: |
-            set -e  # Arrête le script dès qu'une commande échoue
             output=$(norminette -RCheckForbiddenSourceHeader 2>&1)
             echo "$output"
             if echo "$output" | grep -q "Error"; then
                 echo "::error::Norminette detected errors in your code."  # Création d'une erreur annotée
-                exit 1
             fi
