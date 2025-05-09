@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/09 15:33:09 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/09 16:01:22 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/09 16:07:08 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gigachell.h"
+#ifndef LEXER_H
+# define LEXER_H
 
-int	main(int ac, char **av, char **envp)
-{
-	(void)ac;
-	(void)av;
-	(void)envp;
-	return (0);
-}
+int	lexer(char *line);
+
+#endif

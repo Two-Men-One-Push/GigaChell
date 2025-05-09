@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/09 15:33:09 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/09 15:34:10 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/09 16:12:02 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gigachell.h"
+#include <stdlib.h>
+#include "utils.h"
 
-int	main(int ac, char **av, char **envp)
+int	lexer(char *line)
 {
-	(void)ac;
-	(void)av;
-	(void)envp;
+	char	**tokens;
+
+	tokens = lexer_tokenize(line);
+	lexer_apply(tokens);
+	free_array(tokens);
 	return (0);
 }

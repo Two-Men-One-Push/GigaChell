@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/09 15:33:09 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/09 15:58:53 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/09 16:06:14 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gigachell.h"
+#include <stdlib.h>
 
-int	main(int ac, char **av, char **envp)
+void	free_array(void **array)
 {
-	(void)ac;
-	(void)av;
-	(void)envp;
-	return (0);
+	while (*array)
+	{
+		free(*array);
+		++array;
+	}
+	free(array);
 }
