@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 15:34:10 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/09 16:12:02 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/09 16:01:22 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/09 20:29:32 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "utils.h"
+#ifndef LEXER_H
+# define LEXER_H
 
-int	lexer(char *line)
-{
-	char	**tokens;
+int	logic_exec(char *line);
 
-	tokens = lexer_tokenize(line);
-	lexer_apply(tokens);
-	free_array(tokens);
-	return (0);
-}
+#endif

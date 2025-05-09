@@ -6,11 +6,11 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:58:53 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/09 16:06:14 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:47:48 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "t_size.h"
 
 void	free_array(void **array)
 {
