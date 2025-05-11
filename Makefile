@@ -3,43 +3,48 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
+#    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/20 17:15:05 by ethebaul          #+#    #+#              #
-#    Updated: 2025/05/09 16:15:29 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/05/12 01:15:41 by ebini            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-BUILDIR		=	./build/
-BUILDIR_DBG	=	./build_dbg/
-HEADERS		=	./headers/
+BUILDIR			=	./.build/
+BUILDIR_DBG		=	./.build_dbg/
+HEADERS			=	./headers/
 
-VPATH		=	$(shell find ./srcs/ -type d):$(shell find ./srcs_dbg/ -type d)
+VPATH			=	$(shell find ./srcs/ -type d):$(shell find ./srcs_dbg/ -type d)
 
-SRCS		=	main.c
-				
-SRCS_DBG	=	main_dbg.c
+MAIN			=	main.c
+SRCS			=	error.c \
+					ft_strlen.c
 
-DEPS		=	$(addprefix $(BUILDIR), $(SRCS:.c=.d))
-OBJS		=	$(addprefix $(BUILDIR), $(SRCS:.c=.o))
-DEPS_DBG	=	$(addprefix $(BUILDIR_DBG), $(SRCS:.c=.d))
-OBJS_DBG	=	$(addprefix $(BUILDIR_DBG), $(SRCS:.c=.o))
+MAIN_DBG		=	main_dbg.c
+SRCS_DBG		=	
 
-NAME		=	GigaChell
-DEBUG		=	debug
+DEPS			=	$(addprefix $(BUILDIR), $(SRCS:.c=.d))
+OBJS			=	$(addprefix $(BUILDIR), $(SRCS:.c=.o))
+MAIN_OBJ		=	$(addprefix $(BUILDIR), $(MAIN:.c=.o))
+DEPS_DBG		=	$(addprefix $(BUILDIR_DBG), $(SRCS_DBG:.c=.d))
+OBJS_DBG		=	$(addprefix $(BUILDIR_DBG), $(SRCS_DBG:.c=.o))
+MAIN_OBJ_DBG	=	$(addprefix $(BUILDIR_DBG), $(MAIN_DBG:.c=.o))
 
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -O3 -march=native -I$(HEADERS)
-CFLAGS_DBG	=	-Wall -Wextra -Werror -g3 -I$(HEADERS)
+NAME			=	GigaChell
+DEBUG			=	debug
+
+CC				=	cc
+CFLAGS			=	-Wall -Wextra -Werror -O3 -march=native -I$(HEADERS)
+CFLAGS_DBG		=	-Wall -Wextra -Werror -g3 -I$(HEADERS)
 
 all: $(NAME)
 	@echo Success
 
-$(NAME): $(OBJS) $(SRCS) Makefile
-	$(CC) $(CFLAGS) -o $@ $(OBJS)
+$(NAME): $(OBJS) $(MAIN_OBJ) Makefile
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(MAIN_OBJ)
 
-$(DEBUG): $(OBJS) $(SRCS) $(OBJS_DBG) $(SRCS_DBG) Makefile
-	$(CC) $(CFLAGS_DBG) -o $@ $(OBJS) $(OBJS_DBG)
+$(DEBUG): $(OBJS) $(OBJS_DBG) $(MAIN_OBJ_DBG) Makefile
+	$(CC) $(CFLAGS_DBG) -o $@ $(OBJS) $(OBJS_DBG) $(MAIN_OBJ_DBG)
 
 $(BUILDIR)%.o: %.c | $(BUILDIR)
 	$(CC) $(CFLAGS) -MD -MP -o $@ -c $<
