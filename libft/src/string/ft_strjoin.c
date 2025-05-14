@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:41 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/23 05:50:27 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/30 21:51:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*strjoinall(size_t count, ...)
 	i = -1;
 	result_size = 0;
 	while (++i < count)
-		result_size += ft_strcpy_len(tab[i], result + result_size);
+		result_size += ft_strcpy_len(result + result_size, tab[i]);
 	free(tab);
 	return (result);
 }

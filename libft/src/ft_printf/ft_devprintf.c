@@ -1,46 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_devprintf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 15:09:30 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 21:51:23 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/05 17:03:43 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/13 16:02:38 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./ft_vfprintf_utils.h"
 
-void	ft_strcpy(char *dest, const char *src)
+#ifdef DEV
+
+int	ft_devprintf(const char *format, ...)
 {
-	size_t	i;
+	int		printf_return;
+	va_list	args;
 
-	i = -1;
-	while (src[++i])
-		dest[i] = src[i];
-	dest[i] = '\0';
+	va_start(args, format);
+	printf_return = ft_vfprintf(2, format, args);
+	va_end(args);
+	return (printf_return);
 }
+#else
 
-size_t	ft_strcpy_len(char *dest, const char *src)
+int	ft_devprintf(const char *format, ...)
 {
-	size_t	i;
-
-	i = -1;
-	while (src[++i])
-		dest[i] = src[i];
-	dest[i] = '\0';
-	return (i);
+	(void)format;
+	return (0);
 }
-
-void	ft_strncpy(char *dest, const char *src, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n && src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-}
+#endif
