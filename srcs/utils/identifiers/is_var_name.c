@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_var_name.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/14 04:44:29 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/14 04:48:52 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdbool.h>
 
-#include "env.h"
-#include "gigachell.h"
-#include "defs/hd_node.h"
-
-int	main(int ac, char **av, char **envp)
+bool	is_var_start(char c)
 {
-	t_hd_node	*heredoc_list;
+	return (('a' <= c && c <= 'z')
+		|| ('A' <= c && c <= 'Z')
+		|| c == '_'
+	);
+}
 
-	heredoc_list = NULL;
-	if (ft_initenv(envp));
-	{
-		perror("minishell: ft_initenv");
-		return (1);
-	}
-	if (ac > 1)
-	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
-	}
-	ft_clearenv();
-	return (1);
+bool	is_var_char(char c)
+{
+	return (('a' <= c && c <= 'z')
+		|| ('A' <= c && c <= 'Z')
+		|| ('0' <= c && c <= '9')
+		|| c == '_'
+	);
 }

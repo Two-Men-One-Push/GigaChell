@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipe_fd.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/12 00:55:28 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/12 00:56:56 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef PIPE_FD_H
+# define PIPE_FD_H
 
-#include "env.h"
-#include "gigachell.h"
-#include "defs/hd_node.h"
-
-int	main(int ac, char **av, char **envp)
+typedef struct s_pipe_fd
 {
-	t_hd_node	*heredoc_list;
+	int	in;
+	int	out;
+	int	next_in;
+}			t_pipe_fd;
 
-	heredoc_list = NULL;
-	if (ft_initenv(envp));
-	{
-		perror("minishell: ft_initenv");
-		return (1);
-	}
-	if (ac > 1)
-	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
-	}
-	ft_clearenv();
-	return (1);
-}
+#endif

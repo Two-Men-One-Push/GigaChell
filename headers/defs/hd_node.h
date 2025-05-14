@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   heredoc_list.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/12 06:33:51 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/12 06:53:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef HEREDOC_LIST_H
+# define HEREDOC_LIST_H
 
-#include "env.h"
-#include "gigachell.h"
-#include "defs/hd_node.h"
-
-int	main(int ac, char **av, char **envp)
+typedef struct s_hd_node
 {
-	t_hd_node	*heredoc_list;
+	int					fd;
+	struct s_hd_node	*next;
+}			t_hd_node;
 
-	heredoc_list = NULL;
-	if (ft_initenv(envp));
-	{
-		perror("minishell: ft_initenv");
-		return (1);
-	}
-	if (ac > 1)
-	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
-	}
-	ft_clearenv();
-	return (1);
-}
+#endif

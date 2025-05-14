@@ -1,40 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   secure_close.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/13 21:54:03 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/13 23:51:45 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-#include "env.h"
-#include "gigachell.h"
-#include "defs/hd_node.h"
-
-int	main(int ac, char **av, char **envp)
+void	secure_close(int fd)
 {
-	t_hd_node	*heredoc_list;
-
-	heredoc_list = NULL;
-	if (ft_initenv(envp));
-	{
-		perror("minishell: ft_initenv");
-		return (1);
-	}
-	if (ac > 1)
-	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
-	}
-	ft_clearenv();
-	return (1);
+	if (close(fd))
+		write(2, "Warning: Couldn't close fd\n", 27);
 }

@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hd_add_back.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/13 23:32:20 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/14 01:49:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-#include "env.h"
-#include "gigachell.h"
 #include "defs/hd_node.h"
 
-int	main(int ac, char **av, char **envp)
+void	hd_add_back(t_hd_node **lst, t_hd_node *new_node)
 {
-	t_hd_node	*heredoc_list;
-
-	heredoc_list = NULL;
-	if (ft_initenv(envp));
+	if (!new_node)
+		return ;
+	if (!(*lst))
 	{
-		perror("minishell: ft_initenv");
-		return (1);
+		*lst = new_node;
+		return ;
 	}
-	if (ac > 1)
-	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
-	}
-	ft_clearenv();
-	return (1);
+	while ((*lst)->next)
+		(lst) = &((*lst)->next);
+	(*lst)->next = new_node;
 }

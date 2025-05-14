@@ -1,5 +1,5 @@
 /.vscode/
-/build/
+/.build/
 /GigaChell
-/build_dbg/
+/.build_dbg/
 /debug

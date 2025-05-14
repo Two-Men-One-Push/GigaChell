@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_logicalop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/08 18:46:02 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/14 04:01:41 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/14 04:09:59 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gigachell.h"
+#include <stddef.h>
+#include <stdbool.h>
 
-int	main(int ac, char **av, char **envp)
+bool	is_logical_operator(char *s, size_t i)
 {
-	(void)ac;
-	(void)av;
-	(void)envp;
-	return (0);
+	return ((s[i] == '&' && s[i + 1] == '&')
+		|| (s[i] == '|' && s[i + 1] == '|'));
 }

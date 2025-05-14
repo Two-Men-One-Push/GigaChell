@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hd_pop.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/01/22 18:51:33 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/14 01:49:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
 
-#include "env.h"
-#include "gigachell.h"
 #include "defs/hd_node.h"
 
-int	main(int ac, char **av, char **envp)
+int	hd_pop(t_hd_node **lst)
 {
-	t_hd_node	*heredoc_list;
+	int			fd;
+	t_hd_node	*last_node;
+	t_hd_node	*parent_node;
 
-	heredoc_list = NULL;
-	if (ft_initenv(envp));
+	last_node = (*lst)->next;
+	if (!last_node)
 	{
-		perror("minishell: ft_initenv");
-		return (1);
+		fd = (*lst)->fd;
+		free(*lst);
+		*lst = NULL;
+		return (fd);
 	}
-	if (ac > 1)
+	while (last_node->next)
 	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
+		parent_node = last_node;
+		last_node = last_node->next;
 	}
-	ft_clearenv();
-	return (1);
+	fd = last_node->fd;
+	free(last_node);
+	parent_node->next = NULL;
+	return (fd);
 }

@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_space.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/14 03:46:41 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/14 04:09:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdbool.h>
 
-#include "env.h"
-#include "gigachell.h"
-#include "defs/hd_node.h"
-
-int	main(int ac, char **av, char **envp)
+bool	is_space(char c)
 {
-	t_hd_node	*heredoc_list;
-
-	heredoc_list = NULL;
-	if (ft_initenv(envp));
-	{
-		perror("minishell: ft_initenv");
-		return (1);
-	}
-	if (ac > 1)
-	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
-	}
-	ft_clearenv();
-	return (1);
+	return (c == ' ' || c == '\t');
 }

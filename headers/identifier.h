@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   identifier.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/14 03:45:40 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/14 04:48:13 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef INDENTIFIER_H
+# define INDENTIFIER_H
 
-#include "env.h"
-#include "gigachell.h"
-#include "defs/hd_node.h"
+#include <stddef.h>
+#include <stdbool.h>
 
-int	main(int ac, char **av, char **envp)
-{
-	t_hd_node	*heredoc_list;
+bool	is_space(char c);
+bool	is_logical_operator(char *s, size_t i);
+bool	is_simple_redirection(char c);
+bool	is_double_redirection(char *s, size_t i);
+bool	is_var_char(char c);
+bool	is_var_start(char c);
 
-	heredoc_list = NULL;
-	if (ft_initenv(envp));
-	{
-		perror("minishell: ft_initenv");
-		return (1);
-	}
-	if (ac > 1)
-	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
-	}
-	ft_clearenv();
-	return (1);
-}
+#endif

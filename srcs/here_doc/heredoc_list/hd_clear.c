@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hd_clear.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/14 00:45:21 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/14 22:47:51 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <unistd.h>
+
+#include "defs/hd_node.h"
+#include "utils.h"
+
 #include <stdio.h>
 
-#include "env.h"
-#include "gigachell.h"
-#include "defs/hd_node.h"
-
-int	main(int ac, char **av, char **envp)
+void	hd_clear(t_hd_node **lst)
 {
-	t_hd_node	*heredoc_list;
+	t_hd_node	*next;
 
-	heredoc_list = NULL;
-	if (ft_initenv(envp));
+	
+	if (!*lst)
+		return ;
+	while (*lst)
 	{
-		perror("minishell: ft_initenv");
-		return (1);
+		next = (*lst)->next;
+		secure_close((*lst)->fd);
+		free(*lst);
+		*lst = next;
 	}
-	if (ac > 1)
-	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
-	}
-	ft_clearenv();
-	return (1);
+	*lst = NULL;
 }
