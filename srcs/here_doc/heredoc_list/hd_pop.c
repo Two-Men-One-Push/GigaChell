@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:51:33 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 01:49:50 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/15 00:08:00 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int	hd_pop(t_hd_node **lst)
 	t_hd_node	*last_node;
 	t_hd_node	*parent_node;
 
-	last_node = (*lst)->next;
-	if (!last_node)
+	if (!(*lst)->next)
 	{
 		fd = (*lst)->fd;
 		free(*lst);
 		*lst = NULL;
 		return (fd);
 	}
+	last_node = *lst;
 	while (last_node->next)
 	{
 		parent_node = last_node;
