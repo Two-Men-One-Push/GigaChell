@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:25:26 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/15 20:13:31 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/15 20:47:20 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 #include "libft.h"
 #include "builtins_utils.h"
 
-static int	secure_pwd()
+static int	secure_pwd(void)
 {
 	char	*cwd;
 	char	*pwd;
 
 	cwd = getcwd(NULL, 0);
-	if (!cwd)	
+	if (!cwd)
 	{
 		perror("cd");
 		return (-1);
