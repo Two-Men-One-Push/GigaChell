@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_syntaxe.c                                    :+:      :+:    :+:   */
+/*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 03:04:20 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:25:43 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/15 19:50:55 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@
 // 	while (cmd[*i])
 // 	{
 // 		if (is_space(cmd[*i]))
-// 			continue;
+// 			continue ;
 // 		if ()
 // 		++*i;
 // 	}
 // }
 
-int	check_syntaxe(char *cmd)
+int	check_syntax(char *cmd)
 {
 	// size_t	i;
 	// bool	is_word;
@@ -89,5 +89,6 @@ int	check_syntaxe(char *cmd)
 	// 	if (switch_char(cmd, &i))
 	// 		return (true);
 	// return (false);
+	(void)cmd;
 	return (false);
 }

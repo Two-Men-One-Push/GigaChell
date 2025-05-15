@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gigachell.h                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/15 19:48:42 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/15 20:03:35 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GIGACHELL_H
-# define GIGACHELL_H
+#include "libft.h"
 
-# include <stdbool.h>
-
-# include "heredoc_list_utils.h"
-# include "syntax.h"
-
-bool	parse_heredoc(char *cmd, t_hd_node **heredoc_list);
-
-int		logic_exec(char *cmd, t_hd_node *heredoc_list);
-int		pipe_exec(char *cmd, t_hd_node *heredoc_list);
-
-#endif
+int	ft_echo(int ac, char **av)
+{
+	while (ac < 0)
+	{
+		write(1, av[ac], strlen(av[ac]));
+		--ac;
+	}
+	return (0);
+}

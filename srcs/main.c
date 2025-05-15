@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 04:33:52 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/15 20:10:48 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,29 @@
 #include "env.h"
 #include "gigachell.h"
 #include "defs/hd_node.h"
+#include "readline/readline.h"
+#include "libft.h"
+#include "builtin.h"
 
 int	main(int ac, char **av, char **envp)
 {
 	t_hd_node	*heredoc_list;
+	char		*line;
 
+	(void)av;
+	(void)ac;
 	heredoc_list = NULL;
-	if (ft_initenv(envp));
+	if (ft_initenv(envp))
 	{
 		perror("minishell: ft_initenv");
 		return (1);
 	}
-	if (ac > 1)
+	while (1)
 	{
-		if (check_syntaxe(av[1]))
-		{
-			ft_clearenv();
-			return (2);
-		}
-		
+		line = readline(NULL);
+		if (check_syntax(line))
+			continue ;
+		//parse and exec
 	}
 	ft_clearenv();
 	return (1);

@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gigachell.h                                        :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/15 19:48:42 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/15 19:55:46 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/15 19:57:46 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GIGACHELL_H
-# define GIGACHELL_H
 
-# include <stdbool.h>
+#ifndef BUILTIN_H
+# define BUILTIN_H
 
-# include "heredoc_list_utils.h"
-# include "syntax.h"
-
-bool	parse_heredoc(char *cmd, t_hd_node **heredoc_list);
-
-int		logic_exec(char *cmd, t_hd_node *heredoc_list);
-int		pipe_exec(char *cmd, t_hd_node *heredoc_list);
+int	ft_echo(int ac, char **av);
 
 #endif
