@@ -77,7 +77,6 @@ void	handle_path_end(char *path, size_t len)
 			len -= 4;
 			while (path[len] != '/')
 				--len;
-			++len;
 			path[len] = '\0';
 		}
 	}
