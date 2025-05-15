@@ -6,7 +6,7 @@
 #    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/20 17:15:05 by ethebaul          #+#    #+#              #
-#    Updated: 2025/05/14 22:39:31 by ebini            ###   ########lyon.fr    #
+#    Updated: 2025/05/15 19:12:37 by ebini            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRCS				=	logic_exec.c \
 						str_extract.c \
 						unquote.c \
 						skip.c \
+						cd.c \
+						cd_utils.c \
 						secure_close.c \
 						error.c
 
@@ -63,7 +65,7 @@ LIBFT_FLAGS			=	-L$(LIBFT_FOLDER) -l$(shell echo $(LIBFT_ARCHIVE) | cut -c4- | r
 all: $(NAME)
 	@echo Success
 
-$(NAME): $(OBJS) $(MAIN_OBJ) 
+$(NAME): $(OBJS) $(MAIN_OBJ)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(MAIN_OBJ) $(LIBFT_FLAGS) -lreadline
 
 $(DEBUG): $(OBJS) $(OBJS_DBG) $(MAIN_OBJ_DBG) $(LIBFT)
