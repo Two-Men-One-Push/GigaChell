@@ -3,19 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
+#    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/20 17:15:05 by ethebaul          #+#    #+#              #
-#    Updated: 2025/05/14 22:39:31 by ebini            ###   ########lyon.fr    #
+#    Updated: 2025/05/15 19:47:47 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+#Folder------------------------------------------------------------------------#
 BUILDIR				=	./.build/
 BUILDIR_DBG			=	./.build_dbg/
 HEADERS				=	./headers/
 
 VPATH				=	$(shell find ./srcs/ -type d):$(shell find ./srcs_dbg/ -type d)
 
+#Sources-----------------------------------------------------------------------#
 MAIN				=	main.c
 SRCS				=	logic_exec.c \
 						heredoc.c \
@@ -35,18 +37,22 @@ SRCS				=	logic_exec.c \
 						unquote.c \
 						skip.c \
 						secure_close.c \
-						error.c
+						error.c \
+						check_syntax.c
 
 MAIN_DBG			=	main_dbg.c
 SRCS_DBG			=	
 
-DEPS				=	$(addprefix $(BUILDIR), $(SRCS:.c=.d))
-OBJS				=	$(addprefix $(BUILDIR), $(SRCS:.c=.o))
-MAIN_OBJ			=	$(addprefix $(BUILDIR), $(MAIN:.c=.o))
-DEPS_DBG			=	$(addprefix $(BUILDIR_DBG), $(SRCS_DBG:.c=.d))
-OBJS_DBG			=	$(addprefix $(BUILDIR_DBG), $(SRCS_DBG:.c=.o))
-MAIN_OBJ_DBG		=	$(addprefix $(BUILDIR_DBG), $(MAIN_DBG:.c=.o))
+#Objects and Dependancy files--------------------------------------------------#
+DEPS				=	$(addprefix $(BUILDIR), $(MAIN:.c=.d) $(SRCS:.c=.d) $(MAIN_DBG:.c=.d) $(SRCS_DBG:.c=.d))
 
+MAIN_OBJ			=	$(addprefix $(BUILDIR), $(MAIN:.c=.o))
+OBJS				=	$(addprefix $(BUILDIR), $(SRCS:.c=.o))
+
+MAIN_OBJ_DBG		=	$(addprefix $(BUILDIR_DBG), $(MAIN_DBG:.c=.o))
+OBJS_DBG			=	$(addprefix $(BUILDIR_DBG), $(SRCS_DBG:.c=.o))
+
+#Name and Compilation----------------------------------------------------------#
 NAME				=	GigaChell
 DEBUG				=	debug
 
@@ -60,13 +66,14 @@ LIBFT				=	$(LIBFT_FOLDER)/$(LIBFT_ARCHIVE)
 LIBFT_INCLUDE_FLAGS	=	-I$(LIBFT_FOLDER)/include
 LIBFT_FLAGS			=	-L$(LIBFT_FOLDER) -l$(shell echo $(LIBFT_ARCHIVE) | cut -c4- | rev | cut -c3- | rev)
 
+#Rules-------------------------------------------------------------------------#
 all: $(NAME)
 	@echo Success
 
-$(NAME): $(OBJS) $(MAIN_OBJ) 
+$(NAME): $(MAIN_OBJ) $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(MAIN_OBJ) $(LIBFT_FLAGS) -lreadline
 
-$(DEBUG): $(OBJS) $(OBJS_DBG) $(MAIN_OBJ_DBG) $(LIBFT)
+$(DEBUG): $(MAIN_OBJ_DBG) $(OBJS) $(OBJS_DBG) $(LIBFT)
 	$(CC) $(CFLAGS_DBG) -o $@ $(OBJS) $(OBJS_DBG) $(MAIN_OBJ_DBG) $(LIBFT_FLAGS) -lreadline
 
 $(BUILDIR)%.o: %.c | $(BUILDIR)
@@ -84,7 +91,7 @@ $(BUILDIR_DBG):
 $(LIBFT): FORCE
 	make -C $(LIBFT_FOLDER)
 
--include $(DEPS) $(DEPS_DBG)
+-include $(DEPS)
 
 clean:
 	rm -rf $(BUILDIR) $(BUILDIR_DBG)
