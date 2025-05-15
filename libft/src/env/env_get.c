@@ -6,14 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:25:13 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 21:21:31 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/15 01:27:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include "libft.h"
-
-#include <stdio.h>
 
 char	*env_get(t_env *env, char *var_name)
 {
