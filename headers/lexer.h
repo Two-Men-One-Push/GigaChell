@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gigachell.h                                        :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:11:36 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/14 19:50:04 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/09 16:01:22 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/14 19:49:52 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GIGACHELL_H
-# define GIGACHELL_H
+#ifndef LEXER_H
+# define LEXER_H
 
-# include "lexer.h"
-# include "syntax.h"
+int	lexer(char *line);
 
 #endif

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   logic_exec.c                                       :+:      :+:    :+:   */
+/*   syntax.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 15:34:10 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/09 20:32:14 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/14 19:05:16 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/14 19:56:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_size.h"
+#ifndef SYNTAX_H
+# define SYNTAX_H
 
-int	logic_exec(char *line)
-{
-	t_size	index;
+# include <unistd.h>
+# include "t_size.h"
+# include "t_stref.h"
 
-	index = 0;
-	while (line[index])
-	{
-		
-		++index;
-	}
-	return (0);
-}
+int	check_syntax(char *line);
+int	syntax_error(t_stref stref);
 
-
+#endif

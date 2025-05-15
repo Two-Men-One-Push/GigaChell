@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   t_stref.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 16:00:34 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/09 16:00:58 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/14 19:51:38 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/14 19:53:08 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef T_STREF_H
+# define T_STREF_H
 
-void	free_array(void **array);
+# include "t_size.h"
+
+typedef struct s_stref
+{
+	char	*ptr;
+	t_size	size;
+}	t_stref;
 
 #endif

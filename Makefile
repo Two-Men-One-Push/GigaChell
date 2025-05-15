@@ -6,17 +6,17 @@
 #    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/20 17:15:05 by ethebaul          #+#    #+#              #
-#    Updated: 2025/05/09 16:14:57 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/05/14 19:44:01 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 BUILDIR		=	./build/
 BUILDIR_DBG	=	./build_dbg/
-HEADERS		=	./headers/
+HEADERS		=	$(shell find ./headers/ -type d)
 
 VPATH		=	$(shell find ./srcs/ -type d):$(shell find ./srcs_dbg/ -type d)
 
-SRCS		=	main.c
+SRCS		=	$(notdir $(shell find ./srcs/ -type f -name "*.c"))
 				
 SRCS_DBG	=	main_dbg.c
 
@@ -29,17 +29,18 @@ NAME		=	GigaChell
 DEBUG		=	debug
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -O3 -march=native -I$(HEADERS)
-CFLAGS_DBG	=	-Wall -Wextra -Werror -g3 -I$(HEADERS)
+LIBS		=	-lreadline -lncurses
+CFLAGS		=	-Wall -Wextra -Werror -O3 -march=native $(addprefix -I, $(HEADERS))
+CFLAGS_DBG	=	-Wall -Wextra -Werror -g3 $(addprefix -I, $(HEADERS))
 
 all: $(NAME)
 	@echo Success
 
 $(NAME): $(OBJS) $(SRCS) Makefile
-	$(CC) $(CFLAGS) -o $@ $(OBJS)
+	$(CC) $(CFLAGS) $(LIBS) -o $@ $(OBJS)
 
 $(DEBUG): $(OBJS) $(SRCS) $(OBJS_DBG) $(SRCS_DBG) Makefile
-	$(CC) $(CFLAGS_DBG) -o $@ $(OBJS) $(OBJS_DBG)
+	$(CC) $(CFLAGS_DBG) $(LIBS) -o $@ $(OBJS) $(OBJS_DBG)
 
 $(BUILDIR)%.o: %.c | $(BUILDIR)
 	$(CC) $(CFLAGS) -MD -MP -o $@ -c $<
@@ -48,18 +49,18 @@ $(BUILDIR_DBG)%.o: %.c | $(BUILDIR_DBG)
 	$(CC) $(CFLAGS_DBG) -MD -MP -o $@ -c $<
 
 $(BUILDIR):
-	mkdir -p $@
+	@mkdir -p $@
 
 $(BUILDIR_DBG):
-	mkdir -p $@
+	@mkdir -p $@
 
 -include $(DEPS) $(DEPS_DBG)
 
 clean:
-	rm -rf $(BUILDIR) $(BUILDIR_DBG)
+	@rm -rf $(BUILDIR) $(BUILDIR_DBG)
 
 fclean: clean
-	rm -f $(NAME) $(DEBUG)
+	@rm -f $(NAME) $(DEBUG)
 
 re: fclean all
 

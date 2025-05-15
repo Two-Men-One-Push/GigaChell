@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_array.c                                       :+:      :+:    :+:   */
+/*   scope_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 15:58:53 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/09 19:47:48 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/14 18:55:36 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/14 20:02:17 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_size.h"
+#include "syntax.h"
 
-void	free_array(void **array)
+int	syntax_error(t_stref	stref)
 {
-	while (*array)
-	{
-		free(*array);
-		++array;
-	}
-	free(array);
+	write(2, "GigaChell: syntax error near unexpected token `", 47);
+	write(2, stref.ptr, stref.size);
+	write(2, "'\n", 2);
+	return (1);
 }

@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 16:01:22 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/09 20:29:32 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/09 15:34:10 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/14 19:03:59 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#include "t_size.h"
 
-int	logic_exec(char *line);
+int	lexer(char *line)
+{
+	t_size	index;
 
-#endif
+	index = 0;
+	while (line[index])
+	{
+		++index;
+	}
+	return (0);
+}
+
+
