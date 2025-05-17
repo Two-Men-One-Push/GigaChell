@@ -47,7 +47,7 @@ OBJS_DBG			=	$(addprefix $(BUILDIR_DBG), $(SRCS_DBG:.c=.o))
 NAME				=	GigaChell
 DEBUG				=	debug
 
-CC					=	cc
+CC					=	clang
 CFLAGS				=	-Wall -Wextra -Werror -O3 -g3 -march=native -I$(HEADERS)
 CFLAGS_DBG			=	-Wall -Wextra -Werror -g3 -I$(HEADERS)
 
