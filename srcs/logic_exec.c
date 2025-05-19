@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 01:56:34 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/19 07:28:07 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ bool	handle_status(int status, char *cmd, size_t *i, t_hd_node **heredoc_list)
 	return (1);
 }
 
-int	logic_exec(char *cmd, t_hd_node *heredoc_list)
+int	logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list)
 {
 	int		status;
 	size_t	i;
@@ -96,9 +96,10 @@ int	logic_exec(char *cmd, t_hd_node *heredoc_list)
 			// return (exec_pipe(cmd, heredoc_list));
 		}
 			// status = exec_pipe(str_extract(cmd, i), heredoc_list); // "echo test && echo coucou" will become "echo test \0& echo coucou"
+			(void)last_status;
 			status = 0;
 			printf("%s\n", str_extract(cmd, i));
-		if (handle_status(status, cmd, &i, &heredoc_list))
+		if (handle_status(status, cmd, &i, heredoc_list))
 			return (status);
 		cmd += i;
 		i = 0;
