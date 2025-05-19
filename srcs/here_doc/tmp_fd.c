@@ -84,10 +84,10 @@ char	*tmp_path(void)
 		if (access(path, F_OK) == -1 && errno == ENOENT)
 			return (path);
 		free(path);
-		printf("failed\n");
 		++try_no;
 	}
-	write(2, "gigachell: Couldn't generate temporary file for heredoc\n", 56);
+	write(STDERR_FILENO,
+		"gigachell: Couldn't generate temporary file for heredoc\n", 56);
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 06:16:34 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 22:30:39 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/19 04:35:29 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ char	*get_limiter(char *cmd, size_t *i)
 		else if (cmd[*i + limiter_len] == '\'')
 			skip_squote(cmd + *i, &limiter_len);
 		else if (cmd[*i + limiter_len] == '(')
-		{
 			skip_paranthesis(cmd + *i, &limiter_len);
-			printf("char after par: '%c'\n", cmd[*i + limiter_len]);
-		}
 		else
 			++limiter_len;
 	}

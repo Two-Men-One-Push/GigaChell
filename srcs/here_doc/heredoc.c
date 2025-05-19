@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 22:41:21 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/17 07:35:56 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	create_here_doc(char *limiter)
 			perror("gigachell: readline");
 			return (clear_here_doc(fd, file, NULL));
 		}
-		write(2, "warning: expected limiter before EOF\n", 37);
+		write(STDERR_FILENO, "warning: expected limiter before EOF\n", 37);
 	}
 	return (exit_here_doc(fd, line, file));
 }
