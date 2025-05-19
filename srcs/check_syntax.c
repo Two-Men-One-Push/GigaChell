@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 03:04:20 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/17 09:26:29 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/05/19 09:36:04 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,38 @@ int	serror(char *str, int len)
 	return (-1);
 }
 
-int	syntax_action(char *line, int *i, int *cmd_op, int *depth)
+int	syntax_action(char **line, int *cmd, int *op, int *depth)
 {
-	if (line[*i] == '(')
+	if (*line[0] == '(')
 	{
+		if (*cmd)
+			return (serror("(", 1));
 		++*depth;
-		*cmd_op &= 1;
+		*op = 0;
 	}
-	else if (line[*i] == ')')
+	else if (*line[0] == ')')
 	{
-		if ((*cmd_op & 2) == 0)
+		if (!*cmd)
 			return (serror(")", 1));
 		--*depth;
-		*cmd_op |= 2;
+		*op = 1;
 	}
-	else if (line[*i] == '&' && line[*i + 1] == '&')
+	else if (*line[0] == '&' && *line[1] == '&')
 	{
-		if ((*cmd_op & 2) == 0)
+		if (!*cmd)
 			return (serror("&&", 2));
-		*cmd_op = 0;
-		++*i;
+		*op = 0;
+		++*line;
 	}
-	else if (line[*i] == '|' && line[*i + 1] == '|')
+	else if (*line[0] == '|' && *line[1] == '|')
 	{
-		if ((*cmd_op & 2) == 0)
+		if (!*cmd)
 			return (serror("||", 1));
-		*cmd_op = 1;
-		++*i;
+		*op = 0;
+		++*line;
 	}
-	else if ((line[*i] < 9 || line[*i] > 13) && line[*i] != ' ')
-		*cmd_op |= 2;
+	else if ((*line[0] < 9 || *line[0] > 13) && *line[0] != ' ')
+		*op = 1;
 	return (0);
 }
 
@@ -62,16 +64,14 @@ int	check_syntax(char *line)
 {
 	int		depth;
 	int		cmd_op;
-	int		i;
 
-	i = 0;
 	cmd_op = 0;
 	depth = 0;
-	while (line[i])
+	while (*line)
 	{
-		if (syntax_action(line, &i, &cmd_op, &depth))
+		if (syntax_action(line, &cmd_op, &depth))
 			return (-1);
-		++i;
+		++line;
 	}
 	if (cmd_op == 0)
 		return (serror("&&", 2));
@@ -83,3 +83,7 @@ int	check_syntax(char *line)
 		return (serror(")", 1));
 	return (0);
 }
+
+int	syntax_popen(char *line, &depth);
+
+int	syntax_pclose();

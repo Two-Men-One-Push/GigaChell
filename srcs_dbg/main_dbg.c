@@ -1,32 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-<<<<<<< HEAD
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   main_dbg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/15 20:03:35 by ethebaul         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "libft.h"
-
-int	ft_echo(int ac, char **av)
-{
-	while (ac < 0)
-	{
-		write(1, av[ac], strlen(av[ac]));
-		--ac;
-	}
-=======
-/*   main_dbg.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/17 08:43:50 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/05/19 09:03:20 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +33,5 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	(void)envp;
 	check_syntax(readline(NULL));
->>>>>>> 7ab9a6bfe1eb3cebb5ca95588bcceb6d74a3ec0c
 	return (0);
 }

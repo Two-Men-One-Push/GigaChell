@@ -55,11 +55,5 @@ dkms.conf
 /.vscode/
 /.build/
 /GigaChell
-<<<<<<< HEAD
-/build_dbg/
-/debug
-*.s
-=======
 /.build_dbg/
 /debug
->>>>>>> 7ab9a6bfe1eb3cebb5ca95588bcceb6d74a3ec0c

@@ -6,11 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/14 20:01:54 by ethebaul         ###   ########.fr       */
-=======
-/*   Updated: 2025/05/15 20:10:48 by ethebaul         ###   ########.fr       */
->>>>>>> 7ab9a6bfe1eb3cebb5ca95588bcceb6d74a3ec0c
+/*   Updated: 2025/05/19 09:03:49 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +14,10 @@
 
 #include "env.h"
 #include "gigachell.h"
-<<<<<<< HEAD
-#include <stdio.h>
-#include <readline/readline.h>
-=======
 #include "defs/hd_node.h"
 #include "readline/readline.h"
 #include "libft.h"
 #include "builtin.h"
->>>>>>> 7ab9a6bfe1eb3cebb5ca95588bcceb6d74a3ec0c
 
 int	main(int ac, char **av, char **envp)
 {
@@ -34,12 +25,6 @@ int	main(int ac, char **av, char **envp)
 	char		*line;
 
 	(void)av;
-<<<<<<< HEAD
-	(void)envp;
-	while (!check_syntax(readline(NULL)))
-		;
-	return (0);
-=======
 	(void)ac;
 	heredoc_list = NULL;
 	if (ft_initenv(envp))
@@ -56,5 +41,4 @@ int	main(int ac, char **av, char **envp)
 	}
 	ft_clearenv();
 	return (1);
->>>>>>> 7ab9a6bfe1eb3cebb5ca95588bcceb6d74a3ec0c
 }
