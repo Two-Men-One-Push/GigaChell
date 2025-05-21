@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/19 11:46:43 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/21 08:49:49 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static int	run_command(char *line, int last_status)
 
 static int	main_loop(void)
 {
-	int 	old_status;
-	int 	new_status;
+	int		old_status;
+	int		new_status;
 	char	*line;
 
 	old_status = 0;
@@ -78,9 +78,9 @@ static int	main_loop(void)
 	}
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
-	int status;
+	int	status;
 
 	(void)av;
 	(void)ac;
