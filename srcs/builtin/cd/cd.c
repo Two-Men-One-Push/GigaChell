@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:25:26 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/15 20:47:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/21 08:46:18 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 #include "env.h"
 #include "libft.h"
 #include "builtins_utils.h"
+#include "defs/std_fd.h"
 
-static int	secure_pwd(void)
+static int	secure_pwd(t_std_fd *redirect)
 {
 	char	*cwd;
 	char	*pwd;
@@ -27,7 +28,7 @@ static int	secure_pwd(void)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		perror("cd");
+		ft_dperror(redirect->err, "gigachell: cd");
 		return (-1);
 	}
 	pwd = ft_getenv("PWD");
@@ -39,14 +40,14 @@ static int	secure_pwd(void)
 	if (ft_setenv("PWD", cwd))
 	{
 		free(cwd);
-		perror("cd");
+		ft_dperror(redirect->err, "gigachell: cd");
 		return (-1);
 	}
 	free(cwd);
 	return (0);
 }
 
-static char	*get_curpath(const char *arg)
+static char	*get_curpath(const char *arg, t_std_fd *redirect)
 {
 	char	*pwd;
 	char	*curpath;
@@ -59,7 +60,7 @@ static char	*get_curpath(const char *arg)
 		curpath = strjoinall(3, pwd, "/", arg);
 	}
 	if (!curpath)
-		perror("cd");
+		ft_dperror(redirect->err, "gigachell: cd");
 	return (curpath);
 }
 
@@ -82,31 +83,31 @@ static void	clean_path(char *path)
 	handle_path_end(path, i);
 }
 
-static int	end_cd(char *curpath)
+static int	end_cd(char *curpath, t_std_fd *redirect)
 {
 	int	result;
 
 	if (ft_setenv("OLDPWD", ft_getenv("PWD")))
 	{
-		perror("cd");
+		ft_dperror(redirect->err, "gigachell: cd");
 		result = 1;
 	}
 	if (ft_setenv("PWD", curpath))
 	{
-		perror("cd");
+		ft_dperror(redirect->err, "gigachell: cd");
 		result = 1;
 	}
 	free(curpath);
 	return (result);
 }
 
-int	cd(int ac, char **av)
+int	cd(int ac, char **av, t_std_fd *redirect)
 {
 	char	*arg;
 	char	*curpath;
 	int		result;
 
-	if (secure_pwd())
+	if (secure_pwd(redirect))
 		return (1);
 	if (ac < 2)
 		arg = ft_getenv("HOME");
@@ -114,7 +115,7 @@ int	cd(int ac, char **av)
 		arg = av[1];
 	if (!*arg)
 		return (0);
-	curpath = get_curpath((char *)arg);
+	curpath = get_curpath((char *)arg, redirect);
 	if (!curpath)
 		return (1);
 	clean_path(curpath);
@@ -122,8 +123,8 @@ int	cd(int ac, char **av)
 	if (result)
 	{
 		free(curpath);
-		perror("cd");
+		ft_dperror(redirect->err, "cd");
 		return (1);
 	}
-	return (end_cd(curpath));
+	return (end_cd(curpath, redirect));
 }
