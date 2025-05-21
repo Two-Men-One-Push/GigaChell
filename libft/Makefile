@@ -25,6 +25,7 @@ FT_PRINTF_FILES = ft_vfprintf.c \
 	ft_printf.c \
 	ft_devprintf.c \
 	ft_dprintf.c \
+	ft_perror.c \
 	handle_flag.c \
 	ft_vfprintf_utils.c \
 	flags/flag_c.c \
@@ -131,6 +132,11 @@ ENV_FILES = env_handle.c \
 	wrapper/ft_clearenv.c \
 	realloc_env.c
 
+BUFFER_FOLDER = buffer
+BUFFER_FILES = pbuffer/pbuff_flush.c \
+	pbuffer/pbuff_init.c \
+	pbuffer/pbuff_write.c
+
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
 	$(addprefix $(FREE_FOLDER)/, $(FREE_FILES)) \
@@ -143,6 +149,7 @@ FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(STRING_FOLDER)/, $(STRING_FILES)) \
 	$(addprefix $(VECTOR_FOLDER)/, $(VECTOR_FILES)) \
 	$(addprefix $(ENV_FOLDER)/, $(ENV_FILES)) \
+	$(addprefix $(BUFFER_FOLDER)/, $(BUFFER_FILES)) \
 )
 
 OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
@@ -150,7 +157,6 @@ DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
-
 
 DEV_DEFINE = -DDEV
 DEV_FLAGS = $(DEV_DEFINE) -g3

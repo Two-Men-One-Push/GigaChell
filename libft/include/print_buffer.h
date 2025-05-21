@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vfprintf_utils.h                                :+:      :+:    :+:   */
+/*   print_buffer.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 18:36:02 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/21 06:01:24 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/21 02:32:59 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/21 06:36:08 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_VFPRINTF_UTILS_H
-# define FT_VFPRINTF_UTILS_H
+#ifndef PRINT_BUFFER_H
+# define PRINT_BUFFER_H
 
-# include <stdarg.h>
-# include <stddef.h>
+# include "defs.h"
 
-# include "print_buffer.h"
+typedef struct s_pbuff
+{
+	int		fd;
+	char	data[MEMORY_SIZE];
+	size_t	mem_left;
+}			t_pbuff;
 
-size_t	len_flag(const char *s);
-size_t	print_base(t_pbuff *buffer, unsigned long long n, char *base,
-			int base_len);
-
-size_t	handle_flag(t_pbuff *buffer, const char *format, va_list args);
-
-int		ft_vfprintf(int fd, const char *format, va_list args);
+t_pbuff	*pbuff_create(int fd);
+void	pbuff_init(t_pbuff *buffer, int fd);
+ssize_t	pbuff_flush(t_pbuff *buffer);
+ssize_t	pbuff_write(t_pbuff *buffer, const char *data, size_t n);
 
 #endif
