@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 10:29:37 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/19 11:07:46 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:14:30 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "syntax.h"
+#include "identifier.h"
 
 int	syntax_action(char **line, int *cmd, int *op, int *depth)
 {
@@ -34,7 +35,7 @@ int	syntax_action(char **line, int *cmd, int *op, int *depth)
 		if (syntax_or(line, cmd, op))
 			return (2);
 	}
-	else if (((*line)[0] < 9 || (*line)[0] > 13) && (*line)[0] != ' ')
+	else if (!is_space((*line)[0]))
 		*cmd = 1;
 	return (0);
 }
