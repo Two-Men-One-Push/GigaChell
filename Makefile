@@ -29,7 +29,8 @@ SRCS				=	logic_exec.c \
 						secure_close.c \
 						error.c \
 						check_syntax.c \
-						syntax_action.c
+						syntax_action.c \
+						syntax_action2.c
 
 MAIN_DBG			=	main_dbg.c
 SRCS_DBG			=	

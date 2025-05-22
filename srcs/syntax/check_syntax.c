@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 03:04:20 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/19 11:02:46 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:15:28 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ int	check_syntax(char *line)
 			return (2);
 		++line;
 	}
-	if (cmd == 1 && op == 0)
+	if (cmd == 0 && op == 0)
 		return (serror("missing command after \"&&\""));
-	else if (cmd == 1 && op == 1)
+	else if (cmd == 0 && op == 1)
 		return (serror("missing command after \"||\""));
+	else if (cmd == 0 && op == 2)
+		return (serror("missing command after \"|\""));
 	else if (depth > 0)
 		return (serror("unclosed \"(\""));
 	else if (depth < 0)
