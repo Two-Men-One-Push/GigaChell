@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 03:04:20 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/22 11:15:28 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:20:24 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	serror(char *str)
 {
-	ft_dprintf(STDERR_FILENO, "Gigachell: syntax error %s\n", str);
+	ft_dprintf(STDERR_FILENO, "Gigachell: syntax error: %s\n", str);
 	return (2);
 }
 

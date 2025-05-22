@@ -6,11 +6,12 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 10:29:37 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/22 11:13:46 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:19:08 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "syntax.h"
+#include "identifier.h"
 
 int	syntax_action(char **line, int *cmd, int *op, int *depth)
 {
