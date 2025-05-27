@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   syntax_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 16:01:22 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/14 19:49:52 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/25 09:02:00 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:40:10 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#include "syntax.h"
+#include "tsize.h"
+#include "print.h"
 
-int	lexer(char *line);
-
-#endif
+int	syntax_heredoc(t_syntax_attr *attr, t_size *index)
+{
+	if (attr->token == -1)
+		return (swrite(2, "minishell: syntax error near <<\n", 33, 2));
+	attr->last_operator = 5;
+	attr->token = -1;
+	++*index;
+	return (0);
+}

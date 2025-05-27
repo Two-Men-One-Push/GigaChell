@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_size.h                                           :+:      :+:    :+:   */
+/*   syntax_open.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 19:23:22 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/09 19:24:26 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/25 08:03:49 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:33:28 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_SIZE_H
-# define T_SIZE_H
+#include "syntax.h"
+#include "print.h"
 
-typedef unsigned int	t_size;
-
-#endif
+int	syntax_open(t_syntax_attr *attr)
+{
+	if (attr->token == 1)
+		return (swrite(2, "minishell: syntax error near (\n", 32, 2));
+	attr->token = 0;
+	++attr->scope_depth;
+	return (0);
+}

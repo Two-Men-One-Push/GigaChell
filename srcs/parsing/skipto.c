@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   skipto.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/27 19:55:13 by CyberOneFR       ###   ########.fr       */
+/*   Created: 2025/05/25 04:23:36 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:57:07 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include "tstring.h"
+#include "tsize.h"
 
-int	ft_echo(int ac, char **av)
+int	skipto(t_string string, t_size *index, char c)
 {
-	int	i;
-
-	i = 0;
-	while (i < ac)
+	while (*index < string.size)
 	{
-		write(1, av[i], ft_strlen(av[i]));
-		write(1, " ", 1);
-		++i;
+		if (string.ptr[*index] == c)
+			return (0);
+		++*index;
 	}
-	return (0);
+	return (-1);
 }

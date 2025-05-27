@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   smalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 21:00:29 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/27 19:55:37 by CyberOneFR       ###   ########.fr       */
+/*   Created: 2025/05/25 05:31:08 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/27 19:42:21 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "readline/readline.h"
-#include "readline/history.h"
-#include "syntax.h"
-#include <unistd.h>
+#include "tsize.h"
+#include <stdlib.h>
+#include "print.h"
 
-int	main(void)
+int	smalloc(void **ptr, t_size size)
 {
-	t_string	string;
-	char		*str;
-
-	write(1, "\033]0;Gigachell 𓀐𓂸 \007", 25);
-	while (1)
-	{
-		str = readline("Gigachell: ");
-		string = ftstring(str, ftstrlen(str));
-		if (syntaxer(string) == 0)
-		{
-			
-		}
-	}
+	*ptr = malloc(size);
+	if (!*ptr)
+		return (swrite(2, "Error malloc()\n", 16, -1));
 	return (0);
 }

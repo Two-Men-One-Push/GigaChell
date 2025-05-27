@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   swrite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/27 19:55:13 by CyberOneFR       ###   ########.fr       */
+/*   Created: 2025/05/25 07:04:36 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:07:35 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "tsize.h"
 #include <unistd.h>
 
-int	ft_echo(int ac, char **av)
+int	swrite(int fd, char *str, t_size len, int ret)
 {
-	int	i;
-
-	i = 0;
-	while (i < ac)
-	{
-		write(1, av[i], ft_strlen(av[i]));
-		write(1, " ", 1);
-		++i;
-	}
-	return (0);
+	if (write(fd, str, len) == -1)
+		write(2, "write error\n", 13);
+	return (ret);
 }

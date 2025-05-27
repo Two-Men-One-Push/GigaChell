@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   print.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/27 19:55:13 by CyberOneFR       ###   ########.fr       */
+/*   Created: 2025/05/25 07:10:44 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:08:00 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#ifndef PRINT_H
+# define PRINT_H
 
-int	ft_echo(int ac, char **av)
-{
-	int	i;
+# include "tsize.h"
 
-	i = 0;
-	while (i < ac)
-	{
-		write(1, av[i], ft_strlen(av[i]));
-		write(1, " ", 1);
-		++i;
-	}
-	return (0);
-}
+int	swrite(int fd, char *str, t_size len, int ret);
+
+#endif

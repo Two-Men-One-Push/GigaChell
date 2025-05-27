@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   ftstring.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/27 19:55:13 by CyberOneFR       ###   ########.fr       */
+/*   Created: 2025/05/24 21:10:07 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 05:06:38 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include "tsize.h"
+#include "tstring.h"
 
-int	ft_echo(int ac, char **av)
+t_string	ftstring(char *str, t_size size)
 {
-	int	i;
+	t_string	string;
 
-	i = 0;
-	while (i < ac)
-	{
-		write(1, av[i], ft_strlen(av[i]));
-		write(1, " ", 1);
-		++i;
-	}
-	return (0);
+	string.ptr = str;
+	string.size = size;
+	return (string);
 }

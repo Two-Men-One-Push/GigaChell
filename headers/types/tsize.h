@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   tsize.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/27 19:55:13 by CyberOneFR       ###   ########.fr       */
+/*   Created: 2025/05/24 21:01:56 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 00:55:37 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#ifndef TSIZE_H
+# define TSIZE_H
 
-int	ft_echo(int ac, char **av)
-{
-	int	i;
+typedef unsigned long	t_size;
 
-	i = 0;
-	while (i < ac)
-	{
-		write(1, av[i], ft_strlen(av[i]));
-		write(1, " ", 1);
-		++i;
-	}
-	return (0);
-}
+#endif

@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_action2.c                                   :+:      :+:    :+:   */
+/*   ftstrlen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 10:41:19 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/22 11:15:58 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/24 21:06:31 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 03:24:23 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "syntax.h"
+#include "tsize.h"
 
-int	syntax_quote(char **line, int *cmd)
+t_size	ftstrlen(char *str)
 {
-	char	quote;
+	t_size	len;
 
-	quote = (*line)[0];
-	++(*line);
-	while ((*line)[0] != quote)
+	len = 0;
+	while (str[len])
 	{
-		if ((*line)[0] == '\0')
-			return (serror("unclosed quote"));
-		++(*line);
+		++len;
 	}
-	*cmd = 1;
-	return (0);
-}
-
-int	syntax_pipe(char **line, int *cmd, int *op)
-{
-	if (*cmd == 0)
-		return (serror("missing command before \"|\""));
-	*cmd = 0;
-	*op = 2;
-	++(*line);
-	return (0);
+	return (len);
 }

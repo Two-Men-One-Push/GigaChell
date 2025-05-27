@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   syntax_close.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/27 19:55:13 by CyberOneFR       ###   ########.fr       */
+/*   Created: 2025/05/25 08:03:49 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:33:55 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include "syntax.h"
+#include "print.h"
 
-int	ft_echo(int ac, char **av)
+int	syntax_close(t_syntax_attr *attr)
 {
-	int	i;
-
-	i = 0;
-	while (i < ac)
-	{
-		write(1, av[i], ft_strlen(av[i]));
-		write(1, " ", 1);
-		++i;
-	}
+	if (attr->token <= 0)
+		return (swrite(2, "minishell: syntax error near )\n", 32, 2));
+	attr->token = 1;
+	--attr->scope_depth;
 	return (0);
 }
