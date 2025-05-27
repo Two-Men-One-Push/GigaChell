@@ -12,7 +12,10 @@ jobs:
     steps:
       - name: Checkout user code
         uses: actions/checkout@v3
-
+        
+      - name: Install Readline Lib
+        run: |
+            sudo apt install libreadline-dev
       - name: Execute Make
         run: |
             if ! make ; then
