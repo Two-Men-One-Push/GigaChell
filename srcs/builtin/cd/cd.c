@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:25:26 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/21 08:46:18 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/27 17:40:01 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include "env.h"
 #include "libft.h"
 #include "builtins_utils.h"
-#include "defs/std_fd.h"
+#include "defs/redirect_fd.h"
 
-static int	secure_pwd(t_std_fd *redirect)
+static int	secure_pwd(t_redirect_fd *redirect)
 {
 	char	*cwd;
 	char	*pwd;
@@ -47,7 +47,7 @@ static int	secure_pwd(t_std_fd *redirect)
 	return (0);
 }
 
-static char	*get_curpath(const char *arg, t_std_fd *redirect)
+static char	*get_curpath(const char *arg, t_redirect_fd *redirect)
 {
 	char	*pwd;
 	char	*curpath;
@@ -83,7 +83,7 @@ static void	clean_path(char *path)
 	handle_path_end(path, i);
 }
 
-static int	end_cd(char *curpath, t_std_fd *redirect)
+static int	end_cd(char *curpath, t_redirect_fd *redirect)
 {
 	int	result;
 
@@ -101,7 +101,7 @@ static int	end_cd(char *curpath, t_std_fd *redirect)
 	return (result);
 }
 
-int	cd(int ac, char **av, t_std_fd *redirect)
+int	cd(int ac, char **av, t_redirect_fd *redirect)
 {
 	char	*arg;
 	char	*curpath;

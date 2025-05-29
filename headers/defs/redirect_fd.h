@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   std_fd.h                                           :+:      :+:    :+:   */
+/*   redirect_fd.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/21 07:14:19 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/24 01:48:38 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef sTD_FD_H
-# define STD_FD_H
+#ifndef REDIRECT_FD_H
+# define REDIRECT_FD_H
 
-typedef struct s_std_fd
+typedef struct s_redirect_fd
 {
 	int	in;
 	int	out;
 	int	err;
-}			t_std_fd;
+}			t_redirect_fd;
 
 #endif
