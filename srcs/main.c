@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/21 08:49:49 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/29 12:30:16 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int	run_command(char *line, int last_status)
 {
 	char		*cmd;
 	t_hd_node	*heredoc_list;
-	int			status;
 
 	if (check_syntax(line))
 	{
@@ -45,10 +44,10 @@ static int	run_command(char *line, int last_status)
 		free(cmd);
 		return (-1);
 	}
-	status = logic_exec(last_status, line, &heredoc_list);
+	last_status = logic_exec(last_status, line, &heredoc_list);
 	add_history(cmd);
 	free(cmd);
-	return (status);
+	return (last_status);
 }
 
 static int	main_loop(void)
