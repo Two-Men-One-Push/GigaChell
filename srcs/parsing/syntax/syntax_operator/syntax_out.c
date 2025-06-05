@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_fd.h                                      :+:      :+:    :+:   */
+/*   syntax_out.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/06 00:05:55 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/25 09:02:33 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:40:22 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIRECT_FD_H
-# define REDIRECT_FD_H
+#include "syntax.h"
+#include "print.h"
 
-typedef struct s_redirect_fd
+int	syntax_out(t_syntax_attr *attr)
 {
-	int	in;
-	int	out;
-	int	err;
-}			t_redirect_fd;
-
-#endif
+	if (attr->token == -1)
+		return (swrite(2, "minishell: syntax error near >\n", 32, 2));
+	attr->token = -1;
+	attr->last_operator = 6;
+	return (0);
+}

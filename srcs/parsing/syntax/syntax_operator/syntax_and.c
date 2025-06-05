@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   syntax_and.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/05 18:36:47 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/25 07:43:13 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-#include "bmask.h"
+#include "syntax.h"
+#include <stddef.h>
+#include "print.h"
 
-int	ft_echo(int ac, char **av)
+int	syntax_and(t_syntax_attr *attr, size_t *index)
 {
-	t_bmask	opt;
-	int		i;
-
-	i = 0;
-	opt.value = 0;
-	while (i < ac)
-	{
-		if (opt.mask.b1)
-		{
-			write(1, av[i], ft_strlen(av[i]));
-			write(1, " ", 1);
-		}
-		else if (av[i][0] == '-' && av[i][1] == 'n')
-			opt.mask.b2 = 1;
-		else
-			opt.mask.b1 = 1;
-		++i;
-	}
-	if (opt.mask.b2)
-		write(1, "\n", 1);
+	if (attr->token <= 0)
+		return (swrite(2, "minishell: syntax error near &&\n", 33, 2));
+	attr->last_operator = 1;
+	attr->token = 0;
+	++*index;
 	return (0);
 }

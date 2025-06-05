@@ -6,9 +6,10 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/29 12:30:16 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/06 00:05:59 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,13 +22,14 @@
 #include "libft.h"
 #include "builtin.h"
 #include "defs/configs.h"
+#include "syntax.h"
 
 static int	run_command(char *line, int last_status)
 {
 	char		*cmd;
 	t_hd_node	*heredoc_list;
 
-	if (check_syntax(line))
+	if (syntaxer(ftstring(line, ft_strlen(line))))
 	{
 		add_history(line);
 		return (2);

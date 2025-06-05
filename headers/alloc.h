@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_fd.h                                      :+:      :+:    :+:   */
+/*   alloc.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/06 00:05:55 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/25 05:31:39 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 19:18:15 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIRECT_FD_H
-# define REDIRECT_FD_H
+#ifndef ALLOC_H
+# define ALLOC_H
 
-typedef struct s_redirect_fd
-{
-	int	in;
-	int	out;
-	int	err;
-}			t_redirect_fd;
+# include <stdlib.h>
+# include <stddef.h>
+
+int	smalloc(void **ptr, size_t size);
 
 #endif

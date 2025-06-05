@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax.h                                           :+:      :+:    :+:   */
+/*   print.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 19:46:13 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/15 19:47:54 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/25 07:10:44 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 19:16:19 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SYNTAX_H
-# define SYNTAX_H
+#ifndef PRINT_H
+# define PRINT_H
 
-int	check_syntax(char *cmd);
+# include <stddef.h>
+
+int	swrite(int fd, char *str, size_t len, int ret);
 
 #endif

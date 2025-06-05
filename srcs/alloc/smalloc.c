@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_fd.h                                      :+:      :+:    :+:   */
+/*   smalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/06 00:05:55 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/25 05:31:08 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIRECT_FD_H
-# define REDIRECT_FD_H
+#include <stddef.h>
+#include <stdlib.h>
+#include "print.h"
 
-typedef struct s_redirect_fd
+int	smalloc(void **ptr, size_t size)
 {
-	int	in;
-	int	out;
-	int	err;
-}			t_redirect_fd;
-
-#endif
+	*ptr = malloc(size);
+	if (!*ptr)
+		return (swrite(2, "Error malloc()\n", 16, -1));
+	return (0);
+}

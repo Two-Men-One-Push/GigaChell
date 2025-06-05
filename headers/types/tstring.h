@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   tstring.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/05 18:36:47 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/24 21:04:03 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 19:14:02 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-#include "bmask.h"
+#ifndef TSTRING_H
+# define TSTRING_H
 
-int	ft_echo(int ac, char **av)
+# include <stddef.h>
+
+typedef struct s_string
 {
-	t_bmask	opt;
-	int		i;
+	size_t	size;
+	char	*ptr;
+}	t_string;
 
-	i = 0;
-	opt.value = 0;
-	while (i < ac)
-	{
-		if (opt.mask.b1)
-		{
-			write(1, av[i], ft_strlen(av[i]));
-			write(1, " ", 1);
-		}
-		else if (av[i][0] == '-' && av[i][1] == 'n')
-			opt.mask.b2 = 1;
-		else
-			opt.mask.b1 = 1;
-		++i;
-	}
-	if (opt.mask.b2)
-		write(1, "\n", 1);
-	return (0);
-}
+size_t		ftstrlen(char *str);
+t_string	ftstring(char *str, size_t size);
+int			skipto(t_string string, size_t *index, char c);
+
+#endif

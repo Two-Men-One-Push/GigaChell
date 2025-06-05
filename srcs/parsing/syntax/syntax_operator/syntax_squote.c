@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   syntax_squote.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/05 18:36:47 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/25 07:57:27 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-#include "bmask.h"
+#include "tstring.h"
+#include <stddef.h>
+#include "syntax.h"
+#include "print.h"
 
-int	ft_echo(int ac, char **av)
+int	syntax_squote(t_syntax_attr *attr, t_string string, size_t *index)
 {
-	t_bmask	opt;
-	int		i;
-
-	i = 0;
-	opt.value = 0;
-	while (i < ac)
-	{
-		if (opt.mask.b1)
-		{
-			write(1, av[i], ft_strlen(av[i]));
-			write(1, " ", 1);
-		}
-		else if (av[i][0] == '-' && av[i][1] == 'n')
-			opt.mask.b2 = 1;
-		else
-			opt.mask.b1 = 1;
-		++i;
-	}
-	if (opt.mask.b2)
-		write(1, "\n", 1);
+	if (skipto(string, index, '\''))
+		return (swrite(2, "minishell: syntax error unclosed \'\n", 36, 2));
+	attr->token = 1;
 	return (0);
 }

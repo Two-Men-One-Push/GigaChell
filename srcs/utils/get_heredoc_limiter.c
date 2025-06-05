@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 06:16:34 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/19 04:35:29 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/19 12:36:44 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,29 @@ static bool	is_limiter_char(char c)
 
 char	*get_limiter(char *cmd, size_t *i)
 {
-	size_t	limiter_len;
+	size_t	lim_len;
 	char	*limiter;
+	char	*lim_start;
 
 	while (is_space(cmd[*i]))
 		++*i;
-	limiter_len = 0;
-	while (cmd[*i + limiter_len] && is_limiter_char(cmd[*i + limiter_len]))
+	lim_start = cmd + *i;
+	lim_len = 0;
+	while (lim_start[lim_len] && is_limiter_char(lim_start[lim_len]))
 	{
-		if (cmd[*i + limiter_len] == '"')
-			skip_dquote(cmd + *i, &limiter_len);
-		else if (cmd[*i + limiter_len] == '\'')
-			skip_squote(cmd + *i, &limiter_len);
-		else if (cmd[*i + limiter_len] == '(')
-			skip_paranthesis(cmd + *i, &limiter_len);
+		if (lim_start[lim_len] == '"')
+			skip_dquote(lim_start, &lim_len);
+		else if (lim_start[lim_len] == '\'')
+			skip_squote(lim_start, &lim_len);
+		else if (lim_start[lim_len] == '(')
+			skip_paranthesis(lim_start, &lim_len);
 		else
-			++limiter_len;
+			++lim_len;
 	}
-	limiter = ft_strndup(cmd + *i, limiter_len);
+	limiter = ft_strndup(lim_start, lim_len);
 	if (!limiter)
 		perror("gigachell: get_limiter");
 	str_unquote(limiter);
-	*i += limiter_len;
+	*i += lim_len;
 	return (limiter);
 }

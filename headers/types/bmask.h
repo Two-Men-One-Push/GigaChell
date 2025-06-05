@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   bmask.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/05 18:36:47 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/05 17:26:59 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 17:47:02 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-#include "bmask.h"
+#ifndef BMASK_H
+# define BMASK_H
 
-int	ft_echo(int ac, char **av)
+struct s_bmask
 {
-	t_bmask	opt;
-	int		i;
+	unsigned char	b1 : 1;
+	unsigned char	b2 : 1;
+	unsigned char	b3 : 1;
+	unsigned char	b4 : 1;
+	unsigned char	b5 : 1;
+	unsigned char	b6 : 1;
+	unsigned char	b7 : 1;
+	unsigned char	b8 : 1;
+};
 
-	i = 0;
-	opt.value = 0;
-	while (i < ac)
-	{
-		if (opt.mask.b1)
-		{
-			write(1, av[i], ft_strlen(av[i]));
-			write(1, " ", 1);
-		}
-		else if (av[i][0] == '-' && av[i][1] == 'n')
-			opt.mask.b2 = 1;
-		else
-			opt.mask.b1 = 1;
-		++i;
-	}
-	if (opt.mask.b2)
-		write(1, "\n", 1);
-	return (0);
-}
+typedef union u_bmask
+{
+	struct s_bmask	mask;
+	unsigned char	value;
+}	t_bmask;
+
+#endif

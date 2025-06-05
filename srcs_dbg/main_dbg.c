@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_dbg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/15 20:13:11 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/05 19:11:52 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "libft.h"
 #include "env.h"
 #include "builtins.h"
+#include <readline/readline.h>
 
 #ifndef PATH_MAX
 # define PATH_MAX 4096
@@ -28,14 +29,8 @@
 
 int	main(int ac, char **av, char **envp)
 {
-	char	cwd[PATH_MAX];
-
-	printf("%s\n", getcwd(cwd, PATH_MAX));
-	ft_initenv(envp);
-	ft_setenv("PWD", "fnsjionpfequh");
-	cd(ac, av);
-	printf("%s\n", getcwd(cwd, PATH_MAX));
-	printf("%s\n", ft_getenv("PWD"));
-	ft_clearenv();
+	(void)ac;
+	(void)av;
+	(void)envp;
 	return (0);
 }

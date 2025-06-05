@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_fd.h                                      :+:      :+:    :+:   */
+/*   syntax_open.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/06 00:05:55 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/25 08:03:49 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:33:28 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIRECT_FD_H
-# define REDIRECT_FD_H
+#include "syntax.h"
+#include "print.h"
 
-typedef struct s_redirect_fd
+int	syntax_open(t_syntax_attr *attr)
 {
-	int	in;
-	int	out;
-	int	err;
-}			t_redirect_fd;
-
-#endif
+	if (attr->token == 1)
+		return (swrite(2, "minishell: syntax error near (\n", 32, 2));
+	attr->token = 0;
+	++attr->scope_depth;
+	return (0);
+}

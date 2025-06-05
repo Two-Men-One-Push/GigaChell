@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_fd.h                                      :+:      :+:    :+:   */
+/*   swrite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/06 00:05:55 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/25 07:04:36 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIRECT_FD_H
-# define REDIRECT_FD_H
+#include <stddef.h>
+#include <unistd.h>
 
-typedef struct s_redirect_fd
+int	swrite(int fd, char *str, size_t len, int ret)
 {
-	int	in;
-	int	out;
-	int	err;
-}			t_redirect_fd;
-
-#endif
+	if (write(fd, str, len) == -1)
+		write(2, "write error\n", 13);
+	return (ret);
+}
