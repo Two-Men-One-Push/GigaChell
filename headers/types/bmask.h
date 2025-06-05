@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bmask.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 21:00:29 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/05 17:54:46 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/05 17:26:59 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 17:47:02 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "readline/readline.h"
-#include "readline/history.h"
-#include "syntax.h"
-#include <unistd.h>
+#ifndef BMASK_H
+# define BMASK_H
 
-int	main(void)
+struct s_bmask
 {
-	t_string	string;
-	char		*str;
+	unsigned char	b1 : 1;
+	unsigned char	b2 : 1;
+	unsigned char	b3 : 1;
+	unsigned char	b4 : 1;
+	unsigned char	b5 : 1;
+	unsigned char	b6 : 1;
+	unsigned char	b7 : 1;
+	unsigned char	b8 : 1;
+};
 
-	write(1, "\033]0;Gigachell 𓀐𓂸 \007", 25);
-	while (1)
-	{
-		str = readline("Gigachell: ");
-		if (syntaxer(ftstring(str, ftstrlen(str))) == 0)
-		{
-			
-		}
-	}
-	return (0);
-}
+typedef union u_bmask
+{
+	struct s_bmask	mask;
+	unsigned char	value;
+}	t_bmask;
+
+#endif
