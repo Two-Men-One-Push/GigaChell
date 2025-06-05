@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 06:29:08 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/02 18:21:41 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	clear_paranthesis(char *s, size_t *i, t_hd_node **heredoc_list);
 bool	skip_dquote(char *s, size_t *i);
 bool	skip_squote(char *s, size_t *i);
 
+char	*get_redirect_file(char *arg);
 char	*get_limiter(char *cmd, size_t *i);
 
 void	str_unquote(char *s);

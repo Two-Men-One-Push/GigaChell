@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/31 20:17:44 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/01 17:00:23 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,15 @@ int	pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list)
 	pipe_fd = (t_pipe_fd){-1, -1, -1};
 	last_pid = -1;
 	i = 0;
-	printf("%s\n", cmd);
+	printf("pipe : \"%s\"\n", cmd);
 	while (true)
 	{
 		offset_to_operator(cmd, &i);
 		last_cmd = !cmd[i];
 		if (swap_pipe(&pipe_fd, !cmd[i]))
 			return (error_pipe());
-		(void)heredoc_list;
-		//cmd_exec(str_extract(cmd, i), &last_status, pipe_fd, heredoc_list)
-		(void)last_pid;
-		printf("\t(pipe)%d > \"%s\"\n", last_status, str_extract(cmd, i));
+		last_pid = cmd_exec(str_extract(cmd, i), &last_status,
+			pipe_fd, heredoc_list);
 		if (last_cmd)
 			return (exit_pipe(last_pid, &pipe_fd, last_status));
 		cmd += ++i;
