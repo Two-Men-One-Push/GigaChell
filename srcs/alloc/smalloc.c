@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   smalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 05:31:08 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/27 19:42:21 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tsize.h"
+#include <stddef.h>
 #include <stdlib.h>
 #include "print.h"
 
-int	smalloc(void **ptr, t_size size)
+int	smalloc(void **ptr, size_t size)
 {
 	*ptr = malloc(size);
 	if (!*ptr)

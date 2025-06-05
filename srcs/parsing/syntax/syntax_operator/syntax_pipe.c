@@ -6,12 +6,12 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 07:49:30 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/25 09:33:08 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "syntax.h"
-#include "tsize.h"
+#include <stddef.h>
 #include "print.h"
 
 int	syntax_pipe(t_syntax_attr *attr)

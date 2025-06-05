@@ -6,15 +6,15 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 09:02:00 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/25 09:40:10 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "syntax.h"
-#include "tsize.h"
+#include <stddef.h>
 #include "print.h"
 
-int	syntax_heredoc(t_syntax_attr *attr, t_size *index)
+int	syntax_heredoc(t_syntax_attr *attr, size_t *index)
 {
 	if (attr->token == -1)
 		return (swrite(2, "minishell: syntax error near <<\n", 33, 2));

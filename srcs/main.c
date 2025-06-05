@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/06/05 19:10:23 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/05 19:12:33 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "libft.h"
 #include "builtin.h"
 #include "defs/configs.h"
+#include "syntax.h"
 
 static int	run_command(char *line, int last_status)
 {
@@ -29,7 +30,7 @@ static int	run_command(char *line, int last_status)
 	t_hd_node	*heredoc_list;
 	int			status;
 
-	if (check_syntax(line))
+	if (syntaxer(ftstring(line, ft_strlen(line))))
 	{
 		add_history(line);
 		return (2);

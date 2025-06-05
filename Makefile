@@ -20,7 +20,6 @@ MAIN				=	main.c\
 						utils/identifiers/is_redirection.c\
 						utils/identifiers/is_logicalop.c\
 						utils/identifiers/is_var_name.c\
-						types/string/ftstrlen.c\
 						types/string/ftstring.c\
 						here_doc/parse_heredoc.c\
 						here_doc/tmp_fd.c\

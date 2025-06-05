@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntaxer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 05:42:55 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/27 19:45:46 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/06/05 19:20:20 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	syntaxer(t_string	string)
 {
 	t_syntax_attr	attr;
-	t_size			index;
+	size_t			index;
 
 	index = 0;
 	attr = (t_syntax_attr){0, 0, 0};

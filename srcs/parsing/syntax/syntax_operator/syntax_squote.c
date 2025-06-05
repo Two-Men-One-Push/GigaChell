@@ -6,16 +6,16 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 07:57:27 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/25 09:58:32 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tstring.h"
-#include "tsize.h"
+#include <stddef.h>
 #include "syntax.h"
 #include "print.h"
 
-int	syntax_squote(t_syntax_attr *attr, t_string string, t_size *index)
+int	syntax_squote(t_syntax_attr *attr, t_string string, size_t *index)
 {
 	if (skipto(string, index, '\''))
 		return (swrite(2, "minishell: syntax error unclosed \'\n", 36, 2));

@@ -6,15 +6,15 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 07:20:11 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/25 09:01:37 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "print.h"
-#include "tsize.h"
+#include <stddef.h>
 #include "syntax.h"
 
-int	syntax_operator(t_syntax_attr *attr, t_string string, t_size *index)
+int	syntax_operator(t_syntax_attr *attr, t_string string, size_t *index)
 {
 	if (string.ptr[*index] == '\"')
 		return (syntax_dquote(attr, string, index));
