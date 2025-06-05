@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   std_fd.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/21 07:14:19 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/05 19:23:03 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef sTD_FD_H
+#ifndef STD_FD_H
 # define STD_FD_H
 
 typedef struct s_std_fd
