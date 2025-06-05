@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gigachell.h                                        :+:      :+:    :+:   */
+/*   bmask.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/05 19:02:29 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/05 17:26:59 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 17:47:02 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GIGACHELL_H
-# define GIGACHELL_H
+#ifndef BMASK_H
+# define BMASK_H
 
-# include <stdbool.h>
+struct s_bmask
+{
+	unsigned char	b1 : 1;
+	unsigned char	b2 : 1;
+	unsigned char	b3 : 1;
+	unsigned char	b4 : 1;
+	unsigned char	b5 : 1;
+	unsigned char	b6 : 1;
+	unsigned char	b7 : 1;
+	unsigned char	b8 : 1;
+};
 
-# include "heredoc_list_utils.h"
-# include "syntax.h"
-
-bool	parse_heredoc(char *cmd, t_hd_node **heredoc_list);
-
-int		logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
-int		pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
+typedef union u_bmask
+{
+	struct s_bmask	mask;
+	unsigned char	value;
+}	t_bmask;
 
 #endif

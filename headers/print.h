@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gigachell.h                                        :+:      :+:    :+:   */
+/*   print.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/05 19:02:29 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/25 07:10:44 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:08:00 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GIGACHELL_H
-# define GIGACHELL_H
+#ifndef PRINT_H
+# define PRINT_H
 
-# include <stdbool.h>
+# include "tsize.h"
 
-# include "heredoc_list_utils.h"
-# include "syntax.h"
-
-bool	parse_heredoc(char *cmd, t_hd_node **heredoc_list);
-
-int		logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
-int		pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
+int	swrite(int fd, char *str, t_size len, int ret);
 
 #endif

@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax.h                                           :+:      :+:    :+:   */
+/*   alloc.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 19:46:13 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/15 19:47:54 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/25 05:31:39 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 05:36:47 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SYNTAX_H
-# define SYNTAX_H
+#ifndef ALLOC_H
+# define ALLOC_H
 
-int	check_syntax(char *cmd);
+# include <stdlib.h>
+# include "tsize.h"
+
+int	smalloc(void **ptr, t_size size);
 
 #endif

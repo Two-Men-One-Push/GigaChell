@@ -3,94 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/19 11:46:43 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/24 21:00:29 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/05 19:03:03 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "readline/readline.h"
+#include "readline/history.h"
+#include "syntax.h"
+#include <unistd.h>
 
-#include "env.h"
-#include "gigachell.h"
-#include "defs/hd_node.h"
-#include "libft.h"
-#include "builtin.h"
-#include "defs/configs.h"
-
-static int	run_command(char *line, int last_status)
+int	main(void)
 {
-	char		*cmd;
-	t_hd_node	*heredoc_list;
-	int			status;
+	t_string	string;
+	char		*str;
 
-	if (check_syntax(line))
+	write(1, "\033]0;Gigachell 𓀐𓂸 \007", 25);
+	while (1)
 	{
-		add_history(line);
-		return (2);
-	}
-	cmd = ft_strdup(line);
-	if (!cmd)
-	{
-		perror("gigachell: strdup");
-		return (-2);
-	}
-	heredoc_list = NULL;
-	if (parse_heredoc(cmd, &heredoc_list))
-	{
-		free(cmd);
-		return (-1);
-	}
-	status = logic_exec(last_status, line, &heredoc_list);
-	add_history(cmd);
-	free(cmd);
-	return (status);
-}
-
-static int	main_loop(void)
-{
-	int 	old_status;
-	int 	new_status;
-	char	*line;
-
-	old_status = 0;
-	while (true)
-	{
-		line = readline(GIGACHELL_PROMPT);
-		if (!line)
-			return (old_status);
-		if (!*line)
+		str = readline("Gigachell: ");
+		if (syntaxer(ftstring(str, ftstrlen(str))) == 0)
 		{
-			free(line);
-			continue ;
+			
 		}
-		new_status = run_command(line, old_status);
-		free(line);
-		if (new_status == -2)
-			return (old_status);
-		if (new_status < 0)
-			return (1);
-		old_status = new_status;
 	}
-}
-
-int main(int ac, char **av, char **envp)
-{
-	int status;
-
-	(void)av;
-	(void)ac;
-	if (ft_initenv(envp))
-	{
-		perror("gigachell: ft_initenv");
-		return (1);
-	}
-	status = main_loop();
-	rl_clear_history();
-	ft_clearenv();
-	return (status);
+	return (0);
 }
