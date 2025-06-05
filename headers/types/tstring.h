@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gigachell.h                                        :+:      :+:    :+:   */
+/*   tstring.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/05 19:09:55 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/24 21:04:03 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:58:05 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GIGACHELL_H
-# define GIGACHELL_H
+#ifndef TSTRING_H
+# define TSTRING_H
 
-# include <stdbool.h>
+# include "tsize.h"
 
-# include "heredoc_list_utils.h"
-# include "syntax.h"
+typedef struct s_string
+{
+	t_size	size;
+	char	*ptr;
+}	t_string;
 
-bool	parse_heredoc(char *cmd, t_hd_node **heredoc_list);
-
-int		logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
-int		pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
+t_size		ftstrlen(char *str);
+t_string	ftstring(char *str, t_size size);
+int			skipto(t_string string, t_size *index, char c);
 
 #endif

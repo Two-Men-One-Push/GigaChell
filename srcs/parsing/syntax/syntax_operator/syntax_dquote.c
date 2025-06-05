@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gigachell.h                                        :+:      :+:    :+:   */
+/*   syntax_dquote.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/05 19:09:55 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/25 07:50:53 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:58:32 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GIGACHELL_H
-# define GIGACHELL_H
+#include "tstring.h"
+#include "tsize.h"
+#include "syntax.h"
+#include "print.h"
 
-# include <stdbool.h>
-
-# include "heredoc_list_utils.h"
-# include "syntax.h"
-
-bool	parse_heredoc(char *cmd, t_hd_node **heredoc_list);
-
-int		logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
-int		pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
-
-#endif
+int	syntax_dquote(t_syntax_attr *attr, t_string string, t_size *index)
+{
+	if (skipto(string, index, '\"'))
+		return (swrite(2, "minishell: syntax error near \"\n,", 33, 2));
+	attr->token = 1;
+	return (0);
+}

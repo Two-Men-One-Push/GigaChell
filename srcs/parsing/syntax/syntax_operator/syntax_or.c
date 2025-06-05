@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gigachell.h                                        :+:      :+:    :+:   */
+/*   syntax_or.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/05 19:09:55 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/25 07:49:30 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/05/25 09:33:23 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GIGACHELL_H
-# define GIGACHELL_H
+#include "syntax.h"
+#include "tsize.h"
+#include "print.h"
 
-# include <stdbool.h>
-
-# include "heredoc_list_utils.h"
-# include "syntax.h"
-
-bool	parse_heredoc(char *cmd, t_hd_node **heredoc_list);
-
-int		logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
-int		pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
-
-#endif
+int	syntax_or(t_syntax_attr *attr, t_size *index)
+{
+	if (attr->token <= 0)
+		return (swrite(2, "minishell: syntax error near ||\n", 33, 2));
+	attr->last_operator = 2;
+	attr->token = 0;
+	++*index;
+	return (0);
+}
