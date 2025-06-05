@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 21:52:24 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/05/21 06:56:52 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -405,6 +405,9 @@ int		ft_printf(const char *format, ...)
 
 int		ft_dprintf(int fd, const char *format, ...)
 		__attribute__((format(printf, 2, 3)));
+
+void	ft_perror(const char *message);
+void	ft_dperror(int fd, const char *message);
 
 char	*get_next_line(int fd);
 

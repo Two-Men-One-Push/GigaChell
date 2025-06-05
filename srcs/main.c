@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/06/05 19:12:33 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/05 19:22:22 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static int	run_command(char *line, int last_status)
 
 static int	main_loop(void)
 {
-	int 	old_status;
-	int 	new_status;
+	int		old_status;
+	int		new_status;
 	char	*line;
 
 	old_status = 0;
@@ -80,9 +80,9 @@ static int	main_loop(void)
 	}
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
-	int status;
+	int	status;
 
 	(void)av;
 	(void)ac;

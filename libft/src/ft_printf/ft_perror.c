@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_u.c                                           :+:      :+:    :+:   */
+/*   ft_perror.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 00:34:32 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/21 06:01:24 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/05/21 06:44:00 by ebini             #+#    #+#             */
+/*   Updated: 2025/05/21 06:51:48 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
+#include <errno.h>
+#include <string.h>
 #include <unistd.h>
 
-#include "print_buffer.h"
-#include "../ft_vfprintf_utils.h"
+#include "libft.h"
 
-size_t	print_unsigned(t_pbuff *buffer, unsigned int n)
+void	ft_perror(const char *message)
 {
-	char	c;
-	size_t	child_len;
-
-	c = '0' + n % 10;
-	n /= 10;
-	if (n)
-		child_len = print_unsigned(buffer, n);
+	if (message)
+		ft_dprintf(STDERR_FILENO, "%s: %s\n", message, strerror(errno));
 	else
-		child_len = 0;
-	child_len += pbuff_write(buffer, &c, 1) > 0;
-	return (child_len);
+		ft_dprintf(STDERR_FILENO, "%s\n", strerror(errno));
 }
 
-size_t	print_u(t_pbuff *buffer, va_list value)
+void	ft_dperror(int fd, const char *message)
 {
-	return (print_unsigned(buffer, va_arg(value, unsigned)));
+	if (message)
+		ft_dprintf(fd, "%s: %s\n", message, strerror(errno));
+	else
+		ft_dprintf(fd, "%s\n", strerror(errno));
 }
