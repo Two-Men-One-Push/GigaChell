@@ -6,35 +6,38 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/05 18:36:47 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/06 18:38:48 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
-#include "bmask.h"
 
-int	ft_echo(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_bmask	opt;
-	int		i;
+	int		opt;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	opt.value = 0;
+	opt = 0;
+	while (++i < ac)
+	{
+		j = 1;
+		while (av[i][0] == '-' && av[i][j] == 'n')
+			j++;
+		if (av[i][j] != '\0')
+			break ;
+		opt = 1;
+	}
 	while (i < ac)
 	{
-		if (opt.mask.b1)
-		{
-			write(1, av[i], ft_strlen(av[i]));
-			write(1, " ", 1);
-		}
-		else if (av[i][0] == '-' && av[i][1] == 'n')
-			opt.mask.b2 = 1;
-		else
-			opt.mask.b1 = 1;
+		write(1, av[i], ft_strlen(av[i]));
 		++i;
+		if (i != ac)
+			write(1, " ", 1);
 	}
-	if (opt.mask.b2)
+	if (!opt)
 		write(1, "\n", 1);
 	return (0);
 }
