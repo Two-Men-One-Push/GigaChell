@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/06 19:07:00 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/06 19:09:00 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	echo(int ac, char **av)
 {
-	int		opt;
-	size_t	i;
-	size_t	j;
+	int	opt;
+	int	i;
+	int	j;
 
 	i = 0;
 	opt = 0;
