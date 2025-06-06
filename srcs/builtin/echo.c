@@ -6,14 +6,14 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/06 18:38:48 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/06 19:07:00 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-int	main(int ac, char **av)
+int	echo(int ac, char **av)
 {
 	int		opt;
 	size_t	i;
