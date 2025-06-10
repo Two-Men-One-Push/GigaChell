@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_word.c                                       :+:      :+:    :+:   */
+/*   cmd_expand.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 07:02:47 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/10 09:26:43 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/10 09:43:47 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	count_word(char *str)
-{
-	int	count;
-	int	i;
+#include <stdlib.h>
+#include "expand.h"
+#include <stdio.h>
 
-	i = -1;
-	count = 0;
-	while (str[++i])
+char	**cmd_expand(char *cmd)
+{
+	char	**tab;
+	int		size;
+
+	size = count_args(cmd);
+	tab = (char **)malloc((size + 1) * sizeof(char *));
+	if (!tab)
 	{
-		if (str[i] == ' ' || str[i] == '\t')
-			continue ;
-		++count;
-		while (str[i] && str[i] != ' ' && str[i] != '\t')
-			++i;
+		perror("gigachell");
+		return (NULL);
 	}
-	return (count);
+	tab[size] = NULL;
+	// while ()
+	// {
+		
+	// }
+	return (tab);
 }

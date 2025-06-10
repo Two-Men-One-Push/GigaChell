@@ -6,13 +6,13 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 07:04:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/10 07:04:36 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/10 09:43:39 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPAND_H
 # define EXPAND_H
 
-int	count_word(char *str);
+int	count_args(char *str);
 
 #endif

@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_expand.c                                       :+:      :+:    :+:   */
+/*   count_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/10 09:26:33 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/10 07:02:47 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/10 09:48:09 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "tstring.h"
+#include "libft.h"
 
-char	**cmd_expand(char *cmd)
+int	count_args(char *str)
 {
-	// char	**tab;
-	int		size;
-	int		i;
+	int		count;
+	size_t	i;
 
 	i = -1;
-	size = 0;
-	while (cmd[++i])
+	count = 0;
+	while (str[++i])
 	{
-		if (cmd[i] == ' ' || cmd[i] == '\t')
+		if (str[i] == ' ' || str[i] == '\t')
 			continue ;
-		++size;
-		while (cmd[i] && cmd[i] != ' ' && cmd[i] != '\t')
+		if (str[i] == '\"')
+			skipto(ftstring(&str[i], ft_strlen(&str[i])), &i, '\"');
+		if (str[i] == '\'')
+			skipto(ftstring(&str[i], ft_strlen(&str[i])), &i, '\'');
+		++count;
+		while (str[i] && str[i] != ' ' && str[i] != '\t')
 			++i;
 	}
-	return ((char **)0);
+	return (count);
 }

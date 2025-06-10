@@ -19,7 +19,6 @@ SRCS =	\
 	./srcs/here_doc/parse_heredoc.c\
 	./srcs/here_doc/heredoc.c\
 	./srcs/here_doc/tmp_fd.c\
-	./srcs/pipe_exec.c\
 	./srcs/utils/error.c\
 	./srcs/utils/identifiers/is_logicalop.c\
 	./srcs/utils/identifiers/is_redirection.c\
@@ -32,25 +31,26 @@ SRCS =	\
 	./srcs/utils/secure_close.c\
 	./srcs/utils/expand.c\
 	./srcs/alloc/smalloc.c\
-	./srcs/parsing/syntax/syntax_operator/syntax_close.c\
-	./srcs/parsing/syntax/syntax_operator/syntax_in.c\
-	./srcs/parsing/syntax/syntax_operator/syntax_open.c\
-	./srcs/parsing/syntax/syntax_operator/syntax_out.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_and.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_append.c\
+	./srcs/parsing/syntax/syntax_operator/syntax_close.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_dquote.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_heredoc.c\
+	./srcs/parsing/syntax/syntax_operator/syntax_in.c\
+	./srcs/parsing/syntax/syntax_operator/syntax_open.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_or.c\
+	./srcs/parsing/syntax/syntax_operator/syntax_out.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_pipe.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_squote.c\
 	./srcs/parsing/syntax/syntax_operator.c\
 	./srcs/parsing/syntax/syntaxer.c\
 	./srcs/parsing/skipto.c\
-	./srcs/parsing/cmd_expand.c\
-	./srcs/parsing/count_word.c\
+	./srcs/parsing/expand/cmd_expand.c\
+	./srcs/parsing/count_args.c\
 	./srcs/types/string/ftstring.c\
+	./srcs/logic_exec.c\
 	./srcs/main.c\
-	./srcs/logic_exec.c
+	./srcs/pipe_exec.c
 
 OBJS =	\
 	./build/cd_utils.o\
@@ -66,7 +66,6 @@ OBJS =	\
 	./build/parse_heredoc.o\
 	./build/heredoc.o\
 	./build/tmp_fd.o\
-	./build/pipe_exec.o\
 	./build/error.o\
 	./build/is_logicalop.o\
 	./build/is_redirection.o\
@@ -79,25 +78,26 @@ OBJS =	\
 	./build/secure_close.o\
 	./build/expand.o\
 	./build/smalloc.o\
-	./build/syntax_close.o\
-	./build/syntax_in.o\
-	./build/syntax_open.o\
-	./build/syntax_out.o\
 	./build/syntax_and.o\
 	./build/syntax_append.o\
+	./build/syntax_close.o\
 	./build/syntax_dquote.o\
 	./build/syntax_heredoc.o\
+	./build/syntax_in.o\
+	./build/syntax_open.o\
 	./build/syntax_or.o\
+	./build/syntax_out.o\
 	./build/syntax_pipe.o\
 	./build/syntax_squote.o\
 	./build/syntax_operator.o\
 	./build/syntaxer.o\
 	./build/skipto.o\
 	./build/cmd_expand.o\
-	./build/count_word.o\
+	./build/count_args.o\
 	./build/ftstring.o\
+	./build/logic_exec.o\
 	./build/main.o\
-	./build/logic_exec.o
+	./build/pipe_exec.o
 
 DEPS =	\
 	./build/cd_utils.d\
@@ -113,7 +113,6 @@ DEPS =	\
 	./build/parse_heredoc.d\
 	./build/heredoc.d\
 	./build/tmp_fd.d\
-	./build/pipe_exec.d\
 	./build/error.d\
 	./build/is_logicalop.d\
 	./build/is_redirection.d\
@@ -126,25 +125,26 @@ DEPS =	\
 	./build/secure_close.d\
 	./build/expand.d\
 	./build/smalloc.d\
-	./build/syntax_close.d\
-	./build/syntax_in.d\
-	./build/syntax_open.d\
-	./build/syntax_out.d\
 	./build/syntax_and.d\
 	./build/syntax_append.d\
+	./build/syntax_close.d\
 	./build/syntax_dquote.d\
 	./build/syntax_heredoc.d\
+	./build/syntax_in.d\
+	./build/syntax_open.d\
 	./build/syntax_or.d\
+	./build/syntax_out.d\
 	./build/syntax_pipe.d\
 	./build/syntax_squote.d\
 	./build/syntax_operator.d\
 	./build/syntaxer.d\
 	./build/skipto.d\
 	./build/cmd_expand.d\
-	./build/count_word.d\
+	./build/count_args.d\
 	./build/ftstring.d\
+	./build/logic_exec.d\
 	./build/main.d\
-	./build/logic_exec.d
+	./build/pipe_exec.d
 
 $(BUILD_DIR):
 	@mkdir -p $@
@@ -216,11 +216,6 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/pipe_exec.o: ./srcs/pipe_exec.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
 ./build/error.o: ./srcs/utils/error.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
@@ -281,32 +276,17 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/syntax_close.o: ./srcs/parsing/syntax/syntax_operator/syntax_close.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/syntax_in.o: ./srcs/parsing/syntax/syntax_operator/syntax_in.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/syntax_open.o: ./srcs/parsing/syntax/syntax_operator/syntax_open.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/syntax_out.o: ./srcs/parsing/syntax/syntax_operator/syntax_out.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
 ./build/syntax_and.o: ./srcs/parsing/syntax/syntax_operator/syntax_and.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
 ./build/syntax_append.o: ./srcs/parsing/syntax/syntax_operator/syntax_append.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/syntax_close.o: ./srcs/parsing/syntax/syntax_operator/syntax_close.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
@@ -321,7 +301,22 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
+./build/syntax_in.o: ./srcs/parsing/syntax/syntax_operator/syntax_in.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/syntax_open.o: ./srcs/parsing/syntax/syntax_operator/syntax_open.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
 ./build/syntax_or.o: ./srcs/parsing/syntax/syntax_operator/syntax_or.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/syntax_out.o: ./srcs/parsing/syntax/syntax_operator/syntax_out.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
@@ -351,12 +346,12 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/cmd_expand.o: ./srcs/parsing/cmd_expand.c | $(BUILD_DIR)
+./build/cmd_expand.o: ./srcs/parsing/expand/cmd_expand.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/count_word.o: ./srcs/parsing/count_word.c | $(BUILD_DIR)
+./build/count_args.o: ./srcs/parsing/count_args.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
@@ -366,12 +361,17 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
+./build/logic_exec.o: ./srcs/logic_exec.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
 ./build/main.o: ./srcs/main.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/logic_exec.o: ./srcs/logic_exec.c | $(BUILD_DIR)
+./build/pipe_exec.o: ./srcs/pipe_exec.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)

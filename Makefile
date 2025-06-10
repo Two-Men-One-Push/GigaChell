@@ -23,7 +23,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_ARCHIVE)
 	@echo -e $(FRED)
-	$(CC) $(CFLAGS) $(HEADERS) -o $@ $(OBJS) $(LIBS)
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ $(OBJS) $(LIBS)
 	@echo -e $(FGREEN)compiling $@$(RESET)
 
 $(LIBFT_ARCHIVE): FORCE
