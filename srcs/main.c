@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/05 19:22:22 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/10 06:52:37 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "builtin.h"
 #include "defs/configs.h"
 #include "syntax.h"
+#include "utils.h"
 
 static int	run_command(char *line, int last_status)
 {

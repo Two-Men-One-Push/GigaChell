@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.h                                            :+:      :+:    :+:   */
+/*   count_word.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 07:10:44 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/05 19:16:19 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/10 07:02:47 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/10 09:26:43 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINT_H
-# define PRINT_H
+int	count_word(char *str)
+{
+	int	count;
+	int	i;
 
-# include <stddef.h>
-
-int	swrite(int fd, char *str, size_t len, int ret);
-
-#endif
+	i = -1;
+	count = 0;
+	while (str[++i])
+	{
+		if (str[i] == ' ' || str[i] == '\t')
+			continue ;
+		++count;
+		while (str[i] && str[i] != ' ' && str[i] != '\t')
+			++i;
+	}
+	return (count);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 01:49:50 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/10 09:23:09 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int	pipe_exec(char *cmd, t_hd_node *heredoc_list)
 	size_t		i;
 
 	i = 0;
+	status = 0;
+	(void)pipe_fd;
+	(void)heredoc_list;
 	while (cmd[i])
 	{
 		offset_to_operator(cmd, &i);

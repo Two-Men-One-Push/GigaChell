@@ -53,7 +53,5 @@ dkms.conf
 
 # Custom
 /.vscode/
-/.build/
+/build/
 /GigaChell
-/.build_dbg/
-/debug

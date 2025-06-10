@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swrite.c                                           :+:      :+:    :+:   */
+/*   cmd_expand.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 07:04:36 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/05 19:18:13 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/10 09:26:33 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <unistd.h>
+#include <stdlib.h>
 
-int	swrite(int fd, char *str, size_t len, int ret)
+char	**cmd_expand(char *cmd)
 {
-	if (write(fd, str, len) == -1)
-		write(2, "write error\n", 13);
-	return (ret);
+	// char	**tab;
+	int		size;
+	int		i;
+
+	i = -1;
+	size = 0;
+	while (cmd[++i])
+	{
+		if (cmd[i] == ' ' || cmd[i] == '\t')
+			continue ;
+		++size;
+		while (cmd[i] && cmd[i] != ' ' && cmd[i] != '\t')
+			++i;
+	}
+	return ((char **)0);
 }
