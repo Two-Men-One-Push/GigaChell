@@ -81,6 +81,7 @@ MEMORY_FILES = ft_bzero.c \
 
 STRING_FOLDER = string
 STRING_FILES = ft_split.c \
+	ft_arrlen.c \
 	ft_strchr.c \
 	ft_strcmp.c \
 	ft_strcpy.c \
