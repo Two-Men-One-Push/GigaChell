@@ -1,3 +1,4 @@
+
 BUILD_TYPE_FILE = .build_type.mk
 MAKEFLAGS += --no-print-directory
 
@@ -5,6 +6,8 @@ MAKEFLAGS += --no-print-directory
 
 BUILD_TYPE_TARGET ?= main
 
+PROJECT_NAME = libft
+VERSION = 1.0.0
 NAME = libft.a
 BUILD_ROOT_FOLDER = .build
 BUILD_FOLDER = $(BUILD_ROOT_FOLDER)/$(BUILD_TYPE_TARGET)
@@ -176,7 +179,7 @@ ifneq ($(BUILD_TYPE),$(BUILD_TYPE_TARGET))
 $(NAME): $(OBJS) FORCE
 	@ar rcs $(NAME) $(OBJS)
 	@echo
-	@echo -e Builded : $(BOLD)$(BLUE)$(NAME)$(RESET)
+	@echo -e Builded : $(BOLD)$(BLUE)$(NAME) $(DARK_GREY)\(v$(VERSION)\)$(RESET)
 	@echo
 	@echo BUILD_TYPE = $(BUILD_TYPE_TARGET) > $(BUILD_TYPE_FILE)
 else
@@ -190,19 +193,19 @@ dev: FORCE
 
 $(BUILD_FOLDER)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@echo -e $(BOLD)$(RED)Compiling$(RESET) with : $(BOLD)$(LIGHT_GREY)$(CC) $(DARK_GREY)$(CFLAGS) $(GREEN)$<$(RESET)
+	@echo -e $(DARK_GREY)\[$(BOLD)$(BLUE)$(PROJECT_NAME)$(RESET)$(DARK_GREY)\] $(BOLD)$(RED)Compiling$(RESET) with : $(BOLD)$(LIGHT_GREY)$(CC) $(DARK_GREY)$(CFLAGS) $(GREEN)$<$(RESET)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(BUILD_ROOT_FOLDER)
-	@echo -e $(GREEN)Project cleaned$(RESET)
+	@echo -e $(GREEN)$(PROJECT_NAME) cleaned$(RESET)
 
 fclean:
 	@rm -rf $(BUILD_ROOT_FOLDER)
 	@rm -f $(NAME)
 	@rm -f $(TEST_NAME)
 	@rm -f $(BUILD_TYPE_FILE)
-	@echo -e $(GREEN)Project full cleaned$(RESET)
+	@echo -e $(GREEN)$(PROJECT_NAME) full cleaned$(RESET)
 
 re: fclean 
 	$(MAKE) all
