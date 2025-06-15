@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/10 06:52:37 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/15 03:53:06 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "defs/configs.h"
 #include "syntax.h"
 #include "utils.h"
+#include "expand.h"
 
 static int	run_command(char *line, int last_status)
 {
@@ -83,7 +84,8 @@ static int	main_loop(void)
 
 int	main(int ac, char **av, char **envp)
 {
-	int	status;
+	int		status;
+	t_chain	chain;
 
 	(void)av;
 	(void)ac;
@@ -91,6 +93,12 @@ int	main(int ac, char **av, char **envp)
 	{
 		perror("gigachell: ft_initenv");
 		return (1);
+	}
+	chain = arg_split(" arg1 arg2 prefix$USER\"$USER\"\'$USER\'");
+	while (chain.start)
+	{
+		printf("[%s]\n", (char *)chain.start->data);
+		chain.start = chain.start->next;
 	}
 	status = main_loop();
 	rl_clear_history();

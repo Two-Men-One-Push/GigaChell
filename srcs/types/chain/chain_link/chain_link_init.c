@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_expand.c                                       :+:      :+:    :+:   */
+/*   chain_link_init.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/10 09:43:47 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/15 02:03:35 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/15 02:04:53 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "expand.h"
-#include <stdio.h>
+#include "tchain.h"
 
-char	**cmd_expand(char *cmd)
+t_chain_link	chain_link_init(void *data)
 {
-	char	**tab;
-	int		size;
+	t_chain_link	chain_link;
 
-	size = count_args(cmd);
-	tab = (char **)malloc((size + 1) * sizeof(char *));
-	if (!tab)
-	{
-		perror("gigachell");
-		return (NULL);
-	}
-	tab[size] = NULL;
-	// while ()
-	// {
-		
-	// }
-	return (tab);
+	chain_link.data = data;
+	chain_link.next = NULL;
+	chain_link.prev = NULL;
+	return (chain_link);
 }

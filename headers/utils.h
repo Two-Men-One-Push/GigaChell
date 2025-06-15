@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/09 17:18:10 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/12 11:43:02 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ bool	skip_squote(char *s, size_t *i);
 char	*get_limiter(char *cmd, size_t *i);
 
 void	str_unquote(char *s);
-
-char	*expand(char *cmd);
 
 /**
  * @brief Open a temporary file with flag permission and returns its fd.

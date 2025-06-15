@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skipto.c                                           :+:      :+:    :+:   */
+/*   chain_link_new.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 04:23:36 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/15 03:20:07 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/15 02:05:06 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/15 03:56:40 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tstring.h"
-#include <stddef.h>
+#include "tchain.h"
+#include <stdlib.h>
 
-int	skipto(char *str, size_t *index, char c)
+t_chain_link	*chain_link_new(void *data)
 {
-	while (str[*index])
-	{
-		++*index;
-		if (str[*index] == c)
-			return (0);
-	}
-	return (-1);
+	t_chain_link	*new_chain_link;
+
+	new_chain_link = malloc(sizeof(t_chain_link));
+	if (!new_chain_link)
+		return (NULL);
+	*new_chain_link = chain_link_init(data);
+	return (new_chain_link);
 }

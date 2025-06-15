@@ -29,7 +29,6 @@ SRCS =	\
 	./srcs/utils/unquote.c\
 	./srcs/utils/get_heredoc_limiter.c\
 	./srcs/utils/secure_close.c\
-	./srcs/utils/expand.c\
 	./srcs/alloc/smalloc.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_and.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_append.c\
@@ -45,9 +44,15 @@ SRCS =	\
 	./srcs/parsing/syntax/syntax_operator.c\
 	./srcs/parsing/syntax/syntaxer.c\
 	./srcs/parsing/skipto.c\
-	./srcs/parsing/expand/cmd_expand.c\
-	./srcs/parsing/count_args.c\
+	./srcs/parsing/expand/expand.c\
+	./srcs/parsing/expand/expand2.c\
+	./srcs/parsing/expand/expand3.c\
 	./srcs/types/string/ftstring.c\
+	./srcs/types/chain/chain_init.c\
+	./srcs/types/chain/chain_append.c\
+	./srcs/types/chain/chain_link/chain_link_init.c\
+	./srcs/types/chain/chain_link/chain_link_new.c\
+	./srcs/types/chain/chain_free.c\
 	./srcs/logic_exec.c\
 	./srcs/main.c\
 	./srcs/pipe_exec.c
@@ -76,7 +81,6 @@ OBJS =	\
 	./build/unquote.o\
 	./build/get_heredoc_limiter.o\
 	./build/secure_close.o\
-	./build/expand.o\
 	./build/smalloc.o\
 	./build/syntax_and.o\
 	./build/syntax_append.o\
@@ -92,9 +96,15 @@ OBJS =	\
 	./build/syntax_operator.o\
 	./build/syntaxer.o\
 	./build/skipto.o\
-	./build/cmd_expand.o\
-	./build/count_args.o\
+	./build/expand.o\
+	./build/expand2.o\
+	./build/expand3.o\
 	./build/ftstring.o\
+	./build/chain_init.o\
+	./build/chain_append.o\
+	./build/chain_link_init.o\
+	./build/chain_link_new.o\
+	./build/chain_free.o\
 	./build/logic_exec.o\
 	./build/main.o\
 	./build/pipe_exec.o
@@ -123,7 +133,6 @@ DEPS =	\
 	./build/unquote.d\
 	./build/get_heredoc_limiter.d\
 	./build/secure_close.d\
-	./build/expand.d\
 	./build/smalloc.d\
 	./build/syntax_and.d\
 	./build/syntax_append.d\
@@ -139,9 +148,15 @@ DEPS =	\
 	./build/syntax_operator.d\
 	./build/syntaxer.d\
 	./build/skipto.d\
-	./build/cmd_expand.d\
-	./build/count_args.d\
+	./build/expand.d\
+	./build/expand2.d\
+	./build/expand3.d\
 	./build/ftstring.d\
+	./build/chain_init.d\
+	./build/chain_append.d\
+	./build/chain_link_init.d\
+	./build/chain_link_new.d\
+	./build/chain_free.d\
 	./build/logic_exec.d\
 	./build/main.d\
 	./build/pipe_exec.d
@@ -266,11 +281,6 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/expand.o: ./srcs/utils/expand.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
 ./build/smalloc.o: ./srcs/alloc/smalloc.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
@@ -346,17 +356,47 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/cmd_expand.o: ./srcs/parsing/expand/cmd_expand.c | $(BUILD_DIR)
+./build/expand.o: ./srcs/parsing/expand/expand.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/count_args.o: ./srcs/parsing/count_args.c | $(BUILD_DIR)
+./build/expand2.o: ./srcs/parsing/expand/expand2.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/expand3.o: ./srcs/parsing/expand/expand3.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
 ./build/ftstring.o: ./srcs/types/string/ftstring.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/chain_init.o: ./srcs/types/chain/chain_init.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/chain_append.o: ./srcs/types/chain/chain_append.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/chain_link_init.o: ./srcs/types/chain/chain_link/chain_link_init.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/chain_link_new.o: ./srcs/types/chain/chain_link/chain_link_new.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/chain_free.o: ./srcs/types/chain/chain_free.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)

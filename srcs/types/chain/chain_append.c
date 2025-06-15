@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skipto.c                                           :+:      :+:    :+:   */
+/*   chain_append.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 04:23:36 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/15 03:20:07 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/15 01:18:03 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/15 03:57:10 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tstring.h"
-#include <stddef.h>
+#include "tchain.h"
 
-int	skipto(char *str, size_t *index, char c)
+int	chain_append(t_chain *chain, t_chain_link *link)
 {
-	while (str[*index])
+	if (!link)
+		return (1);
+	if (chain->size == 0)
 	{
-		++*index;
-		if (str[*index] == c)
-			return (0);
+		chain->start = link;
+		chain->end = link;
 	}
-	return (-1);
+	else
+	{
+		chain->end->next = link;
+		link->prev = chain->end;
+		chain->end = link;
+	}
+	++chain->size;
+	return (0);
 }

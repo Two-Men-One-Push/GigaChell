@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skipto.c                                           :+:      :+:    :+:   */
+/*   chain_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 04:23:36 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/15 03:20:07 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/15 04:01:08 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/15 04:12:31 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tstring.h"
-#include <stddef.h>
+#include "tchain.h"
+#include <stdlib.h>
 
-int	skipto(char *str, size_t *index, char c)
+void	chain_free(t_chain *chain)
 {
-	while (str[*index])
+	t_chain_link	*tmp;
+
+	while (chain->start)
 	{
-		++*index;
-		if (str[*index] == c)
-			return (0);
+		tmp = chain->start;
+		chain->start = chain->start->next;
+		free(tmp->data);
+		free(tmp);
 	}
-	return (-1);
 }
