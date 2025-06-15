@@ -3,16 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/10 09:23:09 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/15 08:56:29 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <errno.h>
+
 #include "defs/hd_node.h"
-#include "utils.h"
 #include "defs/pipe_fd.h"
+#include "utils.h"
+#include "gigachell.h"
+
+#include <stdlib.h>
+#include <string.h>
 
 static void	offset_to_operator(char *cmd, size_t *i)
 {
@@ -31,23 +41,93 @@ static void	offset_to_operator(char *cmd, size_t *i)
 	}
 }
 
-int	pipe_exec(char *cmd, t_hd_node *heredoc_list)
+static int	swap_pipe(t_pipe_fd *pipe_fd, bool is_last)
+{
+	int	fd_buffer[2];
+
+	if (pipe_fd->in > -1)
+		secure_close(pipe_fd->in);
+	if (pipe_fd->out > -1)
+		secure_close(pipe_fd->out);
+	if (is_last)
+	{
+		pipe_fd->in = pipe_fd->next_in;
+		return (0);
+	}
+	if (pipe(fd_buffer))
+	{
+		perror("gigachell: pipe");
+		secure_close(pipe_fd->next_in);
+		return (-1);
+	}
+	pipe_fd->in = pipe_fd->next_in;
+	pipe_fd->next_in = fd_buffer[0];
+	pipe_fd->out = fd_buffer[1];
+	return (0);
+}
+
+static int	error_pipe(void)
+{
+	while (wait(NULL) >= 0)
+		;
+	return (-1);
+}
+
+/**
+ * There are different cases for pid value
+ * a positive value is the value of a process's pid.
+ * 0 is the return value of a unforked builtin.
+ * -1 if an error
+ */
+static int	exit_pipe(pid_t last_pid, t_pipe_fd *pipe_fd, int last_status)
+{
+	int		stat_loc;
+	pid_t	last_wait_result;
+
+	if (pipe_fd->in > -1)
+		secure_close(pipe_fd->in);
+	if (last_pid < 0)
+		return (last_status);
+	last_wait_result = waitpid(last_pid, &stat_loc, 0);
+	if (last_wait_result)
+		perror("gigachell: waitpid");
+	errno = 0;
+	while (wait(NULL) >= 0)
+		;
+	if (errno != ECHILD || last_wait_result < 0)
+	{
+		perror("gigachell: wait");
+		return (-1);
+	}
+	if (WIFEXITED(stat_loc))
+		return (WEXITSTATUS(stat_loc));
+	else if (WIFSIGNALED(stat_loc))
+		return (WTERMSIG(stat_loc) + 128);
+	else
+		return (1);
+}
+
+int	pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list)
 {
 	t_pipe_fd	pipe_fd;
-	int			status;
 	size_t		i;
+	pid_t		last_pid;
+	bool		last_cmd;
 
+	pipe_fd = (t_pipe_fd){-1, -1, -1};
+	last_pid = -1;
 	i = 0;
-	status = 0;
-	(void)pipe_fd;
-	(void)heredoc_list;
-	while (cmd[i])
+	while (true)
 	{
 		offset_to_operator(cmd, &i);
-		if (cmd[i])
-		{
-			i += 1;
-		}
+		last_cmd = !cmd[i];
+		if (swap_pipe(&pipe_fd, last_cmd))
+			return (error_pipe());
+		last_pid = handle_piped_cmd(str_extract(cmd, i), last_status,
+				pipe_fd, heredoc_list);
+		if (last_cmd)
+			return (exit_pipe(last_pid, &pipe_fd, last_status));
+		cmd += ++i;
+		i = 0;
 	}
-	return (status);
 }

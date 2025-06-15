@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   std_fd.h                                           :+:      :+:    :+:   */
+/*   is_limiter_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/05 19:23:03 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/06 19:19:43 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/15 02:37:42 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STD_FD_H
-# define STD_FD_H
+#include <stdbool.h>
 
-typedef struct s_std_fd
+bool	is_limiter_char(char c)
 {
-	int	in;
-	int	out;
-	int	err;
-}			t_std_fd;
-
-#endif
+	return (!(c == ' ' || c == '\t' || c == '&' || c == '|'
+			|| c == '<' || c == '>' || c == '(' || c == ')'));
+}

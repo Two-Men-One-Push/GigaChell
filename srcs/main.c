@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/10 06:52:37 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/15 08:55:59 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,7 +19,6 @@
 #include "gigachell.h"
 #include "defs/hd_node.h"
 #include "libft.h"
-#include "builtin.h"
 #include "defs/configs.h"
 #include "syntax.h"
 #include "utils.h"
@@ -29,7 +27,6 @@ static int	run_command(char *line, int last_status)
 {
 	char		*cmd;
 	t_hd_node	*heredoc_list;
-	int			status;
 
 	if (syntaxer(ftstring(line, ft_strlen(line))))
 	{
@@ -48,10 +45,10 @@ static int	run_command(char *line, int last_status)
 		free(cmd);
 		return (-1);
 	}
-	status = logic_exec(last_status, line, &heredoc_list);
+	last_status = logic_exec(last_status, line, &heredoc_list);
 	add_history(cmd);
 	free(cmd);
-	return (status);
+	return (last_status);
 }
 
 static int	main_loop(void)

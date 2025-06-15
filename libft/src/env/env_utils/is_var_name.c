@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_node.h                                          :+:      :+:    :+:   */
+/*   is_var_name.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 06:33:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/14 21:09:09 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/06/14 23:42:41 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/15 00:44:28 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HD_NODE_H
-# define HD_NODE_H
+#include <stdbool.h>
 
-typedef struct s_hd_node
+bool	is_env_var_start(char c)
 {
-	int					fd;
-	struct s_hd_node	*next;
-}			t_hd_node;
+	return (('a' <= c && c <= 'z')
+		|| ('A' <= c && c <= 'Z')
+		|| c == '_'
+	);
+}
 
-#endif
+bool	is_env_var_char(char c)
+{
+	return (('a' <= c && c <= 'z')
+		|| ('A' <= c && c <= 'Z')
+		|| ('0' <= c && c <= '9')
+		|| c == '_'
+	);
+}
