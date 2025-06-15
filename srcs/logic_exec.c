@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/29 12:29:54 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 02:40:46 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static void	clear_to_operator(char *cmd, size_t *i, t_hd_node **heredoc_list)
  * compatible logic operator, false if a one is found.
  * (a compatible logic operator is && if status code is 0 and || otherwise)
  */
-bool	handle_status(int status, char *cmd, size_t *i, t_hd_node **heredoc_list)
+bool	handle_status(int status, char *cmd, size_t *i,
+	t_hd_node **heredoc_list)
 {
 	++*i;
 	while (cmd[*i])

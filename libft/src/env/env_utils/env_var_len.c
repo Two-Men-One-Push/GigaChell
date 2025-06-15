@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_node.h                                          :+:      :+:    :+:   */
+/*   env_var_len.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 06:33:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/14 21:09:09 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/06/14 23:41:42 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/15 01:01:19 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HD_NODE_H
-# define HD_NODE_H
+#include <stddef.h>
 
-typedef struct s_hd_node
+#include "env.h"
+
+size_t	env_var_len(const char *var_name)
 {
-	int					fd;
-	struct s_hd_node	*next;
-}			t_hd_node;
+	size_t	len;
 
-#endif
+	len = 0;
+	if (is_env_var_start(*var_name))
+		++len;
+	else
+		return (0);
+	while (is_env_var_char(var_name[len]))
+		++len;
+	return (len);
+}

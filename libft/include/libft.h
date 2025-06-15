@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/09 14:17:55 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 05:50:31 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,7 +345,6 @@ ssize_t	ft_nindexof(const char *s, char c, size_t n);
  * the free_split function to do so.
  */
 char	**ft_split(char const *s, char c);
-
 
 size_t	ft_arrlen(const void **arr);
 

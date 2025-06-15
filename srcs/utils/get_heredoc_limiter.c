@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 06:16:34 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/19 12:36:44 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/06 19:19:27 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@
 #include "utils.h"
 #include "identifier.h"
 #include "libft.h"
-
-static bool	is_limiter_char(char c)
-{
-	return (!(c == ' ' || c == '\t' || c == '&' || c == '|'
-		|| c == '<' || c == '>' || c == '(' || c == ')'));
-}
 
 char	*get_limiter(char *cmd, size_t *i)
 {

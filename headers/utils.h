@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/02 18:21:41 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 02:39:40 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-#include "defs/hd_node.h"
+# include "defs/hd_node.h"
 
 char	*str_extract(char *start, size_t len);
 

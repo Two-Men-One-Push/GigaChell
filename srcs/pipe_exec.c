@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/01 17:00:23 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 02:41:35 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 #include "defs/hd_node.h"
 #include "defs/pipe_fd.h"
 #include "utils.h"
+#include "gigachell.h"
+
+#include <stdlib.h>
+#include <string.h>
 
 static void	offset_to_operator(char *cmd, size_t *i)
 {
@@ -68,6 +72,7 @@ static int	error_pipe(void)
 		;
 	return (-1);
 }
+
 /**
  * There are different cases for pid value
  * a positive value is the value of a process's pid.
@@ -76,17 +81,24 @@ static int	error_pipe(void)
  */
 static int	exit_pipe(pid_t last_pid, t_pipe_fd *pipe_fd, int last_status)
 {
-	int	stat_loc;
+	int		stat_loc;
+	pid_t	last_wait_result;
 
 	if (pipe_fd->in > -1)
 		secure_close(pipe_fd->in);
 	if (last_pid < 0)
 		return (last_status);
-	waitpid(last_pid, &stat_loc, 0);
+	last_wait_result = waitpid(last_pid, &stat_loc, 0);
+	if (last_wait_result)
+		perror("gigachell: waitpid");
+	errno = 0;
 	while (wait(NULL) >= 0)
 		;
-	if (errno != ECHILD)
+	if (errno != ECHILD || last_wait_result < 0)
+	{
+		perror("gigachell: wait");
 		return (-1);
+	}
 	if (WIFEXITED(stat_loc))
 		return (WEXITSTATUS(stat_loc));
 	else if (WIFSIGNALED(stat_loc))
@@ -105,15 +117,14 @@ int	pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list)
 	pipe_fd = (t_pipe_fd){-1, -1, -1};
 	last_pid = -1;
 	i = 0;
-	printf("pipe : \"%s\"\n", cmd);
 	while (true)
 	{
 		offset_to_operator(cmd, &i);
 		last_cmd = !cmd[i];
-		if (swap_pipe(&pipe_fd, !cmd[i]))
+		if (swap_pipe(&pipe_fd, last_cmd))
 			return (error_pipe());
-		last_pid = cmd_exec(str_extract(cmd, i), &last_status,
-			pipe_fd, heredoc_list);
+		last_pid = handle_piped_cmd(str_extract(cmd, i), last_status,
+				pipe_fd, heredoc_list);
 		if (last_cmd)
 			return (exit_pipe(last_pid, &pipe_fd, last_status));
 		cmd += ++i;

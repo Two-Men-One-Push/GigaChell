@@ -6,10 +6,9 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/06 00:05:59 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 02:41:54 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,7 +19,6 @@
 #include "gigachell.h"
 #include "defs/hd_node.h"
 #include "libft.h"
-#include "builtin.h"
 #include "defs/configs.h"
 #include "syntax.h"
 

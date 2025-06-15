@@ -7,24 +7,29 @@ MAKEFLAGS += --no-print-directory
 BUILD_TYPE_TARGET ?= main
 
 PROJECT_NAME = libft
-VERSION = 1.0.0
+VERSION = 1.0.1
 NAME = libft.a
-BUILD_ROOT_FOLDER = .build
-BUILD_FOLDER = $(BUILD_ROOT_FOLDER)/$(BUILD_TYPE_TARGET)
-HEADER_FOLDER = include
-SRC_FOLDER = src
+BUILD_ROOT_DIR = .build
+BUILD_DIR = $(BUILD_ROOT_DIR)/$(BUILD_TYPE_TARGET)
+HEADER_DIR = include
 
+SRC_DIR = src
 
-CONVERTER_FOLDER = converter
-CONVERTER_FILES = ft_atoi.c \
-	ft_itoa.c
+CONVERTER_DIR = converter
+CONVERTER_FILES = $(addprefix $(CONVERTER_DIR)/, \
+	ft_atoi.c \
+	ft_itoa.c \
+)
 
-FREE_FOLDER = free
-FREE_FILES = free_split.c \
-	free_n.c
+FREE_DIR = free
+FREE_FILES = $(addprefix $(FREE_DIR)/, \
+	free_split.c \
+	free_n.c \
+)
 
-FT_PRINTF_FOLDER = ft_printf
-FT_PRINTF_FILES = ft_vfprintf.c \
+FT_PRINTF_DIR = ft_printf
+FT_PRINTF_FILES = $(addprefix $(FT_PRINTF_DIR)/, \
+	ft_vfprintf.c \
 	ft_printf.c \
 	ft_devprintf.c \
 	ft_dprintf.c \
@@ -37,31 +42,39 @@ FT_PRINTF_FILES = ft_vfprintf.c \
 	flags/flag_p.c \
 	flags/flag_s.c \
 	flags/flag_u.c \
-	flags/flag_up_x.c
+	flags/flag_up_x.c \
+)
 
-GET_NEXT_LINE_FOLDER = get_next_line
-GET_NEXT_LINE_FILES = get_next_line.c \
-	get_next_line_utils.c
+GET_NEXT_LINE_DIR = get_next_line
+GET_NEXT_LINE_FILES = $(addprefix $(GET_NEXT_LINE_DIR)/, \
+	get_next_line.c \
+	get_next_line_utils.c \
+)
 
-IDENTIFER_FOLDER = identifier
-IDENTIFER_FILES = ft_isalnum.c \
+IDENTIFER_DIR = identifier
+IDENTIFER_FILES = $(addprefix $(IDENTIFER_DIR)/, \
+	ft_isalnum.c \
 	ft_isalpha.c \
 	ft_isascii.c \
 	ft_isdigit.c \
 	ft_islower.c \
 	ft_isprint.c \
-	ft_isupper.c
+	ft_isupper.c \
+)
 
-MATHS_FOLDER = maths
-MATHS_FILES = arrmax.c \
+MATHS_DIR = maths
+MATHS_FILES = $(addprefix $(MATHS_DIR)/, \
+	arrmax.c \
 	arrmin.c \
 	max.c \
 	min.c \
 	maxs.c \
-	mins.c
+	mins.c \
+)
 
-LIST_FOLDER = list
-LIST_FILES = lstadd_back.c \
+LIST_DIR = list
+LIST_FILES = $(addprefix $(LIST_DIR)/, \
+	lstadd_back.c \
 	lstadd_front.c \
 	lstclear.c \
 	lstdelone.c \
@@ -70,20 +83,24 @@ LIST_FILES = lstadd_back.c \
 	lstmap.c \
 	lstnew.c \
 	lstpop.c \
-	lstsize.c
+	lstsize.c \
+)
 
-MEMORY_FOLDER = memory
-MEMORY_FILES = ft_bzero.c \
+MEMORY_DIR = memory
+MEMORY_FILES = $(addprefix $(MEMORY_DIR)/, \
+	ft_bzero.c \
 	ft_calloc.c \
 	ft_memchr.c \
 	ft_memcmp.c \
 	ft_memcpy.c \
 	ft_memdup.c \
 	ft_memmove.c \
-	ft_memset.c
+	ft_memset.c \
+)
 
-STRING_FOLDER = string
-STRING_FILES = ft_split.c \
+STRING_DIR = string
+STRING_FILES = $(addprefix $(STRING_DIR)/, \
+	ft_split.c \
 	ft_arrlen.c \
 	ft_strchr.c \
 	ft_strcmp.c \
@@ -100,11 +117,12 @@ STRING_FILES = ft_split.c \
 	ft_toupper.c \
 	ft_tolower.c \
 	starts_by.c \
-	ends_by.c
+	ends_by.c \
+)
 
-
-VECTOR_FOLDER = vector
-VECTOR_FILES = int/ivec_create.c \
+VECTOR_DIR = vector
+VECTOR_FILES = $(addprefix $(VECTOR_DIR)/, \
+	int/ivec_create.c \
 	int/ivec_push.c \
 	int/ivec_set.c \
 	int/ivec_get.c \
@@ -112,16 +130,18 @@ VECTOR_FILES = int/ivec_create.c \
 	int/ivec_index.c \
 	int/ivec_pop.c \
 	int/ivec_print.c \
-	int/ivec_destroy.c
+	int/ivec_destroy.c\
+)
 #	char/cvec_create.c \
 #	char/cvec_destroy.c \
 #	char/cvec_get.c \
 #	char/cvec_pop.c \
 #	char/cvec_print.c \
-#	char/cvec_push.c
+#	char/cvec_push.c \
 
-ENV_FOLDER = env
-ENV_FILES = env_handle.c \
+ENV_DIR = env
+ENV_FILES = $(addprefix $(ENV_DIR)/, \
+	env_handle.c \
 	env_init.c \
 	env_set.c \
 	env_get.c \
@@ -134,33 +154,38 @@ ENV_FILES = env_handle.c \
 	wrapper/ft_getenvp.c \
 	wrapper/ft_unsetenv.c \
 	wrapper/ft_clearenv.c \
-	realloc_env.c
-
-BUFFER_FOLDER = buffer
-BUFFER_FILES = pbuffer/pbuff_flush.c \
-	pbuffer/pbuff_init.c \
-	pbuffer/pbuff_write.c
-
-FILES = $(addprefix $(SRC_FOLDER)/, \
-	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
-	$(addprefix $(FREE_FOLDER)/, $(FREE_FILES)) \
-	$(addprefix $(FT_PRINTF_FOLDER)/, $(FT_PRINTF_FILES)) \
-	$(addprefix $(GET_NEXT_LINE_FOLDER)/, $(GET_NEXT_LINE_FILES)) \
-	$(addprefix $(IDENTIFER_FOLDER)/, $(IDENTIFER_FILES)) \
-	$(addprefix $(LIST_FOLDER)/, $(LIST_FILES)) \
-	$(addprefix $(MATHS_FOLDER)/, $(MATHS_FILES)) \
-	$(addprefix $(MEMORY_FOLDER)/, $(MEMORY_FILES)) \
-	$(addprefix $(STRING_FOLDER)/, $(STRING_FILES)) \
-	$(addprefix $(VECTOR_FOLDER)/, $(VECTOR_FILES)) \
-	$(addprefix $(ENV_FOLDER)/, $(ENV_FILES)) \
-	$(addprefix $(BUFFER_FOLDER)/, $(BUFFER_FILES)) \
+	env_utils/env_var_len.c \
+	env_utils/is_var_name.c \
+	env_utils/realloc_env.c \
 )
 
-OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
-DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
+BUFFER_DIR = buffer
+BUFFER_FILES = $(addprefix $(BUFFER_DIR)/, \
+	pbuffer/pbuff_flush.c \
+	pbuffer/pbuff_init.c \
+	pbuffer/pbuff_write.c \
+)
+
+FILES = $(addprefix $(SRC_DIR)/, \
+	$(CONVERTER_FILES) \
+	$(FREE_FILES) \
+	$(FT_PRINTF_FILES) \
+	$(GET_NEXT_LINE_FILES) \
+	$(IDENTIFER_FILES) \
+	$(LIST_FILES) \
+	$(MATHS_FILES) \
+	$(MEMORY_FILES) \
+	$(STRING_FILES) \
+	$(VECTOR_FILES) \
+	$(ENV_FILES) \
+	$(BUFFER_FILES) \
+)
+
+OBJS = $(addprefix $(BUILD_DIR)/, $(FILES:.c=.o))
+DEPS = $(addprefix $(BUILD_DIR)/, $(FILES:.c=.d))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
+CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_DIR)
 
 DEV_DEFINE = -DDEV
 DEV_FLAGS = $(DEV_DEFINE) -g3
@@ -168,8 +193,8 @@ DEV_FLAGS = $(DEV_DEFINE) -g3
 TEST_NAME = tester
 TEST_FILES = main.test.c
 TEST_FLAGS = $(CFLAGS) $(DEV_FLAGS)
-TEST_OBJS = $(addprefix $(BUILD_FOLDER)/, $(TEST_FILES:.c=.o))
-TEST_DEPS = $(addprefix $(BUILD_FOLDER)/, $(TEST_FILES:.c=.d))
+TEST_OBJS = $(addprefix $(BUILD_DIR)/, $(TEST_FILES:.c=.o))
+TEST_DEPS = $(addprefix $(BUILD_DIR)/, $(TEST_FILES:.c=.d))
 
 .PHONY: all clean fclean re test tester dev FORCE
 
@@ -191,17 +216,17 @@ endif
 dev: FORCE
 	@$(MAKE) CFLAGS="$(TEST_FLAGS)" BUILD_TYPE_TARGET=dev
 
-$(BUILD_FOLDER)/%.o: %.c
+$(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo -e $(DARK_GREY)\[$(BOLD)$(BLUE)$(PROJECT_NAME)$(RESET)$(DARK_GREY)\] $(BOLD)$(RED)Compiling$(RESET) with : $(BOLD)$(LIGHT_GREY)$(CC) $(DARK_GREY)$(CFLAGS) $(GREEN)$<$(RESET)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -rf $(BUILD_ROOT_FOLDER)
+	@rm -rf $(BUILD_ROOT_DIR)
 	@echo -e $(GREEN)$(PROJECT_NAME) cleaned$(RESET)
 
 fclean:
-	@rm -rf $(BUILD_ROOT_FOLDER)
+	@rm -rf $(BUILD_ROOT_DIR)
 	@rm -f $(NAME)
 	@rm -f $(TEST_NAME)
 	@rm -f $(BUILD_TYPE_FILE)

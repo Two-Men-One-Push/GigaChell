@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   is_limiter_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 19:55:46 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/15 19:57:46 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/06 19:19:43 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/15 02:37:42 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-
-int	ft_echo(int ac, char **av);
-
-#endif
+bool	is_limiter_char(char c)
+{
+	return (!(c == ' ' || c == '\t' || c == '&' || c == '|'
+			|| c == '<' || c == '>' || c == '(' || c == ')'));
+}
