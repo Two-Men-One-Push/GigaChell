@@ -45,8 +45,6 @@ SRCS =	\
 	./srcs/parsing/syntax/syntaxer.c\
 	./srcs/parsing/skipto.c\
 	./srcs/parsing/expand/expand.c\
-	./srcs/parsing/expand/expand2.c\
-	./srcs/parsing/expand/expand3.c\
 	./srcs/types/string/ftstring.c\
 	./srcs/types/chain/chain_init.c\
 	./srcs/types/chain/chain_append.c\
@@ -97,8 +95,6 @@ OBJS =	\
 	./build/syntaxer.o\
 	./build/skipto.o\
 	./build/expand.o\
-	./build/expand2.o\
-	./build/expand3.o\
 	./build/ftstring.o\
 	./build/chain_init.o\
 	./build/chain_append.o\
@@ -149,8 +145,6 @@ DEPS =	\
 	./build/syntaxer.d\
 	./build/skipto.d\
 	./build/expand.d\
-	./build/expand2.d\
-	./build/expand3.d\
 	./build/ftstring.d\
 	./build/chain_init.d\
 	./build/chain_append.d\
@@ -357,16 +351,6 @@ $(BUILD_DIR):
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
 ./build/expand.o: ./srcs/parsing/expand/expand.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/expand2.o: ./srcs/parsing/expand/expand2.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/expand3.o: ./srcs/parsing/expand/expand3.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
