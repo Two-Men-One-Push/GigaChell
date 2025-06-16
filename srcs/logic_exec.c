@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:42:55 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/16 19:10:04 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ static void	clear_to_operator(char *cmd, size_t *i, t_hd_node **heredoc_list)
 		else if (cmd[*i] == '(')
 			clear_paranthesis(cmd, i, heredoc_list);
 		else if (cmd[*i] == '<' && cmd[*i + 1] == '<')
+		{
+			*i += 2;
 			secure_close(hd_pop(heredoc_list));
+		}
 		else if ((cmd[*i] == '&' && cmd[*i + 1] == '&')
 			|| (cmd[*i] == '|' && cmd[*i + 1] == '|'))
 		{
@@ -94,7 +97,7 @@ int	logic_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 		skip_to_operator(cmd, &i);
 		if (!cmd[i])
 			return (pipe_exec(str_extract(cmd, i), last_status, heredoc_list));
-		last_status = pipe_exec(str_extract(cmd, i), last_status, heredoc_list); // "echo test && echo coucou" will become "echo test \0& echo coucou"
+		last_status = pipe_exec(str_extract(cmd, i), last_status, heredoc_list);
 		if (handle_status(last_status, cmd, &i, heredoc_list))
 			return (last_status);
 		cmd += i;
