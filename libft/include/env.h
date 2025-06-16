@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 13:35:39 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/01 00:06:45 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 01:01:29 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define ENV_H
 
 # include <stddef.h>
+# include <stdbool.h>
 
-// # define ENV_MIN_CAPACITY 64
-# define ENV_MIN_CAPACITY 4
+# define ENV_MIN_CAPACITY 64
 
 typedef struct s_env
 {
@@ -34,6 +34,9 @@ enum e_env_flags
 	ENV_CLEAR,
 };
 
+size_t	env_var_len(const char *var_name);
+bool	is_env_var_start(char c);
+bool	is_env_var_char(char c);
 int		increase_env_capacity(t_env *env);
 int		decrease_env_capacity(t_env *env);
 

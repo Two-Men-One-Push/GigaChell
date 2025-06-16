@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_node.h                                          :+:      :+:    :+:   */
+/*   ft_arraylen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 06:33:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/14 21:09:09 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/06/09 14:12:18 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/09 14:15:01 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HD_NODE_H
-# define HD_NODE_H
+#include <stddef.h>
 
-typedef struct s_hd_node
+size_t	ft_arrlen(const void **arr)
 {
-	int					fd;
-	struct s_hd_node	*next;
-}			t_hd_node;
+	size_t	len;
 
-#endif
+	len = 0;
+	while (arr[len])
+		len++;
+	return (len);
+}

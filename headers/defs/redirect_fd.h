@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   redirect_fd.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 19:55:46 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/05/15 19:57:46 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/06 00:05:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef REDIRECT_FD_H
+# define REDIRECT_FD_H
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-
-int	ft_echo(int ac, char **av);
+typedef struct s_redirect_fd
+{
+	int	in;
+	int	out;
+	int	err;
+}			t_redirect_fd;
 
 #endif

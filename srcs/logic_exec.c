@@ -6,12 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/19 07:28:07 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 02:40:46 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defs/hd_node.h"
 #include "utils.h"
+#include "gigachell.h"
+#include "heredoc_list_utils.h"
 
 #include <stdio.h>
 
@@ -43,6 +45,8 @@ static void	clear_to_operator(char *cmd, size_t *i, t_hd_node **heredoc_list)
 			skip_dquote(cmd, i);
 		else if (cmd[*i] == '(')
 			clear_paranthesis(cmd, i, heredoc_list);
+		else if (cmd[*i] == '<' && cmd[*i + 1] == '<')
+			secure_close(hd_pop(heredoc_list));
 		else if ((cmd[*i] == '&' && cmd[*i + 1] == '&')
 			|| (cmd[*i] == '|' && cmd[*i + 1] == '|'))
 		{
@@ -59,7 +63,8 @@ static void	clear_to_operator(char *cmd, size_t *i, t_hd_node **heredoc_list)
  * compatible logic operator, false if a one is found.
  * (a compatible logic operator is && if status code is 0 and || otherwise)
  */
-bool	handle_status(int status, char *cmd, size_t *i, t_hd_node **heredoc_list)
+bool	handle_status(int status, char *cmd, size_t *i,
+	t_hd_node **heredoc_list)
 {
 	++*i;
 	while (cmd[*i])
@@ -81,28 +86,19 @@ bool	handle_status(int status, char *cmd, size_t *i, t_hd_node **heredoc_list)
 
 int	logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list)
 {
-	int		status;
 	size_t	i;
 
-	status = 0;
 	i = 0;
 	while (cmd[i])
 	{
 		skip_to_operator(cmd, &i);
 		if (!cmd[i])
-		{
-			printf("%s\n", cmd);
-			return (0);
-			// return (exec_pipe(cmd, heredoc_list));
-		}
-			// status = exec_pipe(str_extract(cmd, i), heredoc_list); // "echo test && echo coucou" will become "echo test \0& echo coucou"
-			(void)last_status;
-			status = 0;
-			printf("%s\n", str_extract(cmd, i));
-		if (handle_status(status, cmd, &i, heredoc_list))
-			return (status);
+			return (pipe_exec(last_status, str_extract(cmd, i), heredoc_list));
+		last_status = pipe_exec(last_status, str_extract(cmd, i), heredoc_list); // "echo test && echo coucou" will become "echo test \0& echo coucou"
+		if (handle_status(last_status, cmd, &i, heredoc_list))
+			return (last_status);
 		cmd += i;
 		i = 0;
 	}
-	return (status);
+	return (last_status);
 }

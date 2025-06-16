@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:38:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/15 20:47:01 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/14 20:40:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	are_same_path(const char *path1, const char *path2)
 	struct stat	st2;
 
 	if (stat(path1, &st1) != 0 || stat(path2, &st2) != 0)
-		return (0);
+		return (false);
 	return ((st1.st_ino == st2.st_ino) && (st1.st_dev == st2.st_dev));
 }
 

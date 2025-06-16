@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/17 07:35:56 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 02:44:06 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	create_here_doc(char *limiter)
 	if (fd == -1)
 		return (-1);
 	errno = 0;
-	ft_dprintf(2, "%s\n", limiter);
 	line = readline("heredoc>");
 	while (line && ft_strcmp(line, limiter))
 	{

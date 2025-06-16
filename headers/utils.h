@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/12 11:43:02 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:23:56 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-#include "defs/hd_node.h"
+# include "defs/hd_node.h"
 
 char	*str_extract(char *start, size_t len);
 
@@ -27,6 +27,7 @@ void	clear_paranthesis(char *s, size_t *i, t_hd_node **heredoc_list);
 bool	skip_dquote(char *s, size_t *i);
 bool	skip_squote(char *s, size_t *i);
 
+char	*get_redirect_file(char *arg);
 char	*get_limiter(char *cmd, size_t *i);
 
 void	str_unquote(char *s);

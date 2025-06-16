@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/21 06:56:52 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 05:50:31 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,6 +345,8 @@ ssize_t	ft_nindexof(const char *s, char c, size_t n);
  * the free_split function to do so.
  */
 char	**ft_split(char const *s, char c);
+
+size_t	ft_arrlen(const void **arr);
 
 /**
  * @brief Split a string s into substring for every character in the set given

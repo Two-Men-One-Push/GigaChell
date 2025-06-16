@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_node.h                                          :+:      :+:    :+:   */
+/*   hd_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 06:33:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/14 21:09:09 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/06/14 22:53:01 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/14 23:26:44 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HD_NODE_H
-# define HD_NODE_H
+#include <stddef.h>
 
-typedef struct s_hd_node
+#include "heredoc_list_utils.h"
+#include "libft.h"
+
+void	hd_move_last(t_hd_node **dest, t_hd_node **src)
 {
-	int					fd;
-	struct s_hd_node	*next;
-}			t_hd_node;
+	t_hd_node	**last_node;
 
-#endif
+	last_node = src;
+	while ((*last_node)->next)
+		last_node = &((*last_node)->next);
+	hd_add_front(dest, *last_node);
+	*last_node = NULL;
+}
