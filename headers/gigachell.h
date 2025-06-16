@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 02:40:26 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:03:15 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 
 bool	parse_heredoc(char *cmd, t_hd_node **heredoc_list);
 int		get_redirection(char *cmd, t_redirect_fd *redirect,
-			t_hd_node *heredoc_list);
+			t_hd_node **heredoc_list);
 int		apply_redirection(t_redirect_fd *redirect);
 
-int		logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
-int		pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list);
-pid_t	handle_piped_cmd(char *cmd, int *last_satus, t_pipe_fd pipe_fd,
+int		logic_exec(char *cmd, int last_status, t_hd_node **heredoc_list);
+int		pipe_exec(char *cmd, int last_status, t_hd_node **heredoc_list);
+pid_t	handle_piped_cmd(char *cmd, int last_satus, t_pipe_fd pipe_fd,
 			t_hd_node **heredoc_list);
 pid_t	subshell_exec(char *cmd, int last_satus, t_redirect_fd *redirect,
 			t_hd_node **heredoc_list);

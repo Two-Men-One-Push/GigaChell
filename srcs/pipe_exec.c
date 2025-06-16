@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 08:56:29 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:24:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,10 @@ static int	exit_pipe(pid_t last_pid, t_pipe_fd *pipe_fd, int last_status)
 	errno = 0;
 	while (wait(NULL) >= 0)
 		;
-	if (errno != ECHILD || last_wait_result < 0)
-	{
+	if (errno != ECHILD)
 		perror("gigachell: wait");
+	if (errno != ECHILD || last_wait_result < 0)
 		return (-1);
-	}
 	if (WIFEXITED(stat_loc))
 		return (WEXITSTATUS(stat_loc));
 	else if (WIFSIGNALED(stat_loc))
@@ -107,7 +106,7 @@ static int	exit_pipe(pid_t last_pid, t_pipe_fd *pipe_fd, int last_status)
 		return (1);
 }
 
-int	pipe_exec(int last_status, char *cmd, t_hd_node **heredoc_list)
+int	pipe_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 {
 	t_pipe_fd	pipe_fd;
 	size_t		i;

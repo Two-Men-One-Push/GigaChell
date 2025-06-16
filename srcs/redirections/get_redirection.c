@@ -6,11 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 17:57:08 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 08:02:11 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:06:56 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include <stdlib.h>
 #include <fcntl.h>
 
 #include "defs/hd_node.h"
@@ -22,10 +23,12 @@
 
 static int	redirect_in(char *cmd, size_t *i, t_redirect_fd *redirect)
 {
-	const char	*arg_start = cmd + *i;
-	const char	*file = get_redirect_file(arg_start);
+	char	*arg_start;
+	char	*file;
 	size_t		arg_len;
 
+	arg_start = cmd + *i;
+	file = get_redirect_file(arg_start);
 	if (!file)
 		return (1);
 	if (redirect->in > -1)
@@ -41,14 +44,16 @@ static int	redirect_in(char *cmd, size_t *i, t_redirect_fd *redirect)
 		++arg_len;
 	ft_memset(arg_start, ' ', arg_len);
 	*i += arg_len;
+	return (0);
 }
 
 static void	redirect_heredoc(char *cmd, size_t *i, t_redirect_fd *redirect,
-	t_hd_node *heredoc_list)
+	t_hd_node **heredoc_list)
 {
-	const char	*redirect_start = cmd + *i;
+	char	*redirect_start;
 	size_t		redirect_len;
 
+	redirect_start = cmd + *i;
 	redirect_len = 3;
 	while (is_space(redirect_start[redirect_len]))
 		++redirect_len;
@@ -64,10 +69,12 @@ static void	redirect_heredoc(char *cmd, size_t *i, t_redirect_fd *redirect,
 static int	redirect_out(char *cmd, size_t *i, t_redirect_fd *redirect,
 	bool append)
 {
-	const char	*arg_start = cmd + *i;
-	const char	*file = get_redirect_file(arg_start);
+	char	*arg_start;
+	char	*file;
 	size_t		arg_len;
 
+	arg_start = cmd + *i;
+	file = get_redirect_file(arg_start);
 	if (!file)
 		return (1);
 	if (redirect->out > -1)
@@ -84,6 +91,7 @@ static int	redirect_out(char *cmd, size_t *i, t_redirect_fd *redirect,
 		++arg_len;
 	ft_memset(arg_start, ' ', arg_len);
 	*i += arg_len;
+	return (0);
 }
 
 static int	stop_redirect(t_redirect_fd *redirect)
@@ -96,7 +104,7 @@ static int	stop_redirect(t_redirect_fd *redirect)
 }
 
 int	get_redirection(char *cmd, t_redirect_fd *redirect,
-	t_hd_node *heredoc_list)
+	t_hd_node **heredoc_list)
 {
 	size_t	i;
 
@@ -108,16 +116,22 @@ int	get_redirection(char *cmd, t_redirect_fd *redirect,
 		else if (cmd[i] == '\'')
 			skip_squote(cmd, &i);
 		else if (cmd[i] == '<')
+		{
 			if (redirect_in(cmd, &i, redirect))
-				return (stop_redirect(redirect));
+			return (stop_redirect(redirect));
+		}
 		else if (cmd[i] == '<' && cmd[i + 1] == '<')
 			redirect_heredoc(cmd, &i, redirect, heredoc_list);
 		else if (cmd[i] == '>')
+		{
 			if (redirect_out(cmd, &i, redirect, false))
-				return (stop_redirect(redirect));
+			return (stop_redirect(redirect));
+		}
 		else if (cmd[i] == '>' && cmd[i + 1] == '>')
+		{
 			if (redirect_out(cmd, &i, redirect, true))
 				return (stop_redirect(redirect));
+		}
 		else
 			++i;
 	}

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:39:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 08:03:52 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:01:33 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ pid_t	subshell_exec(char *cmd, int last_satus, t_redirect_fd *redirect,
 	{
 		hd_clear(heredoc_list);
 		return (handle_subprocess_child(str_extract(cmd + 1, paranthesis_len
-					- 2), last_satus, redirect, subshell_heredoc_list));
+					- 2), last_satus, redirect, &subshell_heredoc_list));
 	}
 	else
 	{

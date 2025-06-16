@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 20:58:05 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 02:42:26 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:36:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 #include <stdio.h>
 
-pid_t	handle_piped_cmd(char *cmd, int *last_satus, t_pipe_fd pipe_fd,
+pid_t	handle_piped_cmd(char *cmd, int last_satus, t_pipe_fd pipe_fd,
 	t_hd_node **heredoc_list)
 {
 	size_t			i;
@@ -33,12 +33,7 @@ pid_t	handle_piped_cmd(char *cmd, int *last_satus, t_pipe_fd pipe_fd,
 	while (is_space(cmd[++i]))
 		;
 	if (cmd[i] == '(')
-	{
-		paranthesis_exec(cmd, last_satus, &redirect, heredoc_list);
-	}
-	(void)last_satus;
-	(void)pipe_fd;
-	(void)heredoc_list;
-	printf("	%s\n", cmd);
+		return (subshell_exec(cmd, last_satus, &redirect, heredoc_list));
+	printf("%s\n", cmd);
 	return (999);
 }

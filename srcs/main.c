@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 08:55:59 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:10:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	run_command(char *line, int last_status)
 		free(cmd);
 		return (-1);
 	}
-	last_status = logic_exec(last_status, line, &heredoc_list);
+	last_status = logic_exec(line, last_status, &heredoc_list);
 	add_history(cmd);
 	free(cmd);
 	return (last_status);
