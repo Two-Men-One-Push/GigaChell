@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 02:40:46 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:42:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ bool	handle_status(int status, char *cmd, size_t *i,
 	return (1);
 }
 
-int	logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list)
+int	logic_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 {
 	size_t	i;
 
@@ -93,8 +93,8 @@ int	logic_exec(int last_status, char *cmd, t_hd_node **heredoc_list)
 	{
 		skip_to_operator(cmd, &i);
 		if (!cmd[i])
-			return (pipe_exec(last_status, str_extract(cmd, i), heredoc_list));
-		last_status = pipe_exec(last_status, str_extract(cmd, i), heredoc_list); // "echo test && echo coucou" will become "echo test \0& echo coucou"
+			return (pipe_exec(str_extract(cmd, i), last_status, heredoc_list));
+		last_status = pipe_exec(str_extract(cmd, i), last_status, heredoc_list); // "echo test && echo coucou" will become "echo test \0& echo coucou"
 		if (handle_status(last_status, cmd, &i, heredoc_list))
 			return (last_status);
 		cmd += i;

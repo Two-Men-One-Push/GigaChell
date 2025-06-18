@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:54:47 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/14 22:29:00 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:42:39 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	clear_paranthesis(char *s, size_t *i, t_hd_node **heredoc_list)
 	size_t	depth;
 
 	depth = 1;
+	++*i;
 	while (depth)
 	{
 		if (s[*i] == '"')

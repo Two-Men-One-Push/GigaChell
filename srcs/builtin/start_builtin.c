@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:02:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/09 15:16:44 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:01:25 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	start_builtin(char **cmd, t_redirect_fd *redirect)
 {
-	const int	ac = ft_arrlen(cmd);
+	const int	ac = ft_arrlen((void **)cmd);
 
 	if (!ft_strcmp(*cmd, "echo"))
 		return (0);

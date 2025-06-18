@@ -6,14 +6,17 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:46:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 02:42:40 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/15 09:07:59 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "defs/redirect_fd.h"
 #include "builtins.h"
+#include "libft.h"
 
 int	find_command(char **folders, char *cmd, char **result)
 {
@@ -95,4 +98,5 @@ int	start_splitted_cmd(char **cmd, t_redirect_fd *redirect)
 	int	builtin_result;
 
 	builtin_result = start_builtin(cmd, redirect);
+	return (0);
 }

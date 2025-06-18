@@ -7,7 +7,7 @@ MAKEFLAGS += --no-print-directory
 BUILD_TYPE_TARGET ?= main
 
 PROJECT_NAME = libft
-VERSION = 1.0.1
+VERSION = 1.0.2
 NAME = libft.a
 BUILD_ROOT_DIR = .build
 BUILD_DIR = $(BUILD_ROOT_DIR)/$(BUILD_TYPE_TARGET)

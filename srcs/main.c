@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/16 15:24:18 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/18 04:43:21 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	run_command(char *line, int last_status)
 		free(cmd);
 		return (-1);
 	}
-	last_status = logic_exec(last_status, line, &heredoc_list);
+	last_status = logic_exec(line, last_status, &heredoc_list);
 	add_history(cmd);
 	free(cmd);
 	return (last_status);
