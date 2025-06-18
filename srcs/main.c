@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/18 04:43:21 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/18 05:08:26 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int ac, char **av, char **envp)
 		perror("gigachell: ft_initenv");
 		return (1);
 	}
-	expand(" arg1 arg2 prefix$USER\"$USER\"\'$USER\'");
+	expand(" test $USER \"$USER\" \'$USER\' ");
 	// status = main_loop();
 	status = 0;
 	rl_clear_history();
