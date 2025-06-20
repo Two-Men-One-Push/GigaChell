@@ -17,6 +17,7 @@ jobs:
         run: |
             clang --version
             sudo apt update
+            sudo apt install clang=1:14.0-55
 
       - name: Execute Make
         run: |
