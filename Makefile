@@ -19,7 +19,7 @@ all: $(NAME)
 	@echo -e
 	@echo -e $(FGREEN)Success$(RESET)
 
--include $(DEPS) $(MKCONFIGURE) $(MKGENERATED)
+-include $(MKCONFIGURE) $(MKGENERATED)
 
 $(NAME): $(OBJS) $(LIBFT_ARCHIVE)
 	@echo -e $(FRED)
@@ -38,5 +38,7 @@ fclean: clean
 	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
+
+-include $(DEPS)
 
 .PHONY : all clean fclean re FORCE
