@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/20 02:57:40 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/20 03:33:22 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 #include "env.h"
 #include "gigachell.h"
-#include "defs/hd_node.h"
+#include "hd_node.h"
 #include "libft.h"
-#include "defs/configs.h"
+#include "configs.h"
 #include "syntax.h"
 #include "utils.h"
 #include "expand.h"
