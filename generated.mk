@@ -32,6 +32,7 @@ SRCS =	\
 	./srcs/utils/secure_close.c\
 	./srcs/utils/get_heredoc_limiter.c\
 	./srcs/utils/skip.c\
+	./srcs/utils/print_tab_free.c\
 	./srcs/alloc/smalloc.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_and.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_append.c\
@@ -47,6 +48,7 @@ SRCS =	\
 	./srcs/parsing/syntax/syntax_operator.c\
 	./srcs/parsing/syntax/syntaxer.c\
 	./srcs/parsing/expand/expand.c\
+	./srcs/parsing/expand/expand_core.c\
 	./srcs/parsing/skipto.c\
 	./srcs/types/string/ftstring.c\
 	./srcs/types/chain/chain_append.c\
@@ -91,6 +93,7 @@ OBJS =	\
 	./build/secure_close.o\
 	./build/get_heredoc_limiter.o\
 	./build/skip.o\
+	./build/print_tab_free.o\
 	./build/smalloc.o\
 	./build/syntax_and.o\
 	./build/syntax_append.o\
@@ -106,6 +109,7 @@ OBJS =	\
 	./build/syntax_operator.o\
 	./build/syntaxer.o\
 	./build/expand.o\
+	./build/expand_core.o\
 	./build/skipto.o\
 	./build/ftstring.o\
 	./build/chain_append.o\
@@ -150,6 +154,7 @@ DEPS =	\
 	./build/secure_close.d\
 	./build/get_heredoc_limiter.d\
 	./build/skip.d\
+	./build/print_tab_free.d\
 	./build/smalloc.d\
 	./build/syntax_and.d\
 	./build/syntax_append.d\
@@ -165,6 +170,7 @@ DEPS =	\
 	./build/syntax_operator.d\
 	./build/syntaxer.d\
 	./build/expand.d\
+	./build/expand_core.d\
 	./build/skipto.d\
 	./build/ftstring.d\
 	./build/chain_append.d\
@@ -317,6 +323,11 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
+./build/print_tab_free.o: ./srcs/utils/print_tab_free.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
 ./build/smalloc.o: ./srcs/alloc/smalloc.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
@@ -388,6 +399,11 @@ $(BUILD_DIR):
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
 ./build/expand.o: ./srcs/parsing/expand/expand.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/expand_core.o: ./srcs/parsing/expand/expand_core.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)

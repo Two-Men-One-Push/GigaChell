@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/18 05:08:26 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/20 02:57:40 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	run_command(char *line, int last_status)
 		perror("gigachell: strdup");
 		return (-2);
 	}
+	print_tab_free(expand(cmd));// delete this is for debug
 	heredoc_list = NULL;
 	if (parse_heredoc(cmd, &heredoc_list))
 	{
@@ -90,9 +91,7 @@ int	main(int ac, char **av, char **envp)
 		perror("gigachell: ft_initenv");
 		return (1);
 	}
-	expand(" test $USER \"$USER\" \'$USER\' ");
-	// status = main_loop();
-	status = 0;
+	status = main_loop();
 	rl_clear_history();
 	ft_clearenv();
 	return (status);

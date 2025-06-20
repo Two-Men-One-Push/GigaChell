@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/16 15:23:56 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/20 02:50:20 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ void	str_unquote(char *s);
  * @return A new fd pointing to a new file in r/w right access.
  */
 int		tmp_fd(char **path, int flags);
+
+void	print_tab_free(char **tab);
 
 #endif

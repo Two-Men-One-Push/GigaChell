@@ -6,59 +6,91 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/18 13:37:56 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/20 03:17:05 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "tchain.h"
-#include "tstring.h"
 #include <unistd.h>
 #include "libft.h"
-#include "identifier.h"
-#include "env.h"
+#include "expand.h"
+#include "alloc.h"
 
-size_t	expand_len(char *cmd)
+size_t	strtotab_len(char *str, size_t len)
 {
-	size_t	len;
+	size_t	size;
 	size_t	i;
-	int		skp;
 
 	i = 0;
-	len = 0;
-	skp = 1;
-	while (cmd[i])
+	size = 0;
+	while (i < len)
 	{
-		if (cmd[i] == '$' && is_var_start(cmd[i + 1]))
+		if (str[i])
 		{
-			len += ft_strlen(ft_getenv(&cmd[i + 1]));
-			while (is_var_char(cmd[++i]))
+			++size;
+			while (str[i])
 				++i;
 		}
-		if (cmd[i] == '\"')
-			skp = !skp;
-		else if (skp && cmd[i] == '\'')
-			while (cmd[++i] != '\'')
-				++len;
 		else
-			++len;
-		++i;
+			++i;
 	}
-	return (len);
+	return (size);
 }
 
-// void	expand_fill(char *tab, char *cmd)
-// {
-	
-// }
+int	tab_check(char **tab, size_t i)
+{
+	if (!tab[i])
+	{
+		while (i > 0)
+		{
+			--i;
+			free(tab[i]);
+		}
+		free(tab);
+		return (1);
+	}
+	return (0);
+}
+
+char	**strtotab(char *str, size_t len)
+{
+	char	**tab;
+	size_t	i;
+	size_t	j;
+
+	if (smalloc((void **)&tab, (strtotab_len(str, len) + 1) * sizeof(char *)))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (i < len)
+	{
+		if (str[i])
+		{
+			tab[j] = ft_strdup(&str[i]);
+			if (tab_check(tab, j))
+				return (NULL);
+			++j;
+			while (str[i])
+				++i;
+		}
+		else
+			++i;
+	}
+	tab[j] = NULL;
+	free(str);
+	return (tab);
+}
 
 char	**expand(char *cmd)
 {
 	char	*tab;
+	size_t	len;
 
-	printf("%zu\n", expand_len(cmd));
-	tab = malloc((expand_len(cmd) + 1) * sizeof(char));
-	// expand_fill(tab, cmd);
-	return (NULL);
+	len = expand_len(cmd) + 1;
+	printf("%zu\n", len);
+	if (smalloc((void **)&tab, len * sizeof(char)))
+		return (NULL);
+	expand_fill(tab, cmd);
+	return (strtotab(tab, len));
 }
