@@ -1,50 +1,42 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/20 17:15:05 by ethebaul          #+#    #+#              #
-#    Updated: 2025/05/09 15:27:53 by ethebaul         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+BUILD_DIR			=	./build/
+HEADERS_DIR			=	./headers/ ./libft/include/
+SRCS_DIR			=	./srcs/
 
-BUILDIR		=	./build/
-HEADERS		=	./headers/
+MKCONFIGURE			=	./configure.mk
+MKGENERATED			=	./generated.mk
+MKIMPROVED			=	./improved.mk
 
-VPATH		=	$(shell find ./srcs/ -type d)
+LIBFT_DIR			=	./libft/
+LIBFT_ARCHIVE		=	$(LIBFT_DIR)libft.a
 
-SRCS		=	main.c
-				
-DEPS		=	$(addprefix $(BUILDIR), $(SRCS:.c=.d))
-OBJS		=	$(addprefix $(BUILDIR), $(SRCS:.c=.o))
+CC					=	cc
+CFLAGS				=	-Wall -Wextra -Werror -g3 -O3 -march=native
+LIBS				=	-lreadline -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
 
-NAME		=	GigaChell
-
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -O3 -march=native -I$(HEADERS)
+NAME				=	GigaChell
 
 all: $(NAME)
-	@echo Success
+	@echo -e
+	@echo -e $(FGREEN)Success$(RESET)
 
-$(NAME): $(OBJS) $(SRCS) Makefile
-	$(CC) $(CFLAGS) -o $@ $(OBJS)
+-include $(DEPS) $(MKCONFIGURE) $(MKGENERATED)
 
-$(BUILDIR)%.o: %.c | $(BUILDIR)
-	$(CC) $(CFLAGS) -MD -MP -o $@ -c $<
+$(NAME): $(OBJS) $(LIBFT_ARCHIVE)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ $(OBJS) $(LIBS)
+	@echo -e $(FGREEN)compiling $@$(RESET)
 
-$(BUILDIR):
-	mkdir -p $@
-
--include $(DEPS)
+$(LIBFT_ARCHIVE): FORCE
+	make -C $(LIBFT_DIR)
 
 clean:
-	rm -rf $(BUILDIR)
+	rm -rf $(BUILD_DIR)
+	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re FORCE
