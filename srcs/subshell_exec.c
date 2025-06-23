@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:39:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:01:33 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/23 08:22:49 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "gigachell.h"
 #include "heredoc_list_utils.h"
 #include "utils.h"
+
+#include <stdio.h>
 
 pid_t	handle_subprocess_child(char *cmd, int last_satus,
 	t_redirect_fd *redirect, t_hd_node **subshell_heredoc_list)
@@ -81,9 +83,6 @@ pid_t	subshell_exec(char *cmd, int last_satus, t_redirect_fd *redirect,
 		return (handle_subprocess_child(str_extract(cmd + 1, paranthesis_len
 					- 2), last_satus, redirect, &subshell_heredoc_list));
 	}
-	else
-	{
-		hd_clear(&subshell_heredoc_list);
-		return (fork_result);
-	}
+	hd_clear(&subshell_heredoc_list);
+	return (fork_result);
 }

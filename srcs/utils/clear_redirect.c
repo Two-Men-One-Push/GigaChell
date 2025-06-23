@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_redirection.c                                :+:      :+:    :+:   */
+/*   clear_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 20:27:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/23 08:13:31 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/06/23 07:30:20 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/23 07:31:13 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs/redirect_fd.h"
-#include <unistd.h>
-
 #include "utils.h"
+#include "defs/redirect_fd.h"
 
-int	apply_redirection(t_redirect_fd *redirect)
+void	clear_redirect(t_redirect_fd *redirect)
 {
 	if (redirect->in > -1)
-	{
-		if (dup2(STDIN_FILENO, redirect->in))
-			return (1);
 		secure_close(redirect->in);
-		redirect->in = -1;
-	}
 	if (redirect->out > -1)
-	{
-		if (dup2(STDOUT_FILENO, redirect->out))
-		{
-			secure_close(STDIN_FILENO);
-			return (1);
-		}
 		secure_close(redirect->out);
-	}
-	return (0);
 }

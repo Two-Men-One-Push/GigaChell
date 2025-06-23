@@ -6,12 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 17:57:08 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:06:56 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/17 11:09:44 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 #include <fcntl.h>
 
 #include "defs/hd_node.h"
@@ -21,6 +23,8 @@
 #include "utils.h"
 #include "libft.h"
 
+#include <stdio.h>
+
 static int	redirect_in(char *cmd, size_t *i, t_redirect_fd *redirect)
 {
 	char	*arg_start;
@@ -28,20 +32,19 @@ static int	redirect_in(char *cmd, size_t *i, t_redirect_fd *redirect)
 	size_t		arg_len;
 
 	arg_start = cmd + *i;
-	file = get_redirect_file(arg_start);
+	file = get_redirect_file(arg_start, &arg_len);
 	if (!file)
 		return (1);
 	if (redirect->in > -1)
 		secure_close(redirect->in);
 	redirect->in = open(file, O_RDONLY);
-	free(file);
 	if (redirect->in == -1)
+	{
+		ft_dprintf(2, "open: %s: %s\n", file, strerror(errno));
+		free(file);
 		return (1);
-	arg_len = 1;
-	while (is_space(arg_start[arg_len]))
-		++arg_len;
-	while (!is_space(arg_start[arg_len]))
-		++arg_len;
+	}
+	free(file);
 	ft_memset(arg_start, ' ', arg_len);
 	*i += arg_len;
 	return (0);
@@ -74,21 +77,20 @@ static int	redirect_out(char *cmd, size_t *i, t_redirect_fd *redirect,
 	size_t		arg_len;
 
 	arg_start = cmd + *i;
-	file = get_redirect_file(arg_start);
+	file = get_redirect_file(arg_start, &arg_len);
 	if (!file)
 		return (1);
 	if (redirect->out > -1)
 		secure_close(redirect->in);
 	redirect->out = open(file, O_WRONLY | O_CREAT
 			| (O_APPEND * append) | (O_TRUNC * !append), 0644);
-	free(file);
 	if (redirect->out == -1)
+	{
+		ft_dprintf(2, "open: %s: %s\n", file, strerror(errno));
+		free(file);
 		return (1);
-	arg_len = 1 + append;
-	while (is_space(arg_start[arg_len]))
-		++arg_len;
-	while (!is_space(arg_start[arg_len]))
-		++arg_len;
+	}
+	free(file);
 	ft_memset(arg_start, ' ', arg_len);
 	*i += arg_len;
 	return (0);
