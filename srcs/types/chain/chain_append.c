@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.h                                           :+:      :+:    :+:   */
+/*   chain_append.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 07:04:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/20 03:10:41 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/15 01:18:03 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/15 03:57:10 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPAND_H
-# define EXPAND_H
+#include "tchain.h"
 
-# include "tchain.h"
-
-char	**expand(char *cmd);
-size_t	strtotab_len(char *str, size_t len);
-char	**strtotab(char *str, size_t len);
-int		tab_check(char **tab, size_t i);
-size_t	expand_var_len(char **cmd);
-size_t	expand_len(char *cmd);
-void	expand_var_fill(char **tab, char **cmd, int dquote);
-void	expand_fill(char *tab, char *cmd);
-
-#endif
+int	chain_append(t_chain *chain, t_chain_link *link)
+{
+	if (!link)
+		return (1);
+	if (chain->size == 0)
+	{
+		chain->start = link;
+		chain->end = link;
+	}
+	else
+	{
+		chain->end->next = link;
+		link->prev = chain->end;
+		chain->end = link;
+	}
+	++chain->size;
+	return (0);
+}

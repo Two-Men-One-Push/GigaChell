@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.h                                           :+:      :+:    :+:   */
+/*   chain_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 07:04:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/20 03:10:41 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/15 04:01:08 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/15 04:12:31 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPAND_H
-# define EXPAND_H
+#include "tchain.h"
+#include <stdlib.h>
 
-# include "tchain.h"
+void	chain_free(t_chain *chain)
+{
+	t_chain_link	*tmp;
 
-char	**expand(char *cmd);
-size_t	strtotab_len(char *str, size_t len);
-char	**strtotab(char *str, size_t len);
-int		tab_check(char **tab, size_t i);
-size_t	expand_var_len(char **cmd);
-size_t	expand_len(char *cmd);
-void	expand_var_fill(char **tab, char **cmd, int dquote);
-void	expand_fill(char *tab, char *cmd);
-
-#endif
+	while (chain->start)
+	{
+		tmp = chain->start;
+		chain->start = chain->start->next;
+		free(tmp->data);
+		free(tmp);
+	}
+}

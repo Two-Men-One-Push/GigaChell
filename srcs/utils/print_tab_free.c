@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_args.c                                       :+:      :+:    :+:   */
+/*   print_tab_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 07:02:47 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/10 09:48:09 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/20 02:48:55 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/20 02:50:12 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tstring.h"
-#include "libft.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <stddef.h>
 
-int	count_args(char *str)
+void	print_tab_free(char **tab)
 {
-	int		count;
 	size_t	i;
 
-	i = -1;
-	count = 0;
-	while (str[++i])
+	i = 0;
+	while (tab[i])
 	{
-		if (str[i] == ' ' || str[i] == '\t')
-			continue ;
-		if (str[i] == '\"')
-			skipto(ftstring(&str[i], ft_strlen(&str[i])), &i, '\"');
-		if (str[i] == '\'')
-			skipto(ftstring(&str[i], ft_strlen(&str[i])), &i, '\'');
-		++count;
-		while (str[i] && str[i] != ' ' && str[i] != '\t')
-			++i;
+		printf("arg%zu : '%s'\n", i, tab[i]);
+		free(tab[i]);
+		++i;
 	}
-	return (count);
+	free(tab);
 }

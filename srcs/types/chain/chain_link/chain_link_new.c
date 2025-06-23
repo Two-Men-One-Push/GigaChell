@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.h                                           :+:      :+:    :+:   */
+/*   chain_link_new.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 07:04:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/20 03:10:41 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/15 02:05:06 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/15 03:56:40 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPAND_H
-# define EXPAND_H
+#include "tchain.h"
+#include <stdlib.h>
 
-# include "tchain.h"
+t_chain_link	*chain_link_new(void *data)
+{
+	t_chain_link	*new_chain_link;
 
-char	**expand(char *cmd);
-size_t	strtotab_len(char *str, size_t len);
-char	**strtotab(char *str, size_t len);
-int		tab_check(char **tab, size_t i);
-size_t	expand_var_len(char **cmd);
-size_t	expand_len(char *cmd);
-void	expand_var_fill(char **tab, char **cmd, int dquote);
-void	expand_fill(char *tab, char *cmd);
-
-#endif
+	new_chain_link = malloc(sizeof(t_chain_link));
+	if (!new_chain_link)
+		return (NULL);
+	*new_chain_link = chain_link_init(data);
+	return (new_chain_link);
+}

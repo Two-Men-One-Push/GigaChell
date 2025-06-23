@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 08:55:55 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/20 02:50:20 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ char	*get_limiter(char *cmd, size_t *i);
 
 void	str_unquote(char *s);
 
-char	*expand(char *cmd);
-
 /**
  * @brief Open a temporary file with flag permission and returns its fd.
  * @param path The path that will be set to unsync the temporary file
@@ -43,5 +41,7 @@ char	*expand(char *cmd);
  * @return A new fd pointing to a new file in r/w right access.
  */
 int		tmp_fd(char **path, int flags);
+
+void	print_tab_free(char **tab);
 
 #endif

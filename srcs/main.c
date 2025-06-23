@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:10:34 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/20 03:33:56 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 
 #include "env.h"
 #include "gigachell.h"
-#include "defs/hd_node.h"
+#include "hd_node.h"
 #include "libft.h"
-#include "defs/configs.h"
+#include "configs.h"
 #include "syntax.h"
 #include "utils.h"
+#include "expand.h"
 
-static int	run_command(char *line, int last_status)
+int	run_command(char *line, int last_status)
 {
 	char		*cmd;
 	t_hd_node	*heredoc_list;
@@ -39,6 +40,7 @@ static int	run_command(char *line, int last_status)
 		perror("gigachell: strdup");
 		return (-2);
 	}
+	print_tab_free(expand(cmd));// delete this is for debug
 	heredoc_list = NULL;
 	if (parse_heredoc(cmd, &heredoc_list))
 	{
@@ -51,7 +53,7 @@ static int	run_command(char *line, int last_status)
 	return (last_status);
 }
 
-static int	main_loop(void)
+int	main_loop(void)
 {
 	int		old_status;
 	int		new_status;
@@ -80,7 +82,7 @@ static int	main_loop(void)
 
 int	main(int ac, char **av, char **envp)
 {
-	int	status;
+	int		status;
 
 	(void)av;
 	(void)ac;

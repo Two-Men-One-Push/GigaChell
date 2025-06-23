@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.c                                           :+:      :+:    :+:   */
+/*   chain_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 04:42:35 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/10 06:50:29 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/15 01:16:09 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/15 01:17:14 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
-#include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "tchain.h"
 
-char	*expand(char *cmd)
+t_chain	chain_init(void)
 {
-	char	*var;
-	char	*result;
-	int		j;
-	int		i;
+	t_chain	chain;
 
-	i = 0;
-	while (ft_isalnum(cmd[i]) || cmd[i] == '_')
-		++i;
-	var = malloc((i + 1) * sizeof(char));
-	var[i] = 0;
-	j = 0;
-	while (j < i)
-	{
-		var[j] = cmd[j];
-		++j;
-	}
-	printf("%s\n", var);
-	result = ft_getenv(var);
-	free(var);
-	return (result);
+	chain.start = NULL;
+	chain.end = NULL;
+	chain.size = 0;
+	return (chain);
 }
