@@ -6,7 +6,7 @@ on:
 jobs:
   norminette-check:
     runs-on: ubuntu-latest
-    name: "Make Check with Clang 12"
+    name: "Make Check"
 
     steps:
       - name: Checkout du code utilisateur
