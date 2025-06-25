@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/20 03:34:22 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/25 19:46:16 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 int	run_command(char *line, int last_status)
 {
 	char		*cmd;
-	t_hd_node	*heredoc_list;
+	// t_hd_node	*heredoc_list;
 
 	if (syntaxer(ftstring(line, ft_strlen(line))))
 	{
@@ -40,14 +40,14 @@ int	run_command(char *line, int last_status)
 		perror("gigachell: strdup");
 		return (-2);
 	}
-	print_tab_free(expand(cmd));// delete this is for debug
-	heredoc_list = NULL;
-	if (parse_heredoc(cmd, &heredoc_list))
-	{
-		free(cmd);
-		return (-1);
-	}
-	last_status = logic_exec(line, last_status, &heredoc_list);
+	print_tab_free(expand(cmd, last_status));
+	// heredoc_list = NULL;
+	// if (parse_heredoc(cmd, &heredoc_list))
+	// {
+	// 	free(cmd);
+	// 	return (-1);
+	// }
+	// last_status = logic_exec(line, last_status, &heredoc_list);
 	add_history(cmd);
 	free(cmd);
 	return (last_status);
