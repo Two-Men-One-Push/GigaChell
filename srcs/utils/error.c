@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:56 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/25 17:57:58 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:15:39 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 int	int_error(char *message)
 {
-	(void)!write(STDERR_FILENO, message, ft_strlen(message));
+	write(STDERR_FILENO, message, ft_strlen(message));
 	return (-1);
 }
 
 void	*ptr_error(char *message)
 {
-	(void)!write(STDERR_FILENO, message, ft_strlen(message));
+	write(STDERR_FILENO, message, ft_strlen(message));
 	return (NULL);
 }

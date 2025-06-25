@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/25 17:57:58 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:15:39 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	echo(int ac, char **av)
 	}
 	while (i < ac)
 	{
-		(void)!write(1, av[i], ft_strlen(av[i]));
+		write(1, av[i], ft_strlen(av[i]));
 		++i;
 		if (i != ac)
-			(void)!write(1, " ", 1);
+			write(1, " ", 1);
 	}
 	if (!opt)
-		(void)!write(1, "\n", 1);
+		write(1, "\n", 1);
 	return (0);
 }
