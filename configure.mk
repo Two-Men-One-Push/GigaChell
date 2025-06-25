@@ -1,6 +1,18 @@
--include $(MKIMPROVED)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    configure.mk                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/06/20 05:19:01 by ethebaul          #+#    #+#              #
+#    Updated: 2025/06/25 14:33:31 by ethebaul         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-configure:
+-include $(MKCOLOR)
+
+configure: fclean
 	@echo -n "HEADERS =	" > $(MKGENERATED)
 	@for i in $$(find $(HEADERS_DIR) -type d);\
 	do\
@@ -35,16 +47,12 @@ configure:
 	@echo >> $(MKGENERATED)
 	@echo "\$$(BUILD_DIR):" >> $(MKGENERATED)
 	@echo "	@mkdir -p \$$@" >> $(MKGENERATED)
-	@echo "	@echo -e" >> $(MKGENERATED)
-	@echo "	@echo -e \$$(FGREEN)created \$$(BUILD_DIR)\$$(RESET)" >> $(MKGENERATED)
 	@for i in $$(find $(SRCS_DIR) -type f -name "*.c");\
 	do\
 		echo >> $(MKGENERATED);\
 		echo $(BUILD_DIR)$$(basename "$${i%.c}.o"): $$i "| \$$(BUILD_DIR)" >> $(MKGENERATED);\
-		echo "	@echo -e \$$(FRED)" >> $(MKGENERATED);\
 		echo "	@\$$(CC) \$$(CFLAGS) \$$(HEADERS) -MD -MP -o \$$@ -c \$$<" >> $(MKGENERATED);\
-		echo "	@echo -e - \$$(FGREEN)compiling \$$<\$$(RESET)" >> $(MKGENERATED);\
+		echo "	@echo -e \$$(BLUE)\$$(NAME)\$$(RESET) compiling: \$$@" >> $(MKGENERATED);\
 	done;
-	@echo -e $(FGREEN)Done$(RESET)
 
 .PHONY: configure
