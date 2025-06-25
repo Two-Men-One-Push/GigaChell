@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gigachell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:03:15 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/25 19:11:35 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdbool.h>
 # include <sys/types.h>
 
-# include "syntax.h"
 # include "defs/hd_node.h"
 # include "defs/pipe_fd.h"
 # include "defs/redirect_fd.h"
