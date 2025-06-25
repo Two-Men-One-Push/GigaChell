@@ -6,7 +6,7 @@
 #    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/06/25 14:33:12 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/06/25 15:01:12 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME): $(OBJS) $(LIBFT_ARCHIVE)
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 $(LIBFT_ARCHIVE): FORCE
-	make -C $(LIBFT_DIR)
+	@make --no-print-dir -C $(LIBFT_DIR)
 
 normcheck:
 	@echo -e -n $(RED)
@@ -48,13 +48,15 @@ clangd:
 	@echo $(CC) $(CFLAGS) $(HEADERS) -o $(NAME) $(SRCS) $(LDLIBS) | compiledb
 
 clean:
+	@make --no-print-dir -C $(LIBFT_DIR) clean
 	@rm -rf $(BUILD_DIR)
 
 fclean: clean
+	@make --no-print-dir -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
 
 re: fclean all
 
 -include $(DEPS)
 
-.PHONY : all clean fclean re FORCE
+.PHONY : all clean fclean re FORCE clangd normcheck
