@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 05:31:08 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/25 17:54:49 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/25 17:57:04 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	smalloc(void **ptr, size_t size)
 	*ptr = malloc(size);
 	if (!*ptr)
 	{
-		(void)write(STDERR_FILENO, "Error malloc\n", 14);
+		(void)!write(STDERR_FILENO, "Error malloc\n", 14);
 		return (1);
 	}
 	return (0);
