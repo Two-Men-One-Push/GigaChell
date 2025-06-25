@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_splitted_cmd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:46:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:07:59 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/25 19:00:45 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ int	start_splitted_cmd(char **cmd, t_redirect_fd *redirect)
 	int	builtin_result;
 
 	builtin_result = start_builtin(cmd, redirect);
+	(void)!builtin_result;
 	return (0);
 }
