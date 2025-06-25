@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 00:16:58 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/25 18:49:39 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:56:26 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ size_t	print_int(t_pbuff *buffer, int n)
 {
 	char	c;
 	ssize_t	printed_len;
-	ssize_t	(void)!write_size;
+	ssize_t	write_size;
 
 	n = handle_n(buffer, n, &c, &printed_len);
 	printed_len = printed_len == 1;
 	if (n)
 		printed_len += print_int(buffer, n);
-	(void)!write_size = pbuff_write(buffer, &c, 1) > 0;
+	write_size = pbuff_write(buffer, &c, 1) > 0;
 	return (printed_len + write_size);
 }
 
