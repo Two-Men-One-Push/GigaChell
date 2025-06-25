@@ -12,6 +12,10 @@ jobs:
       - name: Checkout du code utilisateur
         uses: actions/checkout@v3
 
+      - name: Install Readline
+        run: |
+            sudo apt-get install libreadline6-dev
+
       - name: Exécution de Make
         run: |
             if ! make ; then
