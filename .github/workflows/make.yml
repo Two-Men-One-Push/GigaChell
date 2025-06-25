@@ -6,7 +6,7 @@ on:
 
 jobs:
   norminette-check:
-    runs-on: ubuntu-latest
+    runs-on: debian-latest
     name: "Make Check"
 
     steps:
