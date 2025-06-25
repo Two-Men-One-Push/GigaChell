@@ -12,20 +12,6 @@ jobs:
       - name: Checkout du code utilisateur
         uses: actions/checkout@v3
 
-      - name: Installation de Clang 12
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y software-properties-common wget
-          wget -O - https://apt.llvm.org/llvm-snapshot.gpg.pub | sudo apt-key add -
-          . /etc/os-release
-          VERSION_CODENAME_LOWER=$(echo "$VERSION_CODENAME" | tr '[:upper:]' '[:lower:]')
-          echo "deb http://apt.llvm.org/$VERSION_CODENAME_LOWER/ llvm-toolchain-$VERSION_CODENAME_LOWER-12 main" | sudo tee /etc/apt/sources.list.d/llvm.list
-          sudo apt-get update
-          sudo apt-get install -y clang-12 lld-12
-          sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-12 100
-          sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-12 100
-          clang --version
-
       - name: Exécution de Make
         run: |
             if ! make ; then

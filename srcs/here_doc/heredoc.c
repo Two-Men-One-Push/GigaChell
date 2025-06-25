@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 02:44:06 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/25 17:55:45 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	create_here_doc(char *limiter)
 			perror("gigachell: readline");
 			return (clear_here_doc(fd, file, NULL));
 		}
-		write(STDERR_FILENO, "warning: expected limiter before EOF\n", 37);
+		(void)write(STDERR_FILENO, "warning: expected limiter before EOF\n", 37);
 	}
 	return (exit_here_doc(fd, line, file));
 }
