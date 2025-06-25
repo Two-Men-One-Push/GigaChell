@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 07:50:53 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/15 03:20:33 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:34:30 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	syntax_dquote(t_syntax_attr *attr, t_string string, size_t *index)
 {
 	if (skipto(string.ptr, index, '\"'))
-		return (write(2, "minishell: syntax error near \"\n", 33));
+		return (write(2, "minishell: syntax error near \"\n", 32));
 	attr->token = 1;
 	return (0);
 }
