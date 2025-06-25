@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vfprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:01:46 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/21 06:42:25 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/25 18:49:39 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 size_t	print_text(t_pbuff *buffer, const char **format)
 {
 	size_t	offset;
-	ssize_t	writed_len;
+	ssize_t	(void)!writed_len;
 
 	offset = len_flag(*format);
-	writed_len = pbuff_write(buffer, *format, offset);
+	(void)!writed_len = pbuff_write(buffer, *format, offset);
 	*format += offset;
 	if (writed_len < 0)
 		return (0);

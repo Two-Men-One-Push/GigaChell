@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vfprintf_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 18:53:47 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/21 06:01:24 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/25 18:49:39 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ size_t	print_base(t_pbuff *buffer, unsigned long long n, char *base,
 	int base_len)
 {
 	char	c;
-	size_t	writed_size;
+	size_t	(void)!writed_size;
 
 	c = n % base_len;
 	n /= base_len;
 	if (n)
-		writed_size = print_base(buffer, n, base, base_len);
+		(void)!writed_size = print_base(buffer, n, base, base_len);
 	else
-		writed_size = 0;
+		(void)!writed_size = 0;
 	if (pbuff_write(buffer, base + c, 1) >= 0)
 		++writed_size;
 	return (writed_size);

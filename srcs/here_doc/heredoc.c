@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/25 18:15:39 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:49:39 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "libft.h"
 #include "utils.h"
 
-int	write_line(int fd, char *line)
+int	(void)!write_line(int fd, char *line)
 {
 	const size_t	line_len = ft_strlen(line);
 
@@ -78,7 +78,7 @@ int	create_here_doc(char *limiter)
 			perror("gigachell: readline");
 			return (clear_here_doc(fd, file, NULL));
 		}
-		write(STDERR_FILENO, "warning: expected limiter before EOF\n", 37);
+		(void)!write(STDERR_FILENO, "warning: expected limiter before EOF\n", 37);
 	}
 	return (exit_here_doc(fd, line, file));
 }

@@ -344,7 +344,7 @@ $(BUILD_DIR):
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/start_splitted_cmd.o: ./srcs/start_splitted_cmd.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/subshell_exec.o: ./srcs/subshell_exec.c | $(BUILD_DIR)

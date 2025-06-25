@@ -6,7 +6,7 @@
 #    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/06/25 18:37:16 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/06/25 18:39:08 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT_DIR			=	./libft/
 LIBFT_ARCHIVE		=	$(LIBFT_DIR)libft.a
 
 CC					=	cc
-CFLAGS				=	-Wall -Wextra -Werror
+CFLAGS				=	-Wall -Wextra -Werror -g3 -O3
 LDLIBS				=	-lreadline -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
 
 NAME				=	GigaChell
