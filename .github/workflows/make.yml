@@ -18,7 +18,7 @@ jobs:
 
       - name: Exécution de Make
         run: |
-            if ! make CMD_CFLAGS="" ; then
+            if ! make CMD_CFLAGS="-Wno-unused-result" ; then
                 echo "::error::Make a rencontré une erreur de compilation."
                 exit 1
             fi
