@@ -86,7 +86,7 @@ char	*tmp_path(void)
 		free(path);
 		++try_no;
 	}
-	(void)!write(STDERR_FILENO,
+	write(STDERR_FILENO,
 		"gigachell: Couldn't generate temporary file for heredoc\n", 56);
 	return (NULL);
 }

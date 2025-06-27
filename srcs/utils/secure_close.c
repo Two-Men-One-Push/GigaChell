@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   secure_close.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 21:54:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/25 18:49:39 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/27 19:03:52 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	secure_close(int fd)
 {
 	if (close(fd))
-		(void)!write(STDERR_FILENO, "Warning: Couldn't close fd\n", 27);
+		write(STDERR_FILENO, "Warning: Couldn't close fd\n", 27);
 }
