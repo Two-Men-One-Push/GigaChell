@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
+#    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/06/25 18:58:31 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/06/27 17:23:43 by ebini            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT_DIR			=	./libft/
 LIBFT_ARCHIVE		=	$(LIBFT_DIR)libft.a
 
 CC					=	cc
-CFLAGS				=	-Wall -Wextra -Werror -g3 -O3
+CFLAGS				=	-Wall -Wextra -Werror -g3 -O3 $(CMD_CFLAGS)
 LDLIBS				=	-lreadline -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
 
 NAME				=	GigaChell
