@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 09:37:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 06:33:01 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/28 06:47:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_pipe_result	neutral_cmd_exec(char *cmd, int last_status,
 	redirect = (t_redirect_fd){-1, -1};
 	if (get_redirection(cmd, &redirect, heredoc_list))
 		return ((t_pipe_result){.type = RT_MAIN, .pid = -1});
-	argv = expand(cmd);(void)last_status;
+	argv = expand(cmd, last_status);
 	if (!argv)
 	{
 		clear_redirect(&redirect);

@@ -199,6 +199,7 @@ TEST_DEPS = $(addprefix $(BUILD_DIR)/, $(TEST_FILES:.c=.d))
 .PHONY: all clean fclean re test tester dev FORCE
 
 all: $(NAME)
+	@echo -n
 
 ifneq ($(BUILD_TYPE),$(BUILD_TYPE_TARGET))
 $(NAME): $(OBJS) FORCE

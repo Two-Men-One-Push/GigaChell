@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:06:39 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/20 03:15:35 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/25 19:49:12 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,28 @@
 #include "libft.h"
 #include "identifier.h"
 #include "env.h"
+#include <stdio.h>
 
-size_t	expand_var_len(char **cmd)
+size_t	expand_var_len(char **cmd, int status)
 {
 	size_t	len;
+	char	*str;
 
+	if (*++(*cmd) == '?')
+	{
+		++(*cmd);
+		str = ft_itoa(status);
+		len = ft_strlen(str);
+		free(str);
+		return (len);
+	}
 	len = ft_strlen(ft_getenv(++(*cmd)));
 	while (is_var_char(*(*cmd)))
 		++(*cmd);
 	return (len);
 }
 
-size_t	expand_len(char *cmd)
+size_t	expand_len(char *cmd, int status)
 {
 	size_t	len;
 	int		dquote;
@@ -37,8 +47,8 @@ size_t	expand_len(char *cmd)
 	squote = 0;
 	while (*++cmd)
 	{
-		if (!squote && *cmd == '$' && is_var_start(*(cmd + 1)))
-			len += expand_var_len(&cmd);
+		if (!squote && *cmd == '$' && (is_var_start(cmd[1]) || cmd[1] == '?'))
+			len += expand_var_len(&cmd, status);
 		if (!dquote && *cmd == '\'')
 			squote = !squote;
 		else if (!squote && *cmd == '\"')
@@ -51,10 +61,22 @@ size_t	expand_len(char *cmd)
 	return (len);
 }
 
-void	expand_var_fill(char **tab, char **cmd, int dquote)
+void	expand_var_fill(char **tab, char **cmd, int dquote, int status)
 {
 	char	*var;
+	char	*str;
+	int		i;
 
+	i = -1;
+	if (*++(*cmd) == '?')
+	{
+		++(*cmd);
+		str = ft_itoa(status);
+		while (str[++i])
+			*++(*tab) = str[i];
+		free(str);
+		return ;
+	}
 	var = ft_getenv(++(*cmd));
 	while (is_var_char(*(*cmd)))
 		++(*cmd);
@@ -68,7 +90,7 @@ void	expand_var_fill(char **tab, char **cmd, int dquote)
 	}
 }
 
-void	expand_fill(char *tab, char *cmd)
+void	expand_fill(char *tab, char *cmd, int status)
 {
 	int		dquote;
 	int		squote;
@@ -79,8 +101,8 @@ void	expand_fill(char *tab, char *cmd)
 	squote = 0;
 	while (*++cmd)
 	{
-		if (!squote && *cmd == '$' && is_var_start(*(cmd + 1)))
-			expand_var_fill(&tab, &cmd, dquote);
+		if (!squote && *cmd == '$' && (is_var_start(cmd[1]) || cmd[1] == '?'))
+			expand_var_fill(&tab, &cmd, dquote, status);
 		if (!dquote && *cmd == '\'')
 			squote = !squote;
 		else if (!squote && *cmd == '\"')

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:46:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 06:32:58 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/28 06:48:01 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ int	piped_cmd_exec(char *cmd, int last_status, t_pipe_fd *pipe_fd,
 	if (get_redirection(cmd, &redirect, heredoc_list)
 		|| apply_redirection(&redirect))
 		return (-1);
-	(void)last_status;
-	argv = expand(cmd);
+	argv = expand(cmd, last_status);
 	if (!argv)
 	{
 		clear_redirect(&redirect);

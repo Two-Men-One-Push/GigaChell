@@ -6,13 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 03:12:39 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/28 06:44:48 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GIGACHELL_H
 # define GIGACHELL_H
 
+# include "syntax.h"
 # include "defs/hd_node.h"
 # include "defs/pipe_fd.h"
 # include "defs/redirect_fd.h"

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/28 06:31:41 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/28 06:47:22 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,14 @@ char	**strtotab(char *str, size_t len)
 	return (tab);
 }
 
-char	**expand(char *cmd)
+char	**expand(char *cmd, int status)
 {
 	char	*tab;
 	size_t	len;
 
-	len = expand_len(cmd) + 1;
-	if (smalloc((void **)&tab, len * sizeof(char)))
+	len = expand_len(cmd, status);
+	if (smalloc((void **)&tab, (len + 1) * sizeof(char)))
 		return (NULL);
-	expand_fill(tab, cmd);
+	expand_fill(tab, cmd, status);
 	return (strtotab(tab, len));
 }

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:25:26 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/23 21:03:48 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/28 06:46:45 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static int	end_cd(char *curpath)
 	return (result);
 }
 
-int	cd(int ac, char **av, t_redirect_fd *redirect)
+int	ftcd(int argc, char **argv, t_redirect_fd *redirect)
 {
 	char	*arg;
 	char	*curpath;
@@ -110,10 +110,10 @@ int	cd(int ac, char **av, t_redirect_fd *redirect)
 	(void)redirect;
 	if (secure_pwd())
 		return (1);
-	if (ac < 2)
+	if (argc < 2)
 		arg = ft_getenv("HOME");
 	else
-		arg = av[1];
+		arg = argv[1];
 	if (!*arg)
 		return (0);
 	curpath = get_curpath((char *)arg);
