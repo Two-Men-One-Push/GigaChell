@@ -6,11 +6,11 @@ HEADERS =	\
 	-I./libft/include/
 
 SRCS =	\
-	./srcs/builtin/cd/cd.c\
 	./srcs/builtin/cd/cd_utils.c\
+	./srcs/builtin/cd/cd.c\
 	./srcs/builtin/env.c\
-	./srcs/builtin/echo.c\
 	./srcs/builtin/pwd.c\
+	./srcs/builtin/echo.c\
 	./srcs/builtin/start_builtin.c\
 	./srcs/here_doc/heredoc_list/hd_add_back.c\
 	./srcs/here_doc/heredoc_list/hd_add_front.c\
@@ -21,18 +21,6 @@ SRCS =	\
 	./srcs/here_doc/tmp_fd.c\
 	./srcs/here_doc/heredoc.c\
 	./srcs/here_doc/parse_heredoc.c\
-	./srcs/utils/error.c\
-	./srcs/utils/identifiers/is_logicalop.c\
-	./srcs/utils/identifiers/is_redirection.c\
-	./srcs/utils/identifiers/is_space.c\
-	./srcs/utils/identifiers/is_var_name.c\
-	./srcs/utils/identifiers/is_limiter_char.c\
-	./srcs/utils/str_extract.c\
-	./srcs/utils/unquote.c\
-	./srcs/utils/secure_close.c\
-	./srcs/utils/get_heredoc_limiter.c\
-	./srcs/utils/skip.c\
-	./srcs/utils/print_tab_free.c\
 	./srcs/alloc/smalloc.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_and.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_append.c\
@@ -56,22 +44,37 @@ SRCS =	\
 	./srcs/types/chain/chain_init.c\
 	./srcs/types/chain/chain_link/chain_link_init.c\
 	./srcs/types/chain/chain_link/chain_link_new.c\
-	./srcs/handle_piped_cmd.c\
-	./srcs/logic_exec.c\
+	./srcs/utils/error.c\
+	./srcs/utils/identifiers/is_logicalop.c\
+	./srcs/utils/identifiers/is_redirection.c\
+	./srcs/utils/identifiers/is_space.c\
+	./srcs/utils/identifiers/is_var_name.c\
+	./srcs/utils/identifiers/is_limiter_char.c\
+	./srcs/utils/secure_close.c\
+	./srcs/utils/str_extract.c\
+	./srcs/utils/unquote.c\
+	./srcs/utils/get_heredoc_limiter.c\
+	./srcs/utils/skip.c\
+	./srcs/utils/print_tab_free.c\
 	./srcs/pipe_exec.c\
+	./srcs/logic_exec.c\
+	./srcs/handle_piped_segment.c\
+	./srcs/neutral_cmd_exec.c\
 	./srcs/redirections/apply_redirection.c\
 	./srcs/redirections/get_redirect_file.c\
 	./srcs/redirections/get_redirection.c\
-	./srcs/start_splitted_cmd.c\
+	./srcs/redirections/clear_redirection.c\
+	./srcs/main.c\
 	./srcs/subshell_exec.c\
-	./srcs/main.c
+	./srcs/piped_cmd_exec.c\
+	./srcs/bin_exec.c
 
 OBJS =	\
-	./build/cd.o\
 	./build/cd_utils.o\
+	./build/cd.o\
 	./build/env.o\
-	./build/echo.o\
 	./build/pwd.o\
+	./build/echo.o\
 	./build/start_builtin.o\
 	./build/hd_add_back.o\
 	./build/hd_add_front.o\
@@ -82,18 +85,6 @@ OBJS =	\
 	./build/tmp_fd.o\
 	./build/heredoc.o\
 	./build/parse_heredoc.o\
-	./build/error.o\
-	./build/is_logicalop.o\
-	./build/is_redirection.o\
-	./build/is_space.o\
-	./build/is_var_name.o\
-	./build/is_limiter_char.o\
-	./build/str_extract.o\
-	./build/unquote.o\
-	./build/secure_close.o\
-	./build/get_heredoc_limiter.o\
-	./build/skip.o\
-	./build/print_tab_free.o\
 	./build/smalloc.o\
 	./build/syntax_and.o\
 	./build/syntax_append.o\
@@ -117,22 +108,37 @@ OBJS =	\
 	./build/chain_init.o\
 	./build/chain_link_init.o\
 	./build/chain_link_new.o\
-	./build/handle_piped_cmd.o\
-	./build/logic_exec.o\
+	./build/error.o\
+	./build/is_logicalop.o\
+	./build/is_redirection.o\
+	./build/is_space.o\
+	./build/is_var_name.o\
+	./build/is_limiter_char.o\
+	./build/secure_close.o\
+	./build/str_extract.o\
+	./build/unquote.o\
+	./build/get_heredoc_limiter.o\
+	./build/skip.o\
+	./build/print_tab_free.o\
 	./build/pipe_exec.o\
+	./build/logic_exec.o\
+	./build/handle_piped_segment.o\
+	./build/neutral_cmd_exec.o\
 	./build/apply_redirection.o\
 	./build/get_redirect_file.o\
 	./build/get_redirection.o\
-	./build/start_splitted_cmd.o\
+	./build/clear_redirection.o\
+	./build/main.o\
 	./build/subshell_exec.o\
-	./build/main.o
+	./build/piped_cmd_exec.o\
+	./build/bin_exec.o
 
 DEPS =	\
-	./build/cd.d\
 	./build/cd_utils.d\
+	./build/cd.d\
 	./build/env.d\
-	./build/echo.d\
 	./build/pwd.d\
+	./build/echo.d\
 	./build/start_builtin.d\
 	./build/hd_add_back.d\
 	./build/hd_add_front.d\
@@ -143,18 +149,6 @@ DEPS =	\
 	./build/tmp_fd.d\
 	./build/heredoc.d\
 	./build/parse_heredoc.d\
-	./build/error.d\
-	./build/is_logicalop.d\
-	./build/is_redirection.d\
-	./build/is_space.d\
-	./build/is_var_name.d\
-	./build/is_limiter_char.d\
-	./build/str_extract.d\
-	./build/unquote.d\
-	./build/secure_close.d\
-	./build/get_heredoc_limiter.d\
-	./build/skip.d\
-	./build/print_tab_free.d\
 	./build/smalloc.d\
 	./build/syntax_and.d\
 	./build/syntax_append.d\
@@ -178,27 +172,42 @@ DEPS =	\
 	./build/chain_init.d\
 	./build/chain_link_init.d\
 	./build/chain_link_new.d\
-	./build/handle_piped_cmd.d\
-	./build/logic_exec.d\
+	./build/error.d\
+	./build/is_logicalop.d\
+	./build/is_redirection.d\
+	./build/is_space.d\
+	./build/is_var_name.d\
+	./build/is_limiter_char.d\
+	./build/secure_close.d\
+	./build/str_extract.d\
+	./build/unquote.d\
+	./build/get_heredoc_limiter.d\
+	./build/skip.d\
+	./build/print_tab_free.d\
 	./build/pipe_exec.d\
+	./build/logic_exec.d\
+	./build/handle_piped_segment.d\
+	./build/neutral_cmd_exec.d\
 	./build/apply_redirection.d\
 	./build/get_redirect_file.d\
 	./build/get_redirection.d\
-	./build/start_splitted_cmd.d\
+	./build/clear_redirection.d\
+	./build/main.d\
 	./build/subshell_exec.d\
-	./build/main.d
+	./build/piped_cmd_exec.d\
+	./build/bin_exec.d
 
 $(BUILD_DIR):
 	@mkdir -p $@
 	@echo -e
 	@echo -e $(FGREEN)created $(BUILD_DIR)$(RESET)
 
-./build/cd.o: ./srcs/builtin/cd/cd.c | $(BUILD_DIR)
+./build/cd_utils.o: ./srcs/builtin/cd/cd_utils.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/cd_utils.o: ./srcs/builtin/cd/cd_utils.c | $(BUILD_DIR)
+./build/cd.o: ./srcs/builtin/cd/cd.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
@@ -208,12 +217,12 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/echo.o: ./srcs/builtin/echo.c | $(BUILD_DIR)
+./build/pwd.o: ./srcs/builtin/pwd.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/pwd.o: ./srcs/builtin/pwd.c | $(BUILD_DIR)
+./build/echo.o: ./srcs/builtin/echo.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
@@ -264,66 +273,6 @@ $(BUILD_DIR):
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
 ./build/parse_heredoc.o: ./srcs/here_doc/parse_heredoc.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/error.o: ./srcs/utils/error.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/is_logicalop.o: ./srcs/utils/identifiers/is_logicalop.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/is_redirection.o: ./srcs/utils/identifiers/is_redirection.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/is_space.o: ./srcs/utils/identifiers/is_space.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/is_var_name.o: ./srcs/utils/identifiers/is_var_name.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/is_limiter_char.o: ./srcs/utils/identifiers/is_limiter_char.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/str_extract.o: ./srcs/utils/str_extract.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/unquote.o: ./srcs/utils/unquote.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/secure_close.o: ./srcs/utils/secure_close.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/get_heredoc_limiter.o: ./srcs/utils/get_heredoc_limiter.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/skip.o: ./srcs/utils/skip.c | $(BUILD_DIR)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e - $(FGREEN)compiling $<$(RESET)
-
-./build/print_tab_free.o: ./srcs/utils/print_tab_free.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
@@ -443,7 +392,67 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/handle_piped_cmd.o: ./srcs/handle_piped_cmd.c | $(BUILD_DIR)
+./build/error.o: ./srcs/utils/error.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/is_logicalop.o: ./srcs/utils/identifiers/is_logicalop.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/is_redirection.o: ./srcs/utils/identifiers/is_redirection.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/is_space.o: ./srcs/utils/identifiers/is_space.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/is_var_name.o: ./srcs/utils/identifiers/is_var_name.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/is_limiter_char.o: ./srcs/utils/identifiers/is_limiter_char.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/secure_close.o: ./srcs/utils/secure_close.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/str_extract.o: ./srcs/utils/str_extract.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/unquote.o: ./srcs/utils/unquote.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/get_heredoc_limiter.o: ./srcs/utils/get_heredoc_limiter.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/skip.o: ./srcs/utils/skip.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/print_tab_free.o: ./srcs/utils/print_tab_free.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/pipe_exec.o: ./srcs/pipe_exec.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
@@ -453,7 +462,12 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/pipe_exec.o: ./srcs/pipe_exec.c | $(BUILD_DIR)
+./build/handle_piped_segment.o: ./srcs/handle_piped_segment.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/neutral_cmd_exec.o: ./srcs/neutral_cmd_exec.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
@@ -473,7 +487,12 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/start_splitted_cmd.o: ./srcs/start_splitted_cmd.c | $(BUILD_DIR)
+./build/clear_redirection.o: ./srcs/redirections/clear_redirection.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/main.o: ./srcs/main.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
@@ -483,7 +502,12 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)
 
-./build/main.o: ./srcs/main.c | $(BUILD_DIR)
+./build/piped_cmd_exec.o: ./srcs/piped_cmd_exec.c | $(BUILD_DIR)
+	@echo -e $(FRED)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e - $(FGREEN)compiling $<$(RESET)
+
+./build/bin_exec.o: ./srcs/bin_exec.c | $(BUILD_DIR)
 	@echo -e $(FRED)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e - $(FGREEN)compiling $<$(RESET)

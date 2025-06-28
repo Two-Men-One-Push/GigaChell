@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/20 03:17:05 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/28 06:31:41 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ char	**expand(char *cmd)
 	size_t	len;
 
 	len = expand_len(cmd) + 1;
-	printf("%zu\n", len);
 	if (smalloc((void **)&tab, len * sizeof(char)))
 		return (NULL);
 	expand_fill(tab, cmd);

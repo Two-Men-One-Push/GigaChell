@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_redirect.c                                   :+:      :+:    :+:   */
+/*   clear_redirection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/23 07:30:20 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/23 07:31:13 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/06/23 09:26:19 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/23 09:27:57 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "defs/redirect_fd.h"
 
 void	clear_redirect(t_redirect_fd *redirect)
 {

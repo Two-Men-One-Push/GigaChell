@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 18:05:39 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/17 11:11:52 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/28 06:30:53 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * for convenience, this function should return a pointer to the parsed file
- * name allocated and set the parsed string to the pointeur `arg_len`
+ * name allocated and set the parsed string len to the pointeur `arg_len`
  * for instance :
  *   - f"i"l'e' will set *arg_len to 8 and return a pointer to "file\0"
  */
@@ -28,7 +28,6 @@ char	*get_redirect_file(char *arg, size_t *arg_len)
 	size_t	file_name_len;
 
 	*arg_len = (*arg == '<' || *arg == '>') + (*(arg + 1) == '>');
-	arg += *arg_len;
 	while (is_space(arg[*arg_len]))
 		++*arg_len;
 	arg += *arg_len;

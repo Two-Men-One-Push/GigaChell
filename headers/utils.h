@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/23 08:24:48 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/23 09:27:24 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 # include <stddef.h>
 
 # include "defs/hd_node.h"
+# include "defs/redirect_fd.h"
 
 char	*str_extract(char *start, size_t len);
 
 void	secure_close(int fd);
+void	clear_redirect(t_redirect_fd *redirect);
 
 bool	skip_paranthesis(char *s, size_t *i);
 void	clear_paranthesis(char *s, size_t *i, t_hd_node **heredoc_list);

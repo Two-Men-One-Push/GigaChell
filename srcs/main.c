@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/20 03:33:56 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/28 01:50:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	run_command(char *line, int last_status)
 		perror("gigachell: strdup");
 		return (-2);
 	}
-	print_tab_free(expand(cmd));// delete this is for debug
 	heredoc_list = NULL;
 	if (parse_heredoc(cmd, &heredoc_list))
 	{
@@ -72,9 +71,11 @@ int	main_loop(void)
 		}
 		new_status = run_command(line, old_status);
 		free(line);
+		if (new_status < -2)
+			return (-(new_status + 3));
 		if (new_status == -2)
 			return (old_status);
-		if (new_status < 0)
+		if (new_status == -1)
 			return (1);
 		old_status = new_status;
 	}

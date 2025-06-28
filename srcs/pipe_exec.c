@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:24:50 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/28 03:35:40 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,26 @@ static int	error_pipe(void)
  * 0 is the return value of a unforked builtin.
  * -1 if an error
  */
-static int	exit_pipe(pid_t last_pid, t_pipe_fd *pipe_fd, int last_status)
+static int	exit_pipe(t_pipe_result pipe_result, t_pipe_fd *pipe_fd,
+	int last_status)
 {
 	int		stat_loc;
 	pid_t	last_wait_result;
 
+	if (pipe_result.type == RT_BUILTIN)
+		return (pipe_result.status);
+	if (pipe_result.type == RT_FORK)
+	{
+		if (pipe_result.status >= 0)
+			return (-pipe_result.status - 3);
+		return (pipe_result.status);
+	}
 	if (pipe_fd->in > -1)
 		secure_close(pipe_fd->in);
-	if (last_pid < 0)
+	if (pipe_result.pid < 0)
 		return (last_status);
-	last_wait_result = waitpid(last_pid, &stat_loc, 0);
-	if (last_wait_result)
+	last_wait_result = waitpid(pipe_result.pid, &stat_loc, 0);
+	if (last_wait_result < 0)
 		perror("gigachell: waitpid");
 	errno = 0;
 	while (wait(NULL) >= 0)
@@ -108,13 +117,12 @@ static int	exit_pipe(pid_t last_pid, t_pipe_fd *pipe_fd, int last_status)
 
 int	pipe_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 {
-	t_pipe_fd	pipe_fd;
-	size_t		i;
-	pid_t		last_pid;
-	bool		last_cmd;
+	t_pipe_fd		pipe_fd;
+	size_t			i;
+	t_pipe_result	pipe_result;
+	bool			last_cmd;
 
 	pipe_fd = (t_pipe_fd){-1, -1, -1};
-	last_pid = -1;
 	i = 0;
 	while (true)
 	{
@@ -122,10 +130,10 @@ int	pipe_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 		last_cmd = !cmd[i];
 		if (swap_pipe(&pipe_fd, last_cmd))
 			return (error_pipe());
-		last_pid = handle_piped_cmd(str_extract(cmd, i), last_status,
-				pipe_fd, heredoc_list);
+		pipe_result = handle_piped_segment(str_extract(cmd, i), last_status,
+				&pipe_fd, heredoc_list);
 		if (last_cmd)
-			return (exit_pipe(last_pid, &pipe_fd, last_status));
+			return (exit_pipe(pipe_result, &pipe_fd, last_status));
 		cmd += ++i;
 		i = 0;
 	}
