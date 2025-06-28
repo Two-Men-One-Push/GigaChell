@@ -33,9 +33,10 @@ static int	isanumber(char *str)
 static int	satol(char *str, long *val)
 {
 	long	sign;
-	int		overflow;
+	int	overflow;
 
 	*val = 0;
+	sign = 1;
 	overflow = 0;
 	while (*str == ' ' || *str == '	')
 		++str;
