@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:06:39 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/30 17:26:00 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:45:21 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ size_t	expand_var_len(char **cmd, int status)
 
 	if (*++(*cmd) == '?')
 	{
-		++(*cmd);
 		str = bitoa(buf, status);
 		len = ft_strlen(str);
 		return (len);
@@ -71,7 +70,6 @@ void	expand_var_fill(char **tab, char **cmd, int dquote, int status)
 	i = -1;
 	if (*++(*cmd) == '?')
 	{
-		++(*cmd);
 		str = bitoa(buf, status);
 		while (str[++i])
 			*++(*tab) = str[i];
