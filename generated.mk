@@ -15,8 +15,8 @@ SRCS =	\
 	./srcs/builtin/exit/exit.c\
 	./srcs/builtin/pwd/pwd.c\
 	./srcs/builtin/export/export.c\
-	./srcs/builtin/start_builtin.c\
 	./srcs/builtin/unset/unset.c\
+	./srcs/builtin/start_builtin.c\
 	./srcs/here_doc/heredoc_list/hd_add_back.c\
 	./srcs/here_doc/heredoc_list/hd_add_front.c\
 	./srcs/here_doc/heredoc_list/hd_clear.c\
@@ -26,8 +26,8 @@ SRCS =	\
 	./srcs/here_doc/parse_heredoc.c\
 	./srcs/here_doc/heredoc.c\
 	./srcs/here_doc/tmp_fd.c\
-	./srcs/parsing/expand/expand_core.c\
 	./srcs/parsing/expand/expand.c\
+	./srcs/parsing/expand/expand_core.c\
 	./srcs/parsing/skipto.c\
 	./srcs/parsing/syntax/syntax_operator.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_and.c\
@@ -84,8 +84,8 @@ OBJS =	\
 	./build/exit.o\
 	./build/pwd.o\
 	./build/export.o\
-	./build/start_builtin.o\
 	./build/unset.o\
+	./build/start_builtin.o\
 	./build/hd_add_back.o\
 	./build/hd_add_front.o\
 	./build/hd_clear.o\
@@ -95,8 +95,8 @@ OBJS =	\
 	./build/parse_heredoc.o\
 	./build/heredoc.o\
 	./build/tmp_fd.o\
-	./build/expand_core.o\
 	./build/expand.o\
+	./build/expand_core.o\
 	./build/skipto.o\
 	./build/syntax_operator.o\
 	./build/syntax_and.o\
@@ -153,8 +153,8 @@ DEPS =	\
 	./build/exit.d\
 	./build/pwd.d\
 	./build/export.d\
-	./build/start_builtin.d\
 	./build/unset.d\
+	./build/start_builtin.d\
 	./build/hd_add_back.d\
 	./build/hd_add_front.d\
 	./build/hd_clear.d\
@@ -164,8 +164,8 @@ DEPS =	\
 	./build/parse_heredoc.d\
 	./build/heredoc.d\
 	./build/tmp_fd.d\
-	./build/expand_core.d\
 	./build/expand.d\
+	./build/expand_core.d\
 	./build/skipto.d\
 	./build/syntax_operator.d\
 	./build/syntax_and.d\
@@ -251,11 +251,11 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/start_builtin.o: ./srcs/builtin/start_builtin.c | $(BUILD_DIR)
+./build/unset.o: ./srcs/builtin/unset/unset.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/unset.o: ./srcs/builtin/unset/unset.c | $(BUILD_DIR)
+./build/start_builtin.o: ./srcs/builtin/start_builtin.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
@@ -295,11 +295,11 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/expand_core.o: ./srcs/parsing/expand/expand_core.c | $(BUILD_DIR)
+./build/expand.o: ./srcs/parsing/expand/expand.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/expand.o: ./srcs/parsing/expand/expand.c | $(BUILD_DIR)
+./build/expand_core.o: ./srcs/parsing/expand/expand_core.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
