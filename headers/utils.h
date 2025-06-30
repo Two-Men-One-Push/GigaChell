@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/20 02:50:20 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/23 09:27:24 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@
 # include <stddef.h>
 
 # include "defs/hd_node.h"
+# include "defs/redirect_fd.h"
 
 char	*str_extract(char *start, size_t len);
 
 void	secure_close(int fd);
+void	clear_redirect(t_redirect_fd *redirect);
 
 bool	skip_paranthesis(char *s, size_t *i);
 void	clear_paranthesis(char *s, size_t *i, t_hd_node **heredoc_list);
 bool	skip_dquote(char *s, size_t *i);
 bool	skip_squote(char *s, size_t *i);
 
-char	*get_redirect_file(char *arg);
+char	*get_redirect_file(char *arg, size_t *arg_len);
 char	*get_limiter(char *cmd, size_t *i);
 
 void	str_unquote(char *s);

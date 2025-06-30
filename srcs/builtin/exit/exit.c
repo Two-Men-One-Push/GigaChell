@@ -6,9 +6,11 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 19:47:47 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/30 15:24:28 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:34:35 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
 
 #include "libft.h"
 #include "redirect_fd.h"
@@ -34,6 +36,7 @@ static int	satol(char *str, long *val)
 	int		overflow;
 
 	*val = 0;
+	sign = 1;
 	overflow = 0;
 	while (*str == ' ' || *str == '	')
 		++str;
@@ -53,17 +56,18 @@ int	ft_exit(int argc, char **argv, t_redirect_fd *redirect)
 {
 	long	val;
 
+	(void)redirect;
 	if (argc > 1)
 	{
 		if (isanumber(argv[1]) || satol(argv[1], &val))
 		{
-			ft_dprintf(redirect->err, \
+			ft_dprintf(STDERR_FILENO, \
 				"exit: %s: numeric argument required\n", argv[1]);
 			return (2);
 		}
 		else if (argc > 2)
 		{
-			ft_dprintf(redirect->err, "exit: too many arguments\n");
+			ft_dprintf(STDERR_FILENO, "exit: too many arguments\n");
 			return (-2);
 		}
 		return ((unsigned char)val);

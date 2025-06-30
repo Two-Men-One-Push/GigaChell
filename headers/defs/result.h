@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_fd.h                                      :+:      :+:    :+:   */
+/*   result.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 07:13:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/23 07:31:21 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/06/23 13:49:29 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/28 02:51:05 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIRECT_FD_H
-# define REDIRECT_FD_H
+#ifndef RESULT_H
+# define RESULT_H
 
-typedef struct s_redirect_fd
+enum e_result_type
 {
-	int	in;
-	int	out;
-}			t_redirect_fd;
+	RT_MAIN = 0,
+	RT_FORK,
+	RT_BUILTIN,
+};
+
+typedef struct s_pipe_result
+{
+	int		pid;
+	short	status;
+	char	type;
+}			t_pipe_result;
 
 #endif

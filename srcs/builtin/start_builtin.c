@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:02:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 15:24:22 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:34:00 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 #include "builtins.h"
 #include "libft.h"
 
-int	start_builtin(char **cmd, t_redirect_fd *redirect)
+int	start_builtin(char **argv, t_redirect_fd *redirect, int *builtin_status)
 {
-	const int	ac = ft_arrlen((void **)cmd);
+	const int	argc = ft_arrlen((void **)argv);
 
-	if (!ft_strcmp(*cmd, "echo"))
-		return (0);
-	else if (!ft_strcmp(*cmd, "cd"))
-		return (ft_cd(ac, cmd, redirect));
-	else if (!ft_strcmp(*cmd, "pwd"))
-		return (0);
-	else if (!ft_strcmp(*cmd, "export"))
-		return (0);
-	else if (!ft_strcmp(*cmd, "unset"))
-		return (0);
-	else if (!ft_strcmp(*cmd, "env"))
-		return (0);
-	else if (!ft_strcmp(*cmd, "exit"))
-		return (ft_exit(ac, cmd, redirect));
-	return (-1);
+	if (!ft_strcmp(*argv, "echo"))
+		*builtin_status = 0;
+	else if (!ft_strcmp(*argv, "cd"))
+		*builtin_status = ftcd(argc, argv, redirect);
+	else if (!ft_strcmp(*argv, "pwd"))
+		*builtin_status = 0;
+	else if (!ft_strcmp(*argv, "export"))
+		*builtin_status = 0;
+	else if (!ft_strcmp(*argv, "unset"))
+		*builtin_status = 0;
+	else if (!ft_strcmp(*argv, "env"))
+		*builtin_status = 0;
+	else if (!ft_strcmp(*argv, "exit"))
+		*builtin_status = ftexit(argc, argv, redirect);
+	else
+		return (1);
+	return (0);
 }
