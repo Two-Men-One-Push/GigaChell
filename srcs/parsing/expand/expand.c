@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/30 17:24:41 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:13:55 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	**expand(char *cmd, int status)
 	size_t	len;
 
 	len = expand_len(cmd, status);
-	printf("%zu\n", len);
 	if (smalloc((void **)&tab, (len + 1) * sizeof(char)))
 		return (NULL);
 	expand_fill(tab, cmd, status);
