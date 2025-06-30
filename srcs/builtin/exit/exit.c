@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 19:47:47 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/27 22:08:20 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:24:28 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	satol(char *str, long *val)
 	return (overflow);
 }
 
-int	ftexit(int argc, char **argv, t_redirect_fd *redirect)
+int	ft_exit(int argc, char **argv, t_redirect_fd *redirect)
 {
 	long	val;
 

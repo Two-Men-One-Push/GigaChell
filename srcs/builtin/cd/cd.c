@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:25:26 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/27 22:10:26 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:24:37 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static int	end_cd(char *curpath, t_redirect_fd *redirect)
 	return (result);
 }
 
-int	ftcd(int argc, char **argv, t_redirect_fd *redirect)
+int	ft_cd(int argc, char **argv, t_redirect_fd *redirect)
 {
 	char	*arg;
 	char	*curpath;
