@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab_free.c                                   :+:      :+:    :+:   */
+/*   bitoa.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 02:48:55 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/30 15:55:48 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/30 16:19:51 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/30 16:28:44 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <stddef.h>
 
-void	print_tab_free(char **tab)
+char	*bitoa(char *buf, int n)
 {
-	size_t	i;
+	const char	*base = "9876543210123456789";
+	size_t		i;
 
-	i = 0;
-	while (tab[i])
+	i = 12;
+	buf[--i] = 0;
+	while (n != 0 || i == 11)
 	{
-		printf("arg%zu : '%s'\n", i, tab[i]);
-		free(tab[i]);
-		++i;
+		buf[--i] = base[(n % 10) + 9];
+		if (n < 0 && n > -10)
+			buf[--i] = '-';
+		n /= 10;
 	}
-	free(tab);
-}
-
-void	print_tab(char **tab)
-{
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		printf("arg%zu : '%s'\n", i, tab[i]);
-		++i;
-	}
+	return (&buf[i]);
 }

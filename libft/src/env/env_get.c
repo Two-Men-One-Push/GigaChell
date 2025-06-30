@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:25:13 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 05:50:23 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 16:58:50 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include "libft.h"
-
-#include <stdio.h>
 
 char	*env_get(t_env *env, char *var_name)
 {

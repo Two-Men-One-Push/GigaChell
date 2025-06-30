@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:38:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/14 20:40:14 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 15:41:46 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 #include <stdio.h>
 
 #include "libft.h"
-
-bool	are_same_path(const char *path1, const char *path2)
-{
-	struct stat	st1;
-	struct stat	st2;
-
-	if (stat(path1, &st1) != 0 || stat(path2, &st2) != 0)
-		return (false);
-	return ((st1.st_ino == st2.st_ino) && (st1.st_dev == st2.st_dev));
-}
 
 void	remove_path_dot(char *path, size_t i)
 {

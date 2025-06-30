@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:25:26 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 15:34:23 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:41:34 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,6 @@
 #include "libft.h"
 #include "builtins_utils.h"
 #include "defs/redirect_fd.h"
-
-static int	secure_pwd(void)
-{
-	char	*cwd;
-	char	*pwd;
-
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-	{
-		ft_dperror(STDERR_FILENO, "gigachell: cd");
-		return (-1);
-	}
-	pwd = ft_getenv("PWD");
-	if (*pwd == '/' && are_same_path(cwd, pwd))
-	{
-		free(cwd);
-		return (0);
-	}
-	if (ft_setenv("PWD", cwd))
-	{
-		free(cwd);
-		ft_dperror(STDERR_FILENO, "gigachell: cd");
-		return (-1);
-	}
-	free(cwd);
-	return (0);
-}
 
 static char	*get_curpath(const char *arg)
 {

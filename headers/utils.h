@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/23 09:27:24 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 16:32:33 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ void	str_unquote(char *s);
 int		tmp_fd(char **path, int flags);
 
 void	print_tab_free(char **tab);
+void	print_tab(char **tab);
+char	*bitoa(char *buf, int n);
 
 #endif

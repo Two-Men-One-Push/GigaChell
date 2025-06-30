@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/28 06:47:22 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 17:24:41 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include "env.h"
 #include "libft.h"
 #include "expand.h"
 #include "alloc.h"
@@ -88,6 +89,7 @@ char	**expand(char *cmd, int status)
 	size_t	len;
 
 	len = expand_len(cmd, status);
+	printf("%zu\n", len);
 	if (smalloc((void **)&tab, (len + 1) * sizeof(char)))
 		return (NULL);
 	expand_fill(tab, cmd, status);

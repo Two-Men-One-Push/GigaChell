@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
+#    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/06/28 06:43:54 by ebini            ###   ########lyon.fr    #
+#    Updated: 2025/06/30 15:54:06 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LDLIBS				=	-lreadline -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(
 
 NAME				=	GigaChell
 
-all: normcheck $(NAME)
+all: $(NAME)
 	@echo -e $(GREEN)Successfully Built $(NAME)$(RESET)
 
 -include $(MKCONFIGURE) $(MKGENERATED)
