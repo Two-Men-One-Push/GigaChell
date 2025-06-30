@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:39:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 01:51:37 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 02:19:37 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_pipe_result	handle_subprocess_child(char *cmd, int last_satus,
 	}
 	result.type = RT_FORK;
 	result.status = logic_exec(str_extract(cmd + 1, paranthesis_len - 2),
-		last_satus, subshell_heredoc_list);
+			last_satus, subshell_heredoc_list);
 	return (result);
 }
 

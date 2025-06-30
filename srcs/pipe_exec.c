@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 01:45:57 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 03:05:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,37 +69,11 @@ static int	swap_pipe(t_pipe_fd *pipe_fd, bool is_last)
 	return (0);
 }
 
-static int	error_pipe(void)
-{
-	while (wait(NULL) >= 0)
-		;
-	return (-1);
-}
-
-/**
- * There are different cases for pid value
- * a positive value is the value of a process's pid.
- * 0 is the return value of a unforked builtin.
- * -1 if an error
- */
-static int	exit_pipe(t_pipe_result pipe_result, t_pipe_fd *pipe_fd,
-	int last_status)
+static int	wait_children(t_pipe_result pipe_result)
 {
 	int		stat_loc;
 	pid_t	last_wait_result;
 
-	if (pipe_result.type == RT_BUILTIN)
-		return (pipe_result.status);
-	if (pipe_result.type == RT_FORK)
-	{
-		if (pipe_result.status >= 0)
-			return (-pipe_result.status - 3);
-		return (pipe_result.status);
-	}
-	if (pipe_fd->in > -1)
-		secure_close(pipe_fd->in);
-	if (pipe_result.pid < 0)
-		return (last_status);
 	last_wait_result = waitpid(pipe_result.pid, &stat_loc, 0);
 	if (last_wait_result < 0)
 		perror("gigachell: waitpid");
@@ -118,6 +92,30 @@ static int	exit_pipe(t_pipe_result pipe_result, t_pipe_fd *pipe_fd,
 		return (1);
 }
 
+/**
+ * There are different cases for pid value
+ * a positive value is the value of a process's pid.
+ * 0 is the return value of a unforked builtin.
+ * -1 if an error
+ */
+static int	exit_pipe(t_pipe_result pipe_result, t_pipe_fd *pipe_fd,
+	int last_status)
+{
+	if (pipe_result.type == RT_BUILTIN)
+		return (pipe_result.status);
+	if (pipe_result.type == RT_FORK)
+	{
+		if (pipe_result.status >= 0)
+			return (-pipe_result.status - 3);
+		return (pipe_result.status);
+	}
+	if (pipe_fd->in > -1)
+		secure_close(pipe_fd->in);
+	if (pipe_result.pid < 0)
+		return (last_status);
+	return (wait_children(pipe_result));
+}
+
 int	pipe_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 {
 	t_pipe_fd		pipe_fd;
@@ -132,7 +130,11 @@ int	pipe_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 		offset_to_operator(cmd, &i);
 		last_cmd = !cmd[i];
 		if (swap_pipe(&pipe_fd, last_cmd))
-			return (error_pipe());
+		{
+			while (wait(NULL) >= 0)
+				;
+			return (-1);
+		}
 		pipe_result = handle_piped_segment(str_extract(cmd, i), last_status,
 				&pipe_fd, heredoc_list);
 		if (last_cmd)

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 17:57:08 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 06:47:39 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 03:09:46 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	redirect_in(char *cmd, size_t *i, t_redirect_fd *redirect)
 {
 	char	*arg_start;
 	char	*file;
-	size_t		arg_len;
+	size_t	arg_len;
 
 	arg_start = cmd + *i;
 	file = get_redirect_file(arg_start, &arg_len);
@@ -57,7 +57,6 @@ static void	redirect_heredoc(char *cmd, size_t *i, t_redirect_fd *redirect,
 	size_t		redirect_len;
 
 	redirect_start = cmd + *i;
-	dprintf(2, "'%s'\n", redirect_start);
 	redirect_len = 2;
 	while (is_space(redirect_start[redirect_len]))
 		++redirect_len;
@@ -75,7 +74,7 @@ static int	redirect_out(char *cmd, size_t *i, t_redirect_fd *redirect,
 {
 	char	*arg_start;
 	char	*file;
-	size_t		arg_len;
+	size_t	arg_len;
 
 	arg_start = cmd + *i;
 	file = get_redirect_file(arg_start, &arg_len);
@@ -119,23 +118,15 @@ int	get_redirection(char *cmd, t_redirect_fd *redirect,
 		else if (cmd[i] == '\'')
 			skip_squote(cmd, &i);
 		else if (cmd[i] == '<' && cmd[i + 1] == '<')
-		{
 			redirect_heredoc(cmd, &i, redirect, heredoc_list);
-			printf("'%s'\n", cmd);
-		}
 		else if (cmd[i] == '<')
 		{
 			if (redirect_in(cmd, &i, redirect))
-			return (stop_redirect(redirect));
+				return (stop_redirect(redirect));
 		}
 		else if (cmd[i] == '>')
 		{
-			if (redirect_out(cmd, &i, redirect, false))
-			return (stop_redirect(redirect));
-		}
-		else if (cmd[i] == '>' && cmd[i + 1] == '>')
-		{
-			if (redirect_out(cmd, &i, redirect, true))
+			if (redirect_out(cmd, &i, redirect, cmd[i + 1] == '>'))
 				return (stop_redirect(redirect));
 		}
 		else
