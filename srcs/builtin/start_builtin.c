@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:02:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 18:10:03 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:43:15 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	start_builtin(char **argv, t_redirect_fd *redirect, int *builtin_status)
 	else if (!ft_strcmp(*argv, "export"))
 		*builtin_status = 0;
 	else if (!ft_strcmp(*argv, "unset"))
-		*builtin_status = 0;
+		*builtin_status = ft_unset(argc, argv, &used_redirect);
 	else if (!ft_strcmp(*argv, "env"))
 		*builtin_status = ft_env(argc, argv, &used_redirect);
 	else if (!ft_strcmp(*argv, "exit"))

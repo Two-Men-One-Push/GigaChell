@@ -15,6 +15,7 @@ SRCS =	\
 	./srcs/builtin/exit/exit.c\
 	./srcs/builtin/pwd/pwd.c\
 	./srcs/builtin/start_builtin.c\
+	./srcs/builtin/unset/unset.c\
 	./srcs/here_doc/heredoc_list/hd_add_back.c\
 	./srcs/here_doc/heredoc_list/hd_add_front.c\
 	./srcs/here_doc/heredoc_list/hd_clear.c\
@@ -82,6 +83,7 @@ OBJS =	\
 	./build/exit.o\
 	./build/pwd.o\
 	./build/start_builtin.o\
+	./build/unset.o\
 	./build/hd_add_back.o\
 	./build/hd_add_front.o\
 	./build/hd_clear.o\
@@ -149,6 +151,7 @@ DEPS =	\
 	./build/exit.d\
 	./build/pwd.d\
 	./build/start_builtin.d\
+	./build/unset.d\
 	./build/hd_add_back.d\
 	./build/hd_add_front.d\
 	./build/hd_clear.d\
@@ -242,6 +245,10 @@ $(BUILD_DIR):
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/start_builtin.o: ./srcs/builtin/start_builtin.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/unset.o: ./srcs/builtin/unset/unset.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
