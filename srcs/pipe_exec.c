@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 03:35:40 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 01:45:57 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ static int	swap_pipe(t_pipe_fd *pipe_fd, bool is_last)
 	if (pipe_fd->in > -1)
 		secure_close(pipe_fd->in);
 	if (pipe_fd->out > -1)
+	{
 		secure_close(pipe_fd->out);
+		pipe_fd->out = -1;
+	}
 	if (is_last)
 	{
 		pipe_fd->in = pipe_fd->next_in;
