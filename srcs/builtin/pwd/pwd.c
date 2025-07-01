@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_squote.c                                    :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 07:57:27 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/01 20:22:57 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/05 18:54:35 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/30 15:41:10 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tstring.h"
-#include <stddef.h>
-#include "syntax.h"
-#include <stdio.h>
+#include "env.h"
+#include "libft.h"
+#include "redirect_fd.h"
+#include <sys/stat.h>
+#include <unistd.h>
+#include "builtins_utils.h"
 
-int	syntax_squote(t_syntax_attr *attr, char *str, size_t *index)
+int	ft_pwd(int argc, char **argv, t_redirect_fd *redirect)
 {
-	if (skipto(str, index, '\''))
-	{
-		printf("minishell: syntax error unclosed '\n");
+	(void)argc;
+	(void)argv;
+	if (secure_pwd())
 		return (1);
-	}
-	attr->token = 1;
+	ft_dprintf(redirect->out, "%s\n", ft_getenv("PWD"));
 	return (0);
 }

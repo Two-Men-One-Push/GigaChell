@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/28 06:47:22 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 18:13:55 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include "env.h"
 #include "libft.h"
 #include "expand.h"
 #include "alloc.h"

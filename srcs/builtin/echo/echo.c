@@ -3,41 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/27 19:03:31 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 17:22:35 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "redirect_fd.h"
+#include <stdio.h>
 #include <unistd.h>
 
-int	echo(int ac, char **av)
+int	ft_echo(int argc, char **argv, t_redirect_fd *redirect)
 {
-	int	opt;
 	int	i;
-	int	j;
+	int	newline;
 
-	i = 0;
-	opt = 0;
-	while (++i < ac)
+	i = 1;
+	newline = 1;
+	while (i < argc && argv[i][0] == '-' && argv[i][1] == 'n')
 	{
-		j = 1;
-		while (av[i][0] == '-' && av[i][j] == 'n')
-			j++;
-		if (av[i][j] != '\0')
-			break ;
-		opt = 1;
-	}
-	while (i < ac)
-	{
-		write(1, av[i], ft_strlen(av[i]));
+		newline = 0;
 		++i;
-		if (i != ac)
-			write(1, " ", 1);
 	}
-	if (!opt)
-		write(1, "\n", 1);
+	while (i < argc)
+	{
+		if (i != 1)
+			ft_dprintf(redirect->out, " %s", argv[i]);
+		else
+			ft_dprintf(redirect->out, "%s", argv[i]);
+		++i;
+	}
+	if (newline)
+		ft_dprintf(redirect->out, "\n");
 	return (0);
 }

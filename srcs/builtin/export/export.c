@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab_free.c                                   :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 02:48:55 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/20 02:50:12 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/30 19:24:33 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/30 19:40:51 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stddef.h>
+#include "redirect_fd.h"
+#include <unistd.h>
+#include "env.h"
+#include "builtins.h"
 
-void	print_tab_free(char **tab)
+int	ft_export(int argc, char **argv, t_redirect_fd *redirect)
 {
-	size_t	i;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (tab[i])
+	if (argc < 2)
+		return (ft_env(argc, argv, redirect));
+	while (i < argc)
 	{
-		printf("arg%zu : '%s'\n", i, tab[i]);
-		free(tab[i]);
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] == '=')
+			{
+				argv[i][j] = '\0';
+				break ;
+			}
+			++j;
+		}
+		ft_setenv(argv[i], &argv[i][j + 1]);
 		++i;
 	}
-	free(tab);
+	return (0);
 }

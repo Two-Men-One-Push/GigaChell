@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_squote.c                                    :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 07:57:27 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/01 20:22:57 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/30 18:29:54 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/30 19:05:15 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tstring.h"
-#include <stddef.h>
-#include "syntax.h"
+#include "env.h"
+#include "redirect_fd.h"
 #include <stdio.h>
+#include <unistd.h>
+#include "libft.h"
 
-int	syntax_squote(t_syntax_attr *attr, char *str, size_t *index)
+int	ft_unset(int argc, char **argv, t_redirect_fd *redirect)
 {
-	if (skipto(str, index, '\''))
+	int	i;
+
+	i = 1;
+	(void)redirect;
+	if (argc < 2)
 	{
-		printf("minishell: syntax error unclosed '\n");
+		ft_dprintf(STDERR_FILENO, "unset: not enough arguments\n");
 		return (1);
 	}
-	attr->token = 1;
+	while (i < argc)
+	{
+		ft_unsetenv(argv[i]);
+		++i;
+	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_var_name.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 23:42:41 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 00:44:28 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/06/30 18:19:13 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 bool	is_env_var_start(char c)
 {
 	return (('a' <= c && c <= 'z')
-		|| ('A' <= c && c <= 'Z')
-		|| c == '_'
-	);
+		|| ('A' <= c && c <= 'Z'));
 }
 
 bool	is_env_var_char(char c)

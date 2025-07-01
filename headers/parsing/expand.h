@@ -6,14 +6,20 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 07:04:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/25 19:43:18 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:09:25 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPAND_H
 # define EXPAND_H
 
-# include "tchain.h"
+# include <stddef.h>
+
+typedef struct s_quote
+{
+	int	sq;
+	int	dq;
+}	t_quote;
 
 char	**expand(char *cmd, int status);
 size_t	strtotab_len(char *str, size_t len);

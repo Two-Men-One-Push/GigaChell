@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_squote.c                                    :+:      :+:    :+:   */
+/*   bitoa.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 07:57:27 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/01 20:22:57 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/30 16:19:51 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/06/30 16:28:44 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tstring.h"
 #include <stddef.h>
-#include "syntax.h"
-#include <stdio.h>
 
-int	syntax_squote(t_syntax_attr *attr, char *str, size_t *index)
+char	*bitoa(char *buf, int n)
 {
-	if (skipto(str, index, '\''))
+	const char	*base = "9876543210123456789";
+	size_t		i;
+
+	i = 12;
+	buf[--i] = 0;
+	while (n != 0 || i == 11)
 	{
-		printf("minishell: syntax error unclosed '\n");
-		return (1);
+		buf[--i] = base[(n % 10) + 9];
+		if (n < 0 && n > -10)
+			buf[--i] = '-';
+		n /= 10;
 	}
-	attr->token = 1;
-	return (0);
+	return (&buf[i]);
 }
