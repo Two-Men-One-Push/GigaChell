@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:02:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 19:41:32 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/02 00:11:01 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ int	start_builtin(char **argv, t_redirect_fd *redirect, int *builtin_status)
 	const int		argc = ft_arrlen((void **)argv);
 	t_redirect_fd	used_redirect;
 
-	if (redirect->in < 0)
-		used_redirect.in = 0;
-	if (redirect->out < 0)
-		used_redirect.out = 1;
+	used_redirect = (t_redirect_fd){0, 1};
+	if (redirect->in >= 0)
+		used_redirect.in = redirect->in;
+	if (redirect->out >= 0)
+		used_redirect.out = redirect->out;
 	if (!ft_strcmp(*argv, "echo"))
 		*builtin_status = ft_echo(argc, argv, &used_redirect);
 	else if (!ft_strcmp(*argv, "cd"))

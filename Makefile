@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
+#    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/06/30 15:54:06 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/07/01 22:01:20 by ebini            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME): $(OBJS) $(LIBFT_ARCHIVE)
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 $(LIBFT_ARCHIVE): FORCE
-	@make --no-print-dir -C $(LIBFT_DIR)
+	@make --no-print-dir -C $(LIBFT_DIR) dev
 
 normcheck:
 	@echo -e -n $(RED)
