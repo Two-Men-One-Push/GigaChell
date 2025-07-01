@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 16:41:18 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:32:08 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	run_command(char *line, int last_status)
 	char		*cmd;
 	t_hd_node	*heredoc_list;
 
-	if (syntaxer(ftstring(line, ft_strlen(line))))
+	if (syntaxer(line))
 	{
 		add_history(line);
 		return (2);
