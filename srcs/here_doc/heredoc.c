@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/27 19:03:36 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/01 19:09:12 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@
 
 int	write_line(int fd, char *line)
 {
-	const size_t	line_len = ft_strlen(line);
+	size_t	line_len;
 
+	line_len = ft_strlen(line);
+	line[line_len] = '\n';
+	++line_len;
 	if (write(fd, line, line_len) != (ssize_t)line_len)
 	{
-		perror("gigachell");
+		perror("gigachell: write");
 		return (-1);
 	}
 	return (0);
