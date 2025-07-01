@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 07:20:11 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/01 20:26:11 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/01 20:34:50 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,18 @@
 
 int	syntax_token(t_syntax_attr *attr, char *str, size_t *index)
 {
-	char	*tmp;
+	int		i;
 
-	tmp = &str[*index];
+	i = 0;
 	if (!(str[*index] == '\t' || str[*index] == ' '))
 	{
-		if (attr->token == 1)
+		if (attr->token == 2)
 		{
-			while (!(str[*index] == '\t' || str[*index] == ' '))
-				++(*index);
-			str[*index] = '\0';
-			printf("minishell: syntax error near '%s'\n", tmp);
+			while (str[*index + i] && !(str[*index + i] == '\t' || \
+				str[*index + i] == ' '))
+				++i;
+			str[*index + i] = '\0';
+			printf("minishell: syntax error near '%s'\n", &str[*index]);
 			return (1);
 		}
 		attr->token = 1;
