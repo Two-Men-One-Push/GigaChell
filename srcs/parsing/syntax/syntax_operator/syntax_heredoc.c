@@ -6,18 +6,21 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 09:02:00 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/10 09:25:02 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/01 20:24:33 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "syntax.h"
 #include <stddef.h>
-#include <unistd.h>
+#include <stdio.h>
 
 int	syntax_heredoc(t_syntax_attr *attr, size_t *index)
 {
 	if (attr->token == -1)
-		return (write(2, "minishell: syntax error near <<\n", 33));
+	{
+		printf("minishell: syntax error near <<\n");
+		return (1);
+	}
 	attr->last_operator = 5;
 	attr->token = -1;
 	++*index;
