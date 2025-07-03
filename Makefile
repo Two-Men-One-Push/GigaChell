@@ -6,7 +6,7 @@
 #    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/07/01 22:01:20 by ebini            ###   ########lyon.fr    #
+#    Updated: 2025/07/03 17:10:17 by ebini            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME): $(OBJS) $(LIBFT_ARCHIVE)
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 $(LIBFT_ARCHIVE): FORCE
-	@make --no-print-dir -C $(LIBFT_DIR) dev
+	@make --no-print-dir -C $(LIBFT_DIR)
 
 normcheck:
 	@echo -e -n $(RED)
