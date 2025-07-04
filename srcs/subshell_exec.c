@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:39:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 02:19:37 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/04 16:11:53 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ static t_pipe_result	handle_subprocess_child(char *cmd, int last_satus,
 	size_t			paranthesis_len;
 
 	redirect = (t_redirect_fd){pipe_fd->in, pipe_fd->out};
+	if (pipe_fd->next_in >= 0)
+		secure_close(pipe_fd->next_in);
 	paranthesis_len = 0;
 	skip_paranthesis(cmd, &paranthesis_len);
 	if (get_redirection(cmd + paranthesis_len, &redirect,
 			subshell_heredoc_list) || apply_redirection(&redirect))
 	{
 		hd_clear(subshell_heredoc_list);
-		return ((t_pipe_result){.type = RT_FORK, .status = -1});
+		return ((t_pipe_result){.type = PROC_FORK, .status = -1});
 	}
-	result.type = RT_FORK;
+	result.type = PROC_FORK;
 	result.status = logic_exec(str_extract(cmd + 1, paranthesis_len - 2),
 			last_satus, subshell_heredoc_list);
 	return (result);
@@ -85,7 +87,7 @@ t_pipe_result	subshell_exec(char *cmd, int last_satus, t_pipe_fd *pipe_fd,
 	if (pid)
 	{
 		hd_clear(&subshell_heredoc_list);
-		return ((t_pipe_result){.type = RT_MAIN, .pid = pid});
+		return ((t_pipe_result){.type = PROC_MAIN, .pid = pid});
 	}
 	return (handle_subprocess_child(cmd, last_satus, pipe_fd,
 			&subshell_heredoc_list));

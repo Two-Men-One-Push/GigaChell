@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 02:20:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 02:22:42 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/04 16:16:19 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static t_pipe_result	cmd_exec(char *cmd, int last_status, t_pipe_fd *pipe_fd,
 		return (neutral_cmd_exec(cmd, last_status, heredoc_list));
 	pid = fork();
 	if (pid)
-		return ((t_pipe_result){.type = RT_MAIN, .pid = pid});
-	return ((t_pipe_result){.type = RT_FORK,
+		return ((t_pipe_result){.type = PROC_MAIN, .pid = pid});
+	return ((t_pipe_result){.type = PROC_FORK,
 		.status = piped_cmd_exec(cmd, last_status, pipe_fd, heredoc_list)});
 }
 

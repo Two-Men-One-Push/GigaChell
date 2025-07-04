@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 13:49:29 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 02:51:05 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/04 15:28:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 enum e_result_type
 {
-	RT_MAIN = 0,
-	RT_FORK,
-	RT_BUILTIN,
+	PROC_MAIN = 0,
+	PROC_FORK,
+	PROC_BUILTIN,
 };
 
 typedef struct s_pipe_result

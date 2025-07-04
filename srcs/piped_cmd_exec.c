@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:46:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 06:48:01 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/04 16:13:57 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 
 #include <stdio.h>
 
-static int	handle_child_exec(char **cmd)
+static int	handle_child_exec(char **argv)
 {
 	int		builtin_result;
 
-	if (start_builtin(cmd, (t_redirect_fd[]){{STDIN_FILENO, STDOUT_FILENO}},
+	if (start_builtin(argv, (t_redirect_fd[]){{STDIN_FILENO, STDOUT_FILENO}},
 		&builtin_result))
-		return (bin_exec(cmd));
+		return (bin_exec(argv));
 	return (builtin_result);
 }
 
@@ -40,14 +40,18 @@ int	piped_cmd_exec(char *cmd, int last_status, t_pipe_fd *pipe_fd,
 	int				child_result;
 
 	redirect = (t_redirect_fd){pipe_fd->in, pipe_fd->out};
-	if (get_redirection(cmd, &redirect, heredoc_list)
-		|| apply_redirection(&redirect))
+	if (pipe_fd->next_in >= 0)
+		secure_close(pipe_fd->next_in);
+	if (get_redirection(cmd, &redirect, heredoc_list))
+		return (-1);
+	if (apply_redirection(&redirect))
 		return (-1);
 	argv = expand(cmd, last_status);
-	if (!argv)
+	if (!argv || !*argv)
 	{
-		clear_redirect(&redirect);
-		return (-1);
+		if (!argv)
+			return (-1);
+		return (0);
 	}
 	child_result = handle_child_exec(argv);
 	free_split(argv);

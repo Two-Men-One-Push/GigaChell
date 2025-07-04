@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 03:05:50 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/04 16:00:01 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	swap_pipe(t_pipe_fd *pipe_fd, bool is_last)
 	if (is_last)
 	{
 		pipe_fd->in = pipe_fd->next_in;
+		pipe_fd->next_in = -1;
 		return (0);
 	}
 	if (pipe(fd_buffer))
@@ -101,9 +102,9 @@ static int	wait_children(t_pipe_result pipe_result)
 static int	exit_pipe(t_pipe_result pipe_result, t_pipe_fd *pipe_fd,
 	int last_status)
 {
-	if (pipe_result.type == RT_BUILTIN)
+	if (pipe_result.type == PROC_BUILTIN)
 		return (pipe_result.status);
-	if (pipe_result.type == RT_FORK)
+	if (pipe_result.type == PROC_FORK)
 	{
 		if (pipe_result.status >= 0)
 			return (-pipe_result.status - 3);
@@ -137,7 +138,7 @@ int	pipe_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 		}
 		pipe_result = handle_piped_segment(str_extract(cmd, i), last_status,
 				&pipe_fd, heredoc_list);
-		if (last_cmd)
+		if (last_cmd || pipe_result.type == PROC_FORK)
 			return (exit_pipe(pipe_result, &pipe_fd, last_status));
 		cmd += ++i;
 		i = 0;

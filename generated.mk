@@ -15,8 +15,8 @@ SRCS =	\
 	./srcs/builtin/exit/exit.c\
 	./srcs/builtin/export/export.c\
 	./srcs/builtin/pwd/pwd.c\
-	./srcs/builtin/start_builtin.c\
 	./srcs/builtin/unset/unset.c\
+	./srcs/builtin/start_builtin.c\
 	./srcs/here_doc/heredoc_list/hd_add_back.c\
 	./srcs/here_doc/heredoc_list/hd_add_front.c\
 	./srcs/here_doc/heredoc_list/hd_new.c\
@@ -59,8 +59,8 @@ SRCS =	\
 	./srcs/utils/get_heredoc_limiter.c\
 	./srcs/utils/secure_close.c\
 	./srcs/utils/skip.c\
-	./srcs/utils/bitoa.c\
 	./srcs/utils/tab_utils.c\
+	./srcs/utils/bitoa.c\
 	./srcs/bin_exec.c\
 	./srcs/logic_exec.c\
 	./srcs/piped_cmd_exec.c\
@@ -84,8 +84,8 @@ OBJS =	\
 	./build/exit.o\
 	./build/export.o\
 	./build/pwd.o\
-	./build/start_builtin.o\
 	./build/unset.o\
+	./build/start_builtin.o\
 	./build/hd_add_back.o\
 	./build/hd_add_front.o\
 	./build/hd_new.o\
@@ -128,8 +128,8 @@ OBJS =	\
 	./build/get_heredoc_limiter.o\
 	./build/secure_close.o\
 	./build/skip.o\
-	./build/bitoa.o\
 	./build/tab_utils.o\
+	./build/bitoa.o\
 	./build/bin_exec.o\
 	./build/logic_exec.o\
 	./build/piped_cmd_exec.o\
@@ -153,8 +153,8 @@ DEPS =	\
 	./build/exit.d\
 	./build/export.d\
 	./build/pwd.d\
-	./build/start_builtin.d\
 	./build/unset.d\
+	./build/start_builtin.d\
 	./build/hd_add_back.d\
 	./build/hd_add_front.d\
 	./build/hd_new.d\
@@ -197,8 +197,8 @@ DEPS =	\
 	./build/get_heredoc_limiter.d\
 	./build/secure_close.d\
 	./build/skip.d\
-	./build/bitoa.d\
 	./build/tab_utils.d\
+	./build/bitoa.d\
 	./build/bin_exec.d\
 	./build/logic_exec.d\
 	./build/piped_cmd_exec.d\
@@ -251,11 +251,11 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/start_builtin.o: ./srcs/builtin/start_builtin.c | $(BUILD_DIR)
+./build/unset.o: ./srcs/builtin/unset/unset.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/unset.o: ./srcs/builtin/unset/unset.c | $(BUILD_DIR)
+./build/start_builtin.o: ./srcs/builtin/start_builtin.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
@@ -427,11 +427,11 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/bitoa.o: ./srcs/utils/bitoa.c | $(BUILD_DIR)
+./build/tab_utils.o: ./srcs/utils/tab_utils.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/tab_utils.o: ./srcs/utils/tab_utils.c | $(BUILD_DIR)
+./build/bitoa.o: ./srcs/utils/bitoa.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 

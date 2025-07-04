@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 20:27:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 06:47:32 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/04 16:11:05 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	apply_redirection(t_redirect_fd *redirect)
 			return (1);
 		}
 		secure_close(redirect->out);
+		redirect->out = -1;
 	}
 	return (0);
 }
