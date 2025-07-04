@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/04 15:20:42 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/04 16:15:20 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,5 @@ int	main(int ac, char **av, char **envp)
 	status = main_loop();
 	rl_clear_history();
 	ft_clearenv();
-	ft_dprintf(2, "exited with: '%d'\n", status);
 	return (status);
 }
