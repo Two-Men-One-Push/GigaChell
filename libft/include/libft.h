@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 08:59:39 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/08 02:05:30 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,10 +360,51 @@ size_t	ft_arrlen(void **arr);
  * the free_split function to do so.
  */
 char	**ft_strtok(char const *s, const char *set);
+
+/**
+ * @brief Find the first occurence of the character c in the string s
+ * @param s the string to search in
+ * @param c the character to find in s
+ * @return The adress of the first occurence of c in s OR NULL if c is not found
+ */
 char	*ft_strchr(const char *s, int c);
+
+/**
+ * @brief Find the last occurence of the character c in the string s
+ * @param s the string to search in
+ * @param c the character to find in s
+ * @return The adress of the last occurence of c OR NULL if c is not found
+ */
 char	*ft_strrchr(const char *s, int c);
+
+/**
+ * @brief Gives a way to compare strings by returning the difference of the
+ * first different character in the string (or 0 is nothing if found)
+ * @param s1 a string
+ * @param s2 a string
+ * @return The difference (char from s1 - char from s2) when the strings differ,
+ * 0 otherwise
+ */
 int		ft_strcmp(const char *s1, const char *s2);
+
+/**
+ * @brief Gives a way to compare n characters of strings by returning the
+ * difference of the first different character in the string (or 0 is nothing if
+ * found)
+ * @param s1 a string
+ * @param s2 a string
+ * @param n the number of character max to compare
+ * @return The difference (char from s1 - char from s2) when one of the n
+ * characters of the strings differ, 0 otherwise
+ */
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+/**
+ * @brief Every character of the string src in dest
+ * @param dest a free memory space (must include room for null byte)
+ * @param src The string to copy to dest
+ * @return dest
+ */
 void	ft_strcpy(char *dest, const char *src);
 size_t	ft_strcpy_len(char *dest, const char *src);
 void	ft_strncpy(char *dest, const char *src, size_t n);
@@ -376,6 +417,9 @@ size_t	ft_strlen(const char *s);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 bool	starts_by(const char *s, const char *pattern);
 bool	ends_by(const char *s, const char *pattern);
+
+char	*strmerge(char *s1, char *s2);
+char	*strmergen(char *s1, char *s2, size_t n);
 
 /**
  * @brief Delete every characters of set at the beginning and the end of s.

@@ -7,7 +7,7 @@ MAKEFLAGS += --no-print-directory
 BUILD_TYPE_TARGET ?= main
 
 PROJECT_NAME = Libft
-VERSION = 1.0.6
+VERSION = 1.0.7
 NAME = libft.a
 BUILD_ROOT_DIR = .build
 BUILD_DIR = $(BUILD_ROOT_DIR)/$(BUILD_TYPE_TARGET)
@@ -116,6 +116,7 @@ STRING_FILES = $(addprefix $(STRING_DIR)/, \
 	ft_substr.c \
 	ft_toupper.c \
 	ft_tolower.c \
+	strmerge.c \
 	starts_by.c \
 	ends_by.c \
 )
