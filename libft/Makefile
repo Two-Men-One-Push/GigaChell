@@ -1,13 +1,14 @@
 
 BUILD_TYPE_FILE = .build_type.mk
+CONFIG_FILE = config.mk
 MAKEFLAGS += --no-print-directory
 
 -include $(BUILD_TYPE_FILE)
+-include $(CONFIG_FILE)
 
 BUILD_TYPE_TARGET ?= main
 
 PROJECT_NAME = Libft
-VERSION = 1.0.7
 NAME = libft.a
 BUILD_ROOT_DIR = .build
 BUILD_DIR = $(BUILD_ROOT_DIR)/$(BUILD_TYPE_TARGET)
@@ -117,6 +118,7 @@ STRING_FILES = $(addprefix $(STRING_DIR)/, \
 	ft_toupper.c \
 	ft_tolower.c \
 	strmerge.c \
+	stradd.c \
 	starts_by.c \
 	ends_by.c \
 )
@@ -202,7 +204,7 @@ LOG_PROJECT_NAME = $(DARK_GREY)\[$(BOLD)$(BLUE)$(PROJECT_NAME)$(RESET)$(DARK_GRE
 .PHONY: all clean fclean re test tester dev FORCE
 
 all: $(NAME)
-	@echo -e $(LOG_PROJECT_NAME) $(BOLD)$(RED)Builded$(RESET) : $(BOLD)$(BLUE)$(NAME) $(DARK_GREY)\(v$(VERSION)\)$(RESET)
+	@echo -e $(LOG_PROJECT_NAME) $(BOLD)$(YELLOW)Builded$(RESET) $(BOLD)$(RED)$(NAME) $(DARK_GREY)\(v$(VERSION)\)$(RESET)
 
 ifneq ($(BUILD_TYPE),$(BUILD_TYPE_TARGET))
 $(NAME): $(OBJS) FORCE
@@ -219,18 +221,18 @@ dev: FORCE
 
 $(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@echo -e $(LOG_PROJECT_NAME) $(BOLD)$(RED)Compiling$(RESET) with : $(BOLD)$(LIGHT_GREY)$(CC) $(DARK_GREY)$(CFLAGS) $(GREEN)$<$(RESET)
+	@echo -e $(LOG_PROJECT_NAME) $(BOLD)$(YELLOW)Compiling$(RESET) with : $(BOLD)$(LIGHT_GREY)$(CC) $(DARK_GREY)$(CFLAGS) $(GREEN)$<$(RESET)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(BUILD_ROOT_DIR)
-	@echo -e $(LOG_PROJECT_NAME) $(BOLD)$(RED)Cleaned $(DARK_GREY)Objects$(RESET)
+	@echo -e $(LOG_PROJECT_NAME) $(BOLD)$(YELLOW)Cleaned $(DARK_GREY)Objects$(RESET)
 
 fclean: clean
 	@rm -f $(BUILD_TYPE_FILE)
 	@rm -f $(NAME)
 	@rm -f $(TEST_NAME)
-	@echo -e $(LOG_PROJECT_NAME) $(BOLD)$(RED)Cleaned $(BLUE)$(NAME)$(RESET)
+	@echo -e $(LOG_PROJECT_NAME) $(BOLD)$(YELLOW)Cleaned $(RED)$(NAME)$(RESET)
 
 re: fclean 
 	@$(MAKE) all

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/08 02:05:30 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/10 21:50:01 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -411,15 +411,25 @@ void	ft_strncpy(char *dest, const char *src, size_t n);
 char	*ft_strdup(const char *s);
 char	*ft_strndup(const char *s, size_t n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*strjoinall(size_t count, ...);
 size_t	ft_strlen(const char *s);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 bool	starts_by(const char *s, const char *pattern);
 bool	ends_by(const char *s, const char *pattern);
 
+/**
+ * @brief Join 2 strings into an new one, the new string is allocated using
+ * malloc
+ * 
+ * @param s1
+ * @param s2
+ * @return A new string allocated using malloc
+ */
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*strjoinall(size_t count, ...);
 char	*strmerge(char *s1, char *s2);
 char	*strmergen(char *s1, char *s2, size_t n);
+char	*stradd(char *s1, char *s2);
+char	*straddn(char *s1, char *s2, size_t n);
 
 /**
  * @brief Delete every characters of set at the beginning and the end of s.
