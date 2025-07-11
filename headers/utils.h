@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:14 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/11 04:04:51 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/11 05:32:15 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	skip_dquote(char *s, size_t *i);
 bool	skip_squote(char *s, size_t *i);
 
 char	*get_redirect_file(char *arg, size_t *arg_len);
-char	*get_limiter(char *cmd, size_t *i);
+char	*get_limiter(char *cmd, size_t *i, bool *expand);
 
 void	str_unquote(char *s);
 

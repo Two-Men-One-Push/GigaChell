@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/11 05:13:03 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/11 05:40:20 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	clear_here_doc(int fd, char *file, char *line)
 	return (-1);
 }
 
-int	create_here_doc(char *limiter)
+int	create_here_doc(char *limiter, bool expand)
 {
 	char		*file;
 	char		*line;
@@ -77,7 +77,7 @@ int	create_here_doc(char *limiter)
 	line = readline("heredoc>");
 	while (line && ft_strcmp(line, limiter))
 	{
-		if (write_line(fd, line, true) == -1)
+		if (write_line(fd, line, expand) == -1)
 			return (clear_here_doc(fd, file, line));
 		free(line);
 		line = readline("heredoc>");

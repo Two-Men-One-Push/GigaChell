@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 21:31:53 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/16 18:06:58 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/11 05:36:19 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,18 @@ static int	process_heredoc(char *cmd, size_t *i, t_hd_node **heredoc_list)
 	char		*limiter;
 	int			fd;
 	t_hd_node	*new_node;
+	bool		expand;
 
-	limiter = get_limiter(cmd, i);
+	limiter = get_limiter(cmd, i, &expand);
 	if (!limiter)
-		return (true);
-	fd = create_here_doc(limiter);
+		return (1);
+	fd = create_here_doc(limiter, expand);
 	free(limiter);
 	if (fd < 0)
-		return (true);
+		return (1);
 	new_node = hd_new(fd);
 	if (!new_node)
-		return (true);
+		return (1);
 	hd_add_front(heredoc_list, new_node);
 	return (0);
 }
