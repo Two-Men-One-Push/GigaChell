@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/04 16:15:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/11 22:00:23 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@
 #include "gigachell.h"
 #include "libft.h"
 #include "syntax.h"
-#include "utils.h"
-#include "expand.h"
+#include "sighandling.h"
 
 int	run_command(char *line, int last_status)
 {
@@ -92,6 +91,7 @@ int	main(int ac, char **av, char **envp)
 		perror("gigachell: ft_initenv");
 		return (1);
 	}
+	set_signal();
 	status = main_loop();
 	rl_clear_history();
 	ft_clearenv();
