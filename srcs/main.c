@@ -6,7 +6,7 @@
 /*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/11 22:00:23 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/11 22:18:49 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main_loop(void)
 	old_status = 0;
 	while (true)
 	{
+		handling_prompt_signal();
 		line = readline(GIGACHELL_PROMPT);
 		if (!line)
 			return (old_status);
@@ -68,6 +69,7 @@ int	main_loop(void)
 			free(line);
 			continue ;
 		}
+		handling_execution_signal();
 		new_status = run_command(line, old_status);
 		free(line);
 		if (new_status < -2)
@@ -91,7 +93,6 @@ int	main(int ac, char **av, char **envp)
 		perror("gigachell: ft_initenv");
 		return (1);
 	}
-	set_signal();
 	status = main_loop();
 	rl_clear_history();
 	ft_clearenv();

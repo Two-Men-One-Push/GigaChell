@@ -6,7 +6,7 @@
 /*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 21:21:04 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/07/11 22:07:16 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/11 22:20:44 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,28 @@ void	sigint_handler(int code)
 	rl_redisplay();
 }
 
+void	sigint_ignore(int code)
+{
+	(void)code;
+	printf("\n");
+}
+
 void	sigquit_handler(int code)
 {
 	(void)code;
 	printf("Quit\n");
 }
 
-int	set_signal(void)
+int	handling_prompt_signal(void)
 {
 	signal(SIGINT, &sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
+	return (0);
+}
+
+int	handling_execution_signal(void)
+{
+	signal(SIGINT, &sigint_ignore);
 	signal(SIGQUIT, &sigquit_handler);
 	return (0);
 }
