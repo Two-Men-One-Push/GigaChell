@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 17:57:08 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/30 03:09:46 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/11 04:31:01 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	redirect_in(char *cmd, size_t *i, t_redirect_fd *redirect)
 	redirect->in = open(file, O_RDONLY);
 	if (redirect->in == -1)
 	{
-		ft_dprintf(2, "open: %s: %s\n", file, strerror(errno));
+		ft_dprintf(2, "gigachell: %s: %s\n", file, strerror(errno));
 		free(file);
 		return (1);
 	}
@@ -86,7 +86,7 @@ static int	redirect_out(char *cmd, size_t *i, t_redirect_fd *redirect,
 			| (O_APPEND * append) | (O_TRUNC * !append), 0644);
 	if (redirect->out == -1)
 	{
-		ft_dprintf(2, "open: %s: %s\n", file, strerror(errno));
+		ft_dprintf(2, "gigachell: %s: %s\n", file, strerror(errno));
 		free(file);
 		return (1);
 	}

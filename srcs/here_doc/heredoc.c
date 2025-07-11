@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/01 19:09:12 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/11 05:13:03 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,26 @@
 
 #include "libft.h"
 #include "utils.h"
+#include "parsing/expand.h"
 
-int	write_line(int fd, char *line)
+int	write_line(int fd, char *line, bool parse)
 {
 	size_t	line_len;
 
+	if (parse)
+		line = parse_arg(line, false);
 	line_len = ft_strlen(line);
 	line[line_len] = '\n';
 	++line_len;
 	if (write(fd, line, line_len) != (ssize_t)line_len)
 	{
 		perror("gigachell: write");
+		if (parse)
+			free(line);
 		return (-1);
 	}
+	if (parse)
+		free(line);
 	return (0);
 }
 
@@ -70,7 +77,7 @@ int	create_here_doc(char *limiter)
 	line = readline("heredoc>");
 	while (line && ft_strcmp(line, limiter))
 	{
-		if (write_line(fd, line) == -1)
+		if (write_line(fd, line, true) == -1)
 			return (clear_here_doc(fd, file, line));
 		free(line);
 		line = readline("heredoc>");
