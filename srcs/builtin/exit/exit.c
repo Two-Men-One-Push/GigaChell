@@ -6,7 +6,7 @@
 /*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 19:47:47 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/12 11:21:56 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/12 11:42:45 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_exit(int argc, char **argv, t_redirect_fd *redirect)
 		{
 			ft_dprintf(STDERR_FILENO, \
 				"gigachell: exit: %s: numeric argument required\n", argv[1]);
-			return (-1);
+			return (-5);
 		}
 		else if (argc > 2)
 		{
