@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   start_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:02:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/02 00:11:01 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/12 10:59:04 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defs/redirect_fd.h"
 #include "builtins.h"
-#include "env.h"
 #include "libft.h"
-#include "utils.h"
 
 int	start_builtin(char **argv, t_redirect_fd *redirect, int *builtin_status)
 {

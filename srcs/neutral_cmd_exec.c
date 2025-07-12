@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   neutral_cmd_exec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 09:37:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/04 16:13:40 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/12 11:15:17 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #include "utils.h"
 #include "libft.h"
 #include "expand.h"
-
-#include <stdio.h>
 
 static t_pipe_result	handle_bin_exec(char **argv, t_redirect_fd *redirect)
 {

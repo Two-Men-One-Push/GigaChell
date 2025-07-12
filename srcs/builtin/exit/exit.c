@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 19:47:47 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/30 15:34:35 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/12 11:21:56 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ int	ft_exit(int argc, char **argv, t_redirect_fd *redirect)
 		if (isanumber(argv[1]) || satol(argv[1], &val))
 		{
 			ft_dprintf(STDERR_FILENO, \
-				"exit: %s: numeric argument required\n", argv[1]);
-			return (2);
+				"gigachell: exit: %s: numeric argument required\n", argv[1]);
+			return (-1);
 		}
 		else if (argc > 2)
 		{
-			ft_dprintf(STDERR_FILENO, "exit: too many arguments\n");
-			return (-2);
+			ft_dprintf(STDERR_FILENO, "gigachell: exit: too many arguments\n");
+			return (1);
 		}
-		return ((unsigned char)val);
+		return (-((unsigned char)val) - 3);
 	}
-	return (-1);
+	return (-2);
 }
