@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   piped_cmd_exec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:46:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/04 16:13:57 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/12 11:35:52 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #include "parsing/expand.h"
 #include "utils.h"
 #include "libft.h"
-
-#include <stdio.h>
 
 static int	handle_child_exec(char **argv)
 {

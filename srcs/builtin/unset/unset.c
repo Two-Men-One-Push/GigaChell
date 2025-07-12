@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 18:29:54 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/30 19:05:15 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/12 11:37:32 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include "redirect_fd.h"
-#include <stdio.h>
 #include <unistd.h>
 #include "libft.h"
 

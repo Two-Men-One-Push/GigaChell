@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 21:31:53 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/11 05:36:19 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/12 11:37:15 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include "heredoc_list_utils.h"
 #include "heredoc.h"
-#include "identifier.h"
 #include "utils.h"
 
 #include <stdio.h>

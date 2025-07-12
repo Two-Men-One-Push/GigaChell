@@ -45,6 +45,7 @@
    "./srcs/parsing/expand/expand_core.c",
    "./srcs/pipe_exec.c",
    "./srcs/signal/signal_init.c",
+   "./srcs/signal/handler.c",
    "./srcs/builtin/start_builtin.c",
    "./srcs/builtin/export/export.c",
    "./srcs/builtin/exit/exit.c",

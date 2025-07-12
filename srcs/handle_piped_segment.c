@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_piped_segment.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 02:20:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/04 16:16:19 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/12 11:35:36 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 #include <unistd.h>
 
 #include "defs/hd_node.h"
-#include "defs/redirect_fd.h"
 #include "defs/pipe_fd.h"
 #include "defs/result.h"
 #include "identifier.h"
-#include "utils.h"
 #include "gigachell.h"
-#include "expand.h"
-#include "libft.h"
-#include "builtins.h"
-
-#include <stdio.h>
 
 static t_pipe_result	cmd_exec(char *cmd, int last_status, t_pipe_fd *pipe_fd,
 	t_hd_node **heredoc_list)
