@@ -36,6 +36,7 @@ SRCS =	\
 	./srcs/parsing/expand/expand_core.c\
 	./srcs/pipe_exec.c\
 	./srcs/signal/signal_init.c\
+	./srcs/signal/handler.c\
 	./srcs/builtin/start_builtin.c\
 	./srcs/builtin/export/export.c\
 	./srcs/builtin/exit/exit.c\
@@ -107,6 +108,7 @@ OBJS =	\
 	./build/expand_core.o\
 	./build/pipe_exec.o\
 	./build/signal_init.o\
+	./build/handler.o\
 	./build/start_builtin.o\
 	./build/export.o\
 	./build/exit.o\
@@ -178,6 +180,7 @@ DEPS =	\
 	./build/expand_core.d\
 	./build/pipe_exec.d\
 	./build/signal_init.d\
+	./build/handler.d\
 	./build/start_builtin.d\
 	./build/export.d\
 	./build/exit.d\
@@ -338,6 +341,10 @@ $(BUILD_DIR):
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/signal_init.o: ./srcs/signal/signal_init.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/handler.o: ./srcs/signal/handler.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 

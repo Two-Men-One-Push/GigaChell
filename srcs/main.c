@@ -6,7 +6,7 @@
 /*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/11 22:18:49 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/12 10:17:17 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "gigachell.h"
 #include "libft.h"
 #include "syntax.h"
-#include "sighandling.h"
+#include "signal_handling.h"
 
 int	run_command(char *line, int last_status)
 {
