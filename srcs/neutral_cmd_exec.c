@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   neutral_cmd_exec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 09:37:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/12 11:15:17 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/14 23:20:21 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include "defs/redirect_fd.h"
@@ -19,6 +20,7 @@
 #include "utils.h"
 #include "libft.h"
 #include "expand.h"
+#include "signal_handling.h"
 
 static t_pipe_result	handle_bin_exec(char **argv, t_redirect_fd *redirect)
 {
@@ -30,6 +32,8 @@ static t_pipe_result	handle_bin_exec(char **argv, t_redirect_fd *redirect)
 		clear_redirect(redirect);
 		return ((t_pipe_result){.type = PROC_MAIN, .pid = 0});
 	}
+	if (handling_child_signal())
+		return ((t_pipe_result){.type = PROC_FORK, .status = -1});
 	if (apply_redirection(redirect))
 		return ((t_pipe_result){.type = PROC_FORK, .status = -1});
 	return ((t_pipe_result){.type = PROC_FORK, .status = bin_exec(argv)});
@@ -52,6 +56,7 @@ t_pipe_result	neutral_cmd_exec(char *cmd, int last_status,
 		clear_redirect(&redirect);
 		if (!argv)
 			return ((t_pipe_result){.type = PROC_MAIN, .pid = -1});
+		free(argv);
 		return ((t_pipe_result){.type = PROC_BUILTIN, .status = 0});
 	}
 	if (!start_builtin(argv, &redirect, &builtin_result))

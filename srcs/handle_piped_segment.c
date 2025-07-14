@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_piped_segment.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 02:20:21 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/12 11:35:36 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/14 23:09:04 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "defs/result.h"
 #include "identifier.h"
 #include "gigachell.h"
+#include "signal_handling.h"
 
 static t_pipe_result	cmd_exec(char *cmd, int last_status, t_pipe_fd *pipe_fd,
 	t_hd_node **heredoc_list)
@@ -29,6 +30,8 @@ static t_pipe_result	cmd_exec(char *cmd, int last_status, t_pipe_fd *pipe_fd,
 	pid = fork();
 	if (pid)
 		return ((t_pipe_result){.type = PROC_MAIN, .pid = pid});
+	if (handling_child_signal())
+		return ((t_pipe_result){.type = PROC_FORK, .status = -1});
 	return ((t_pipe_result){.type = PROC_FORK,
 		.status = piped_cmd_exec(cmd, last_status, pipe_fd, heredoc_list)});
 }

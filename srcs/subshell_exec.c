@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subshell_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:39:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/04 16:11:53 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/14 23:13:39 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "gigachell.h"
 #include "heredoc_list_utils.h"
 #include "utils.h"
+#include "signal_handling.h"
 
 #include <stdio.h>
 
@@ -89,6 +90,8 @@ t_pipe_result	subshell_exec(char *cmd, int last_satus, t_pipe_fd *pipe_fd,
 		hd_clear(&subshell_heredoc_list);
 		return ((t_pipe_result){.type = PROC_MAIN, .pid = pid});
 	}
+	if (handling_child_signal())
+		return ((t_pipe_result){.type = PROC_FORK, .status = -1});
 	return (handle_subprocess_child(cmd, last_satus, pipe_fd,
 			&subshell_heredoc_list));
 }

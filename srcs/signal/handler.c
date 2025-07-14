@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 10:13:14 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/07/12 10:13:53 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/14 23:15:48 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,8 @@ void	sigint_handler(int code)
 	rl_redisplay();
 }
 
-void	sigint_ignore(int code)
-{
-	(void)code;
-	printf("\n");
-}
-
 void	sigquit_handler(int code)
 {
 	(void)code;
 	printf("Quit\n");
-}
-
-void	sigquit_ignore(int code)
-{
-	(void)code;
 }

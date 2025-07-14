@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:24:33 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/30 19:40:51 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/14 23:28:36 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_export(int argc, char **argv, t_redirect_fd *redirect)
 	int		i;
 	int		j;
 
-	i = 0;
+	i = 1;
 	if (argc < 2)
 		return (ft_env(argc, argv, redirect));
 	while (i < argc)
@@ -31,11 +31,11 @@ int	ft_export(int argc, char **argv, t_redirect_fd *redirect)
 			if (argv[i][j] == '=')
 			{
 				argv[i][j] = '\0';
+				ft_setenv(argv[i], &argv[i][j + 1]);
 				break ;
 			}
 			++j;
 		}
-		ft_setenv(argv[i], &argv[i][j + 1]);
 		++i;
 	}
 	return (0);

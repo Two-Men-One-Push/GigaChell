@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   piped_cmd_exec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:46:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/12 11:35:52 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/14 23:21:12 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include "defs/redirect_fd.h"
@@ -49,6 +50,7 @@ int	piped_cmd_exec(char *cmd, int last_status, t_pipe_fd *pipe_fd,
 	{
 		if (!argv)
 			return (-1);
+		free(argv);
 		return (0);
 	}
 	child_result = handle_child_exec(argv);
