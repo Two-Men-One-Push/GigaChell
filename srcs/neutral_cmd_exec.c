@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   neutral_cmd_exec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 09:37:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/14 23:20:21 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/16 23:52:04 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static t_pipe_result	handle_bin_exec(char **argv, t_redirect_fd *redirect)
 		clear_redirect(redirect);
 		return ((t_pipe_result){.type = PROC_MAIN, .pid = 0});
 	}
-	if (handling_child_signal())
-		return ((t_pipe_result){.type = PROC_FORK, .status = -1});
+	handling_child_signal();
 	if (apply_redirection(redirect))
 		return ((t_pipe_result){.type = PROC_FORK, .status = -1});
 	return ((t_pipe_result){.type = PROC_FORK, .status = bin_exec(argv)});
