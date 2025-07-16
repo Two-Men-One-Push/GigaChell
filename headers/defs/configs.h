@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   configs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 07:15:10 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/12 15:05:07 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/16 21:49:08 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONFIGS_H
 # define CONFIGS_H
 
-# define GIGACHELL_PROMPT "\e[38;5;252mGiga\e[38;5;236mChell \e[37m>\e[0m"
+# define GIGACHELL_PROMPT "GigaChell > "
 
 #endif
