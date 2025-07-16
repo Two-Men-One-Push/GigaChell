@@ -6,7 +6,7 @@
 #    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/07/16 18:52:27 by ebini            ###   ########lyon.fr    #
+#    Updated: 2025/07/16 18:59:11 by ebini            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ fclean: clean
 	@make --no-print-dir -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) all
 
 -include $(DEPS)
 
