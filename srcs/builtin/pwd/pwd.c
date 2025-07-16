@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 18:54:35 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/30 15:41:10 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:57:20 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ int	ft_pwd(int argc, char **argv, t_redirect_fd *redirect)
 {
 	(void)argc;
 	(void)argv;
-	if (secure_pwd())
+	if (!getcwd(NULL, 0))
+		ft_dprintf(redirect->out, "%s\n", ft_getenv("PWD"));
+	else if (secure_pwd())
 		return (1);
-	ft_dprintf(redirect->out, "%s\n", ft_getenv("PWD"));
+	else
+		ft_dprintf(redirect->out, "%s\n", ft_getenv("PWD"));
 	return (0);
 }
