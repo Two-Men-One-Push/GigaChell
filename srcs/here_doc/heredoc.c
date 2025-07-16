@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/11 05:40:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 00:58:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,48 @@ int	clear_here_doc(int fd, char *file, char *line)
 	return (-1);
 }
 
-int	create_here_doc(char *limiter, bool expand)
+static int	heredoc_loop(int fd, char *limiter, bool expand)
 {
-	char		*file;
 	char		*line;
-	const int	fd = tmp_fd(&file, O_WRONLY);
 
-	if (fd == -1)
-		return (-1);
 	errno = 0;
 	line = readline("heredoc>");
 	while (line && ft_strcmp(line, limiter))
 	{
 		if (write_line(fd, line, expand) == -1)
-			return (clear_here_doc(fd, file, line));
+		{
+			free(line);
+			return (-1);
+		}
 		free(line);
 		line = readline("heredoc>");
 	}
-	if (!line)
-	{
-		if (errno)
-		{
-			perror("gigachell: readline");
-			return (clear_here_doc(fd, file, NULL));
-		}
+	if (line)
+		return (0);
+	if (!errno)
 		write(2, "warning: expected limiter before EOF\n", 37);
+	perror("gigachell");
+	return (-1);
+}
+
+int	create_here_doc(char *limiter, bool expand)
+{
+	char		*filename;
+	int	fd;
+
+	fd = tmp_fd(&filename, O_WRONLY);
+	if (fd == -1)
+		return (-1);
+	if (heredoc_loop(fd, limiter, expand))
+	{
+		unlink(filename);
+		free(filename);
+		return (-1);
 	}
-	return (exit_here_doc(fd, line, file));
+	fd = tmp_fd(&filename, O_RDONLY);
+	unlink(filename);
+	free(filename);
+	if (fd < 0)
+		perror("minishell");
+	return (fd);
 }
