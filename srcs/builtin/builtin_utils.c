@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 15:40:35 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/30 15:42:22 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:52:42 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	secure_pwd(void)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		ft_dperror(STDERR_FILENO, "gigachell: cd");
+		ft_dperror(STDERR_FILENO, "gigachell");
 		return (-1);
 	}
 	pwd = ft_getenv("PWD");
@@ -47,7 +47,7 @@ int	secure_pwd(void)
 	if (ft_setenv("PWD", cwd))
 	{
 		free(cwd);
-		ft_dperror(STDERR_FILENO, "gigachell: cd");
+		ft_dperror(STDERR_FILENO, "gigachell");
 		return (-1);
 	}
 	free(cwd);
