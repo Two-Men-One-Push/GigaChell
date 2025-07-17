@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:24:33 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/14 23:28:36 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/17 03:16:21 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ int	ft_export(int argc, char **argv, t_redirect_fd *redirect)
 	int		i;
 	int		j;
 
+	(void)redirect;
 	i = 1;
-	if (argc < 2)
-		return (ft_env(argc, argv, redirect));
 	while (i < argc)
 	{
 		j = 0;
