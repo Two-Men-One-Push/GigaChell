@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 21:31:53 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 02:55:25 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 16:13:48 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include "heredoc_list_utils.h"
 #include "heredoc.h"
 #include "utils.h"
-
 
 static int	process_heredoc(char *cmd, size_t *i, t_hd_node **heredoc_list)
 {
@@ -51,6 +50,7 @@ int	parse_heredoc(char *cmd, t_hd_node **heredoc_list)
 	int		heredoc_result;
 
 	i = 0;
+	*heredoc_list = NULL;
 	while (cmd[i])
 	{
 		if (cmd[i] == '\'')

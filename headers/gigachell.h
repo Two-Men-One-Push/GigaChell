@@ -3,30 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   gigachell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 02:47:12 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 16:00:12 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GIGACHELL_H
 # define GIGACHELL_H
 
-# include "syntax.h"
 # include "defs/hd_node.h"
 # include "defs/pipe_fd.h"
 # include "defs/redirect_fd.h"
 # include "defs/result.h"
-# include "syntax.h"
 # include <stdbool.h>
 # include <sys/types.h>
 
-int			parse_heredoc(char *cmd, t_hd_node **heredoc_list);
+int				parse_heredoc(char *cmd, t_hd_node **heredoc_list);
 int				get_redirection(char *cmd, t_redirect_fd *redirect,
 					t_hd_node **heredoc_list);
 int				apply_redirection(t_redirect_fd *redirect);
-
 int				logic_exec(char *cmd, int last_status,
 					t_hd_node **heredoc_list);
 int				pipe_exec(char *cmd, int last_status, t_hd_node **heredoc_list);

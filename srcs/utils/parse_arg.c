@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 20:12:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 02:37:45 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 15:59:17 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-#include "utils.h"
 #include "identifier.h"
 #include "libft.h"
 #include "env.h"
@@ -112,22 +111,22 @@ int	add_dquote(char *str, size_t *i, char **filename)
 char	*parse_arg(char *str, bool handle_quote)
 {
 	size_t	i;
-	char	*filename;
+	char	*fname;
 
-	filename = ft_calloc(1, sizeof(char));
-	if (!filename)
+	fname = ft_calloc(1, sizeof(char));
+	if (!fname)
 		return (NULL);
 	i = 0;
 	while (str[i])
 	{
-		if (handle_quote && str[i] == '\'' && add_squote(str, &i, &filename))
+		if (handle_quote && str[i] == '\'' && add_squote(str, &i, &fname))
 			return (NULL);
-		else if (handle_quote && str[i] == '"' && add_dquote(str, &i, &filename))
+		else if (handle_quote && str[i] == '"' && add_dquote(str, &i, &fname))
 			return (NULL);
-		else if (str[i] == '$' && add_env_var(str, &i, &filename))
+		else if (str[i] == '$' && add_env_var(str, &i, &fname))
 			return (NULL);
-		else if (str[i] && add_neutral(str, &i, &filename, handle_quote * 2))
+		else if (str[i] && add_neutral(str, &i, &fname, handle_quote * 2))
 			return (NULL);
 	}
-	return (filename);
+	return (fname);
 }

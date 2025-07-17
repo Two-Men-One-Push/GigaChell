@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 10:13:14 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/07/17 02:16:23 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 16:00:46 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline/readline.h>
 #include <stdio.h>
 #include <unistd.h>
-
-int	g_sigint;
+#include "global.h"
 
 void	sigint_handler(int code)
 {
