@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 20:12:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/11 05:06:48 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 02:37:45 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 #include "identifier.h"
 #include "libft.h"
 #include "env.h"
-
-enum e_quote_handling
-{
-	HNDL_NTHG = 0,
-	HNDL_DQ = 1,
-	HNDL_ALL = 2,
-};
 
 int	add_env_var(char *str, size_t *i, char **filename)
 {

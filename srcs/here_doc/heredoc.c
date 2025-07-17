@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 00:58:34 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 02:57:43 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #include "libft.h"
 #include "utils.h"
 #include "parsing/expand.h"
+#include "signal_handling.h"
+#include "global.h"
+#include "defs/configs.h"
+
 
 int	write_line(int fd, char *line, bool parse)
 {
@@ -56,13 +60,18 @@ int	exit_here_doc(int fd, char *line, char *file)
 	return (result_fd);
 }
 
-int	clear_here_doc(int fd, char *file, char *line)
+int	handle_loop_end(char *line)
 {
-	close(fd);
-	free(line);
-	unlink(file);
-	free(file);
-	return (-1);
+	if (!line)
+	{
+		if (errno)
+		{
+			perror("gigachell");
+			return (-1);
+		}
+		write(2, "warning: expected limiter before EOF\n", 37);
+	}
+	return (0);
 }
 
 static int	heredoc_loop(int fd, char *limiter, bool expand)
@@ -70,40 +79,46 @@ static int	heredoc_loop(int fd, char *limiter, bool expand)
 	char		*line;
 
 	errno = 0;
-	line = readline("heredoc>");
+	line = readline(HEREDOC_PROMPT);
 	while (line && ft_strcmp(line, limiter))
 	{
+		if (g_sigint)
+		{
+			free(line);
+			return (-2);
+		}
 		if (write_line(fd, line, expand) == -1)
 		{
+			g_sigint = 0;
 			free(line);
 			return (-1);
 		}
 		free(line);
-		line = readline("heredoc>");
+		line = readline(HEREDOC_PROMPT);
 	}
-	if (line)
-		return (0);
-	if (!errno)
-		write(2, "warning: expected limiter before EOF\n", 37);
-	perror("gigachell");
-	return (-1);
+	return (handle_loop_end(line));
 }
 
 int	create_here_doc(char *limiter, bool expand)
 {
-	char		*filename;
-	int	fd;
+	char	*filename;
+	int		fd;
+	int		heredoc_loop_result;
 
 	fd = tmp_fd(&filename, O_WRONLY);
 	if (fd == -1)
 		return (-1);
-	if (heredoc_loop(fd, limiter, expand))
+	handling_heredoc_signal();
+	heredoc_loop_result = heredoc_loop(fd, limiter, expand);
+	handling_execution_signal();
+	close(fd);
+	if (heredoc_loop_result)
 	{
 		unlink(filename);
 		free(filename);
-		return (-1);
+		return (heredoc_loop_result);
 	}
-	fd = tmp_fd(&filename, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	unlink(filename);
 	free(filename);
 	if (fd < 0)

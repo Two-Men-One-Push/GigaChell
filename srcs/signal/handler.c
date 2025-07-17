@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 10:13:14 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/07/14 23:15:48 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/17 02:16:23 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <readline/readline.h>
+#include <stdio.h>
+#include <unistd.h>
+
+int	g_sigint;
 
 void	sigint_handler(int code)
 {
@@ -26,4 +29,20 @@ void	sigquit_handler(int code)
 {
 	(void)code;
 	printf("Quit\n");
+}
+
+void	hd_sigint_handler(int code)
+{
+	(void)code;
+	g_sigint = 1;
+}
+
+int	signal_event_hook(void)
+{
+	if (g_sigint)
+	{
+		rl_done = 1;
+		return (0);
+	}
+	return (0);
 }

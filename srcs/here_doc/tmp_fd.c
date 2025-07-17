@@ -102,7 +102,7 @@ int	tmp_fd(char **path, int flags)
 	if (fd == -1)
 	{
 		free(*path);
-		perror("gigachell: tmp_fd");
+		perror("gigachell");
 		return (-1);
 	}
 	return (fd);

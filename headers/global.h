@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   global.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 18:00:32 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/17 02:26:49 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/07/17 00:36:06 by ebini             #+#    #+#             */
+/*   Updated: 2025/07/17 01:16:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
-#include "redirect_fd.h"
-#include "utils.h"
+#ifndef GLOBAL_H
+# define GLOBAL_H
 
-int	ft_env(int argc, char **argv, t_redirect_fd	*redirect)
-{
-	char	**env;
+extern int	g_sigint;
 
-	(void)argc;
-	(void)argv;
-	env = ft_getenvp();
-	if (!env)
-		return (1);
-	dprint_tab(redirect->out, env);
-	return (0);
-}
+#endif

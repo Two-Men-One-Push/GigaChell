@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/14 22:56:32 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/17 03:46:43 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	run_command(char *line, int last_status)
 {
 	char		*cmd;
 	t_hd_node	*heredoc_list;
+	int			heredoc_result;
 
 	if (syntaxer(line))
 	{
@@ -36,13 +37,16 @@ int	run_command(char *line, int last_status)
 	cmd = ft_strdup(line);
 	if (!cmd)
 	{
-		perror("gigachell: strdup");
+		perror("gigachell");
 		return (-2);
 	}
 	heredoc_list = NULL;
-	if (parse_heredoc(cmd, &heredoc_list))
+	heredoc_result = parse_heredoc(cmd, &heredoc_list);
+	if (heredoc_result)
 	{
 		free(cmd);
+		if (heredoc_result == -2)
+			return (130);
 		return (-1);
 	}
 	last_status = logic_exec(line, last_status, &heredoc_list);

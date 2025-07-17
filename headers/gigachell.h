@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:25:45 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 06:44:48 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 02:47:12 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdbool.h>
 # include <sys/types.h>
 
-bool			parse_heredoc(char *cmd, t_hd_node **heredoc_list);
+int			parse_heredoc(char *cmd, t_hd_node **heredoc_list);
 int				get_redirection(char *cmd, t_redirect_fd *redirect,
 					t_hd_node **heredoc_list);
 int				apply_redirection(t_redirect_fd *redirect);
