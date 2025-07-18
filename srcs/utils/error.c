@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:57:56 by ebini             #+#    #+#             */
-/*   Updated: 2025/05/13 21:24:12 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/12 11:36:30 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
 #include "libft.h"
-#include "utils.h"
 
 int	int_error(char *message)
 {

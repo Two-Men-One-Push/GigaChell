@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_splitted_cmd.c                               :+:      :+:    :+:   */
+/*   bin_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/09 11:46:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:07:59 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/06/23 06:46:12 by ebini             #+#    #+#             */
+/*   Updated: 2025/07/12 11:35:56 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "defs/redirect_fd.h"
-#include "builtins.h"
+#include "env.h"
 #include "libft.h"
 
-int	find_command(char **folders, char *cmd, char **result)
+int	find_bin(char **folders, char *cmd, char **result)
 {
 	int		status;
 
@@ -28,7 +27,7 @@ int	find_command(char **folders, char *cmd, char **result)
 		*result = strjoinall(3, *folders, "/", cmd);
 		if (!*result)
 		{
-			perror("pipex");
+			perror("gigachell: strjoinall");
 			return (1);
 		}
 		if (access(*result, F_OK))
@@ -41,9 +40,9 @@ int	find_command(char **folders, char *cmd, char **result)
 		++folders;
 	}
 	if (status == 126)
-		ft_dprintf(2, "pipex: permission denied: %s\n", cmd);
+		ft_dprintf(STDERR_FILENO, "gigachell: permission denied: %s\n", cmd);
 	else if (status == 127)
-		ft_dprintf(2, "pipex: command not found: %s\n", cmd);
+		ft_dprintf(STDERR_FILENO, "gigachell: command not found: %s\n", cmd);
 	return (status);
 }
 
@@ -54,12 +53,12 @@ int	handle_path(char *cmd, char **result)
 	status = 0;
 	if (access(cmd, F_OK))
 	{
-		ft_dprintf(2, "pipex: command not found: %s\n", cmd);
+		ft_dprintf(STDERR_FILENO, "gigachell: command not found: %s\n", cmd);
 		status = 127;
 	}
 	else if (access(cmd, X_OK))
 	{
-		ft_dprintf(2, "pipex: permission denied: %s\n", cmd);
+		ft_dprintf(STDERR_FILENO, "gigachell: permission denied: %s\n", cmd);
 		status = 126;
 	}
 	if (!status)
@@ -67,7 +66,7 @@ int	handle_path(char *cmd, char **result)
 	return (status);
 }
 
-int	get_cmd_path(char *cmd, char *path, char **result)
+int	get_bin_path(char *cmd, char *path, char **result)
 {
 	char	**folders;
 	int		status;
@@ -76,27 +75,34 @@ int	get_cmd_path(char *cmd, char *path, char **result)
 		return (handle_path(cmd, result));
 	if (!*path)
 	{
-		ft_dprintf(2, "pipex: command not found: %s\n", cmd);
+		ft_dprintf(2, "gigachell: command not found: %s\n", cmd);
 		return (127);
 	}
 	folders = ft_split(path, ':');
 	if (!folders)
 		return (-1);
 	if (*cmd)
-		status = find_command(folders, cmd, result);
+		status = find_bin(folders, cmd, result);
 	else
 	{
 		status = 127;
-		ft_dprintf(2, "pipex: command not found: \n");
+		ft_dprintf(STDERR_FILENO, "gigachell: command not found: \n");
 	}
 	free_split(folders);
 	return (status);
 }
 
-int	start_splitted_cmd(char **cmd, t_redirect_fd *redirect)
+int	bin_exec(char **cmd)
 {
-	int	builtin_result;
+	char	**envp;
+	char	*bin_path;
+	int		path_result;
 
-	builtin_result = start_builtin(cmd, redirect);
-	return (0);
+	path_result = get_bin_path(*cmd, ft_getenv("PATH"), &bin_path);
+	if (path_result)
+		return (path_result);
+	envp = ft_getenvp();
+	execve(bin_path, cmd, envp);
+	perror("gigachell: execve");
+	return (1);
 }

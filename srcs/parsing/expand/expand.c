@@ -6,13 +6,14 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/20 03:17:05 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:13:55 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include "env.h"
 #include "libft.h"
 #include "expand.h"
 #include "alloc.h"
@@ -82,15 +83,14 @@ char	**strtotab(char *str, size_t len)
 	return (tab);
 }
 
-char	**expand(char *cmd)
+char	**expand(char *cmd, int status)
 {
 	char	*tab;
 	size_t	len;
 
-	len = expand_len(cmd) + 1;
-	printf("%zu\n", len);
-	if (smalloc((void **)&tab, len * sizeof(char)))
+	len = expand_len(cmd, status);
+	if (smalloc((void **)&tab, (len + 1) * sizeof(char)))
 		return (NULL);
-	expand_fill(tab, cmd);
+	expand_fill(tab, cmd, status);
 	return (strtotab(tab, len));
 }

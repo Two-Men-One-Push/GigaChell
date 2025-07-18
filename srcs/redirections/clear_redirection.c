@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab_free.c                                   :+:      :+:    :+:   */
+/*   clear_redirection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 02:48:55 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/20 02:50:12 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/06/23 09:26:19 by ebini             #+#    #+#             */
+/*   Updated: 2025/06/23 09:27:57 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stddef.h>
+#include "utils.h"
 
-void	print_tab_free(char **tab)
+void	clear_redirect(t_redirect_fd *redirect)
 {
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		printf("arg%zu : '%s'\n", i, tab[i]);
-		free(tab[i]);
-		++i;
-	}
-	free(tab);
+	if (redirect->in > -1)
+		secure_close(redirect->in);
+	if (redirect->out > -1)
+		secure_close(redirect->out);
 }

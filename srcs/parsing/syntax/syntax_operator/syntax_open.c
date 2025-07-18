@@ -6,17 +6,21 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 08:03:49 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/10 09:25:13 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/01 20:19:18 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "syntax.h"
-#include <unistd.h>
+#include <stdio.h>
+#include <stdio.h>
 
 int	syntax_open(t_syntax_attr *attr)
 {
 	if (attr->token == 1)
-		return (write(2, "minishell: syntax error near (\n", 32));
+	{
+		printf("minishell: syntax error near (\n");
+		return (1);
+	}
 	attr->token = 0;
 	++attr->scope_depth;
 	return (0);

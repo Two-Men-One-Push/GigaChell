@@ -6,24 +6,24 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 05:42:55 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/06/10 09:25:51 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/01 20:05:28 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tstring.h"
+#include "libft.h"
 #include "syntax.h"
 #include <unistd.h>
 
-int	syntaxer(t_string	string)
+int	syntaxer(char *str)
 {
 	t_syntax_attr	attr;
 	size_t			index;
 
 	index = 0;
 	attr = (t_syntax_attr){0, 0, 0};
-	while (index < string.size)
+	while (index < ft_strlen(str))
 	{
-		if (syntax_operator(&attr, string, &index))
+		if (syntax_operator(&attr, str, &index))
 			return (2);
 		++index;
 	}

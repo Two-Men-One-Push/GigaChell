@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hd_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 22:53:01 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/14 23:26:44 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/12 11:37:23 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
 #include "heredoc_list_utils.h"
-#include "libft.h"
 
 void	hd_move_last(t_hd_node **dest, t_hd_node **src)
 {

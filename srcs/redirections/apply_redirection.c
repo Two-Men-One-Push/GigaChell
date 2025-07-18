@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 20:27:52 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 02:27:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/04 16:11:05 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,31 @@
 
 #include "utils.h"
 
+#include <stdio.h>
+
 int	apply_redirection(t_redirect_fd *redirect)
 {
 	if (redirect->in > -1)
 	{
-		if (dup2(STDIN_FILENO, redirect->in))
+		if (dup2(redirect->in, STDIN_FILENO) < 0)
+		{
+			perror("dup2");
+			secure_close(redirect->in);
 			return (1);
+		}
+		secure_close(redirect->in);
+		redirect->in = -1;
 	}
 	if (redirect->out > -1)
 	{
-		if (dup2(STDOUT_FILENO, redirect->out))
+		if (dup2(redirect->out, STDOUT_FILENO) < 0)
 		{
-			secure_close(STDIN_FILENO);
+			perror("dup2");
+			secure_close(redirect->out);
 			return (1);
 		}
+		secure_close(redirect->out);
+		redirect->out = -1;
 	}
 	return (0);
 }

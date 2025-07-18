@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   configs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 07:15:10 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/20 03:33:15 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/18 05:56:23 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONFIGS_H
 # define CONFIGS_H
 
-# define GIGACHELL_PROMPT "\e[38;5;252mGiga\e[38;5;236mChell \e[37m>\e[0m"
+# define GIGACHELL_PROMPT "GigaChell> "
+# define HEREDOC_PROMPT "> "
 
 #endif

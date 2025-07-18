@@ -1,42 +1,63 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
+#    Updated: 2025/07/16 18:59:11 by ebini            ###   ########lyon.fr    #
+#                                                                              #
+# **************************************************************************** #
+
 BUILD_DIR			=	./build/
 HEADERS_DIR			=	./headers/ ./libft/include/
 SRCS_DIR			=	./srcs/
 
 MKCONFIGURE			=	./configure.mk
 MKGENERATED			=	./generated.mk
-MKIMPROVED			=	./improved.mk
+MKCOLOR				=	./color.mk
 
 LIBFT_DIR			=	./libft/
 LIBFT_ARCHIVE		=	$(LIBFT_DIR)libft.a
 
 CC					=	cc
-CFLAGS				=	-Wall -Wextra -Werror -g3 -O3 -march=native
-LIBS				=	-lreadline -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
+CFLAGS				=	-Wall -Wextra -Werror -g3 -O3 $(CMD_CFLAGS)
+LDLIBS				=	-lreadline -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
 
-NAME				=	GigaChell
+NAME				=	minishell
 
 all: $(NAME)
-	@echo -e
-	@echo -e $(FGREEN)Success$(RESET)
+	@echo -e $(GREEN)Successfully Built $(NAME)$(RESET)
 
--include $(DEPS) $(MKCONFIGURE) $(MKGENERATED)
+-include $(MKCONFIGURE) $(MKGENERATED)
 
 $(NAME): $(OBJS) $(LIBFT_ARCHIVE)
-	@echo -e $(FRED)
-	@$(CC) $(CFLAGS) $(HEADERS) -o $@ $(OBJS) $(LIBS)
-	@echo -e $(FGREEN)compiling $@$(RESET)
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ $(OBJS) $(LDLIBS)
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 $(LIBFT_ARCHIVE): FORCE
-	make -C $(LIBFT_DIR)
+	@make --no-print-dir -C $(LIBFT_DIR)
+
+normcheck:
+	@echo -e -n $(RED)
+	@norminette | grep "Error:" || echo $(GREEN)Norminette: OK
+	@echo -e -n $(RESET)
+
+clangd:
+	@echo $(CC) $(CFLAGS) $(HEADERS) -o $(NAME) $(SRCS) $(LDLIBS) | compiledb
 
 clean:
-	rm -rf $(BUILD_DIR)
-	make -C $(LIBFT_DIR) clean
+	@make --no-print-dir -C $(LIBFT_DIR) clean
+	@rm -rf $(BUILD_DIR)
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	@make --no-print-dir -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) all
 
-.PHONY : all clean fclean re FORCE
+-include $(DEPS)
+
+.PHONY : all clean fclean re clangd normcheck configure FORCE

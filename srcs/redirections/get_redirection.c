@@ -6,12 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 17:57:08 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:06:56 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/11 04:31:01 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 #include <fcntl.h>
 
 #include "defs/hd_node.h"
@@ -21,27 +23,28 @@
 #include "utils.h"
 #include "libft.h"
 
+#include <stdio.h>
+
 static int	redirect_in(char *cmd, size_t *i, t_redirect_fd *redirect)
 {
 	char	*arg_start;
 	char	*file;
-	size_t		arg_len;
+	size_t	arg_len;
 
 	arg_start = cmd + *i;
-	file = get_redirect_file(arg_start);
+	file = get_redirect_file(arg_start, &arg_len);
 	if (!file)
 		return (1);
 	if (redirect->in > -1)
 		secure_close(redirect->in);
 	redirect->in = open(file, O_RDONLY);
-	free(file);
 	if (redirect->in == -1)
+	{
+		ft_dprintf(2, "gigachell: %s: %s\n", file, strerror(errno));
+		free(file);
 		return (1);
-	arg_len = 1;
-	while (is_space(arg_start[arg_len]))
-		++arg_len;
-	while (!is_space(arg_start[arg_len]))
-		++arg_len;
+	}
+	free(file);
 	ft_memset(arg_start, ' ', arg_len);
 	*i += arg_len;
 	return (0);
@@ -50,11 +53,11 @@ static int	redirect_in(char *cmd, size_t *i, t_redirect_fd *redirect)
 static void	redirect_heredoc(char *cmd, size_t *i, t_redirect_fd *redirect,
 	t_hd_node **heredoc_list)
 {
-	char	*redirect_start;
+	char		*redirect_start;
 	size_t		redirect_len;
 
 	redirect_start = cmd + *i;
-	redirect_len = 3;
+	redirect_len = 2;
 	while (is_space(redirect_start[redirect_len]))
 		++redirect_len;
 	while (redirect_start[redirect_len]
@@ -71,24 +74,23 @@ static int	redirect_out(char *cmd, size_t *i, t_redirect_fd *redirect,
 {
 	char	*arg_start;
 	char	*file;
-	size_t		arg_len;
+	size_t	arg_len;
 
 	arg_start = cmd + *i;
-	file = get_redirect_file(arg_start);
+	file = get_redirect_file(arg_start, &arg_len);
 	if (!file)
 		return (1);
 	if (redirect->out > -1)
-		secure_close(redirect->in);
+		secure_close(redirect->out);
 	redirect->out = open(file, O_WRONLY | O_CREAT
 			| (O_APPEND * append) | (O_TRUNC * !append), 0644);
-	free(file);
 	if (redirect->out == -1)
+	{
+		ft_dprintf(2, "gigachell: %s: %s\n", file, strerror(errno));
+		free(file);
 		return (1);
-	arg_len = 1 + append;
-	while (is_space(arg_start[arg_len]))
-		++arg_len;
-	while (!is_space(arg_start[arg_len]))
-		++arg_len;
+	}
+	free(file);
 	ft_memset(arg_start, ' ', arg_len);
 	*i += arg_len;
 	return (0);
@@ -108,28 +110,23 @@ int	get_redirection(char *cmd, t_redirect_fd *redirect,
 {
 	size_t	i;
 
-	i = -1;
+	i = 0;
 	while (cmd[i])
 	{
 		if (cmd[i] == '"')
 			skip_dquote(cmd, &i);
 		else if (cmd[i] == '\'')
 			skip_squote(cmd, &i);
+		else if (cmd[i] == '<' && cmd[i + 1] == '<')
+			redirect_heredoc(cmd, &i, redirect, heredoc_list);
 		else if (cmd[i] == '<')
 		{
 			if (redirect_in(cmd, &i, redirect))
-			return (stop_redirect(redirect));
+				return (stop_redirect(redirect));
 		}
-		else if (cmd[i] == '<' && cmd[i + 1] == '<')
-			redirect_heredoc(cmd, &i, redirect, heredoc_list);
 		else if (cmd[i] == '>')
 		{
-			if (redirect_out(cmd, &i, redirect, false))
-			return (stop_redirect(redirect));
-		}
-		else if (cmd[i] == '>' && cmd[i + 1] == '>')
-		{
-			if (redirect_out(cmd, &i, redirect, true))
+			if (redirect_out(cmd, &i, redirect, cmd[i + 1] == '>'))
 				return (stop_redirect(redirect));
 		}
 		else

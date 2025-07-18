@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:39:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/15 09:01:33 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 17:38:53 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,74 +16,79 @@
 #include "defs/hd_node.h"
 #include "defs/redirect_fd.h"
 #include "defs/pipe_fd.h"
+#include "defs/result.h"
 #include "gigachell.h"
 #include "heredoc_list_utils.h"
 #include "utils.h"
+#include "signal_handling.h"
 
-pid_t	handle_subprocess_child(char *cmd, int last_satus,
-	t_redirect_fd *redirect, t_hd_node **subshell_heredoc_list)
+#include <stdio.h>
+
+static t_pipe_result	handle_subprocess_child(char *cmd, int last_satus,
+	t_pipe_fd *pipe_fd, t_hd_node **subshell_heredoc_list)
 {
-	if (apply_redirection(redirect))
-		return (-1);
-	return (logic_exec(cmd, last_satus, subshell_heredoc_list));
+	t_redirect_fd	redirect;
+	t_pipe_result	result;
+	size_t			paranthesis_len;
+
+	redirect = (t_redirect_fd){pipe_fd->in, pipe_fd->out};
+	if (pipe_fd->next_in >= 0)
+		secure_close(pipe_fd->next_in);
+	paranthesis_len = 0;
+	skip_paranthesis(cmd, &paranthesis_len);
+	if (get_redirection(cmd + paranthesis_len, &redirect,
+			subshell_heredoc_list) || apply_redirection(&redirect))
+	{
+		hd_clear(subshell_heredoc_list);
+		return ((t_pipe_result){.type = PROC_FORK, .status = -1});
+	}
+	result.type = PROC_FORK;
+	result.status = logic_exec(str_extract(cmd + 1, paranthesis_len - 2),
+			last_satus, subshell_heredoc_list);
+	return (result);
 }
 
-int	get_subshell_heredoc_list(char *s, size_t *i,
+static void	get_subshell_heredoc_list(char *cmd,
 	t_hd_node **subshell_heredoc_list, t_hd_node **heredoc_list)
 {
 	size_t	depth;
+	size_t	i;
 
+	i = 0;
+	*subshell_heredoc_list = NULL;
 	depth = 1;
-	++*i;
-	while (s[*i] && depth)
+	++i;
+	while (depth)
 	{
-		if (s[*i] == '"')
-			skip_dquote(s, i);
-		else if (s[*i] == '\'')
-			skip_squote(s, i);
-		else if (s[*i] == '<' && s[*i + 1] == '<')
+		if (cmd[i] == '"')
+			skip_dquote(cmd, &i);
+		else if (cmd[i] == '\'')
+			skip_squote(cmd, &i);
+		else if (cmd[i] == '<' && cmd[++i] == '<')
 			hd_move_last(subshell_heredoc_list, heredoc_list);
 		else
 		{
-			depth += s[*i] == '(';
-			depth -= s[*i] == ')';
-			++*i;
+			depth += cmd[i] == '(';
+			depth -= cmd[i] == ')';
+			++i;
 		}
 	}
-	return (!depth);
 }
 
-pid_t	exit_subshell_start(t_hd_node **subshell_heredoc_list)
-{
-	hd_clear(subshell_heredoc_list);
-	return (-1);
-}
-
-pid_t	subshell_exec(char *cmd, int last_satus, t_redirect_fd *redirect,
+t_pipe_result	subshell_exec(char *cmd, int last_satus, t_pipe_fd *pipe_fd,
 	t_hd_node **heredoc_list)
 {
-	size_t		paranthesis_len;
 	t_hd_node	*subshell_heredoc_list;
-	pid_t		fork_result;
+	pid_t		pid;
 
-	subshell_heredoc_list = NULL;
-	paranthesis_len = 0;
-	get_subshell_heredoc_list(cmd, &paranthesis_len, &subshell_heredoc_list,
-		heredoc_list);
-	if (get_redirection(cmd + paranthesis_len, redirect, heredoc_list))
-		return (exit_subshell_start(&subshell_heredoc_list));
-	fork_result = fork();
-	if (fork_result == -1)
-		return (exit_subshell_start(&subshell_heredoc_list));
-	if (fork_result)
-	{
-		hd_clear(heredoc_list);
-		return (handle_subprocess_child(str_extract(cmd + 1, paranthesis_len
-					- 2), last_satus, redirect, &subshell_heredoc_list));
-	}
-	else
+	get_subshell_heredoc_list(cmd, &subshell_heredoc_list, heredoc_list);
+	pid = fork();
+	if (pid)
 	{
 		hd_clear(&subshell_heredoc_list);
-		return (fork_result);
+		return ((t_pipe_result){.type = PROC_MAIN, .pid = pid});
 	}
+	handling_child_signal();
+	return (handle_subprocess_child(cmd, last_satus, pipe_fd,
+			&subshell_heredoc_list));
 }
