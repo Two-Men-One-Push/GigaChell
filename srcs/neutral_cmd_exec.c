@@ -6,13 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 09:37:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/16 23:52:04 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/18 05:24:25 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 #include "defs/redirect_fd.h"
 #include "builtins.h"
@@ -27,10 +28,12 @@ static t_pipe_result	handle_bin_exec(char **argv, t_redirect_fd *redirect)
 	pid_t	pid;
 
 	pid = fork();
+	if (pid < 0)
+		perror("gigachell");
 	if (pid)
 	{
 		clear_redirect(redirect);
-		return ((t_pipe_result){.type = PROC_MAIN, .pid = 0});
+		return ((t_pipe_result){.type = PROC_MAIN, .pid = pid});
 	}
 	handling_child_signal();
 	if (apply_redirection(redirect))

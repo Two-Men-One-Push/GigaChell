@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 21:31:53 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 02:55:25 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 17:17:49 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include "heredoc_list_utils.h"
 #include "heredoc.h"
 #include "utils.h"
-
 
 static int	process_heredoc(char *cmd, size_t *i, t_hd_node **heredoc_list)
 {

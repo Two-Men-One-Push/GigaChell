@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:39:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/16 23:51:41 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 17:38:53 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_pipe_result	handle_subprocess_child(char *cmd, int last_satus,
 	return (result);
 }
 
-static int	get_subshell_heredoc_list(char *cmd,
+static void	get_subshell_heredoc_list(char *cmd,
 	t_hd_node **subshell_heredoc_list, t_hd_node **heredoc_list)
 {
 	size_t	depth;
@@ -73,7 +73,6 @@ static int	get_subshell_heredoc_list(char *cmd,
 			++i;
 		}
 	}
-	return (!depth);
 }
 
 t_pipe_result	subshell_exec(char *cmd, int last_satus, t_pipe_fd *pipe_fd,
@@ -82,8 +81,7 @@ t_pipe_result	subshell_exec(char *cmd, int last_satus, t_pipe_fd *pipe_fd,
 	t_hd_node	*subshell_heredoc_list;
 	pid_t		pid;
 
-	get_subshell_heredoc_list(cmd, &subshell_heredoc_list,
-		heredoc_list);
+	get_subshell_heredoc_list(cmd, &subshell_heredoc_list, heredoc_list);
 	pid = fork();
 	if (pid)
 	{

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 03:46:43 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 17:36:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,39 +23,35 @@
 #include "syntax.h"
 #include "signal_handling.h"
 
-int	run_command(char *line, int last_status)
+static int	run_command(char *line, int last_status)
 {
-	char		*cmd;
 	t_hd_node	*heredoc_list;
 	int			heredoc_result;
 
 	if (syntaxer(line))
-	{
-		add_history(line);
 		return (2);
-	}
-	cmd = ft_strdup(line);
-	if (!cmd)
-	{
-		perror("gigachell");
-		return (-2);
-	}
 	heredoc_list = NULL;
-	heredoc_result = parse_heredoc(cmd, &heredoc_list);
+	heredoc_result = parse_heredoc(line, &heredoc_list);
 	if (heredoc_result)
 	{
-		free(cmd);
 		if (heredoc_result == -2)
 			return (130);
 		return (-1);
 	}
 	last_status = logic_exec(line, last_status, &heredoc_list);
-	add_history(cmd);
-	free(cmd);
 	return (last_status);
 }
 
-int	main_loop(void)
+static int	get_exit_status(int old_status, int new_status)
+{
+	if (new_status == -1)
+		return (1);
+	if (new_status == -2)
+		return (old_status);
+	return (-(new_status + 3));
+}
+
+static int	main_loop(void)
 {
 	int		old_status;
 	int		new_status;
@@ -66,6 +62,7 @@ int	main_loop(void)
 	{
 		handling_prompt_signal();
 		line = readline(GIGACHELL_PROMPT);
+		handling_execution_signal();
 		if (!line)
 			return (old_status);
 		if (!*line)
@@ -73,15 +70,11 @@ int	main_loop(void)
 			free(line);
 			continue ;
 		}
-		handling_execution_signal();
+		add_history(line);
 		new_status = run_command(line, old_status);
 		free(line);
-		if (new_status < -2)
-			return (-(new_status + 3));
-		if (new_status == -2)
-			return (old_status);
-		if (new_status == -1)
-			return (1);
+		if (new_status < 0)
+			return (get_exit_status(old_status, new_status));
 		old_status = new_status;
 	}
 }

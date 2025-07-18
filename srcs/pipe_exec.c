@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/04 16:00:01 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/17 17:17:12 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,6 @@ static int	wait_children(t_pipe_result pipe_result)
 		return (1);
 }
 
-/**
- * There are different cases for pid value
- * a positive value is the value of a process's pid.
- * 0 is the return value of a unforked builtin.
- * -1 if an error
- */
 static int	exit_pipe(t_pipe_result pipe_result, t_pipe_fd *pipe_fd,
 	int last_status)
 {
