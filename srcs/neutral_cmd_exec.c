@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 09:37:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/18 05:24:25 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/18 05:47:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,26 @@ static t_pipe_result	handle_bin_exec(char **argv, t_redirect_fd *redirect)
 	return ((t_pipe_result){.type = PROC_FORK, .status = bin_exec(argv)});
 }
 
+static t_pipe_result	handle_argv(char **argv, t_redirect_fd *redirect)
+{
+	t_pipe_result	result;
+	int				builtin_result;
+
+	if (start_builtin(argv, redirect, &builtin_result))
+	{
+		result = handle_bin_exec(argv, redirect);
+		free_split(argv);
+		return (result);
+	}
+	free_split(argv);
+	clear_redirect(redirect);
+	return ((t_pipe_result){.type = PROC_BUILTIN, .status = builtin_result});
+}
+
 t_pipe_result	neutral_cmd_exec(char *cmd, int last_status,
 	t_hd_node **heredoc_list)
 {
-	int				builtin_result;
 	t_redirect_fd	redirect;
-	t_pipe_result	result;
 	char			**argv;
 
 	redirect = (t_redirect_fd){-1, -1};
@@ -61,13 +75,5 @@ t_pipe_result	neutral_cmd_exec(char *cmd, int last_status,
 		free(argv);
 		return ((t_pipe_result){.type = PROC_BUILTIN, .status = 0});
 	}
-	if (!start_builtin(argv, &redirect, &builtin_result))
-	{
-		free_split(argv);
-		clear_redirect(&redirect);
-		return ((t_pipe_result){.type = PROC_BUILTIN, .status = builtin_result});
-	}
-	result = handle_bin_exec(argv, &redirect);
-	free_split(argv);
-	return (result);
+	return (handle_argv(argv, &redirect));
 }
