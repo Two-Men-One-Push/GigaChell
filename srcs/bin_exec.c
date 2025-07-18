@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bin_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 06:46:12 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/12 11:35:56 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/18 06:30:40 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	get_bin_path(char *cmd, char *path, char **result)
 	}
 	folders = ft_split(path, ':');
 	if (!folders)
-		return (-1);
+		return (1);
 	if (*cmd)
 		status = find_bin(folders, cmd, result);
 	else
@@ -103,6 +103,6 @@ int	bin_exec(char **cmd)
 		return (path_result);
 	envp = ft_getenvp();
 	execve(bin_path, cmd, envp);
-	perror("gigachell: execve");
+	perror("gigachell");
 	return (1);
 }
