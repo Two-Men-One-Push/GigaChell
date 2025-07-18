@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 21:31:53 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 17:17:49 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/18 05:29:22 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	parse_heredoc(char *cmd, t_hd_node **heredoc_list)
 	int		heredoc_result;
 
 	i = 0;
+	*heredoc_list = NULL;
 	while (cmd[i])
 	{
 		if (cmd[i] == '\'')
