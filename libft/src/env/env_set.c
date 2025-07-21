@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:16:37 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 21:58:49 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/19 23:37:29 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,15 @@ static int	set_var(char **var, char *var_name, char *value, size_t	name_len)
 	return (0);
 }
 
-int	push_var(t_env *env, char *var_name, char *value, size_t i)
+int	push_var(t_env *env, char *var_name, char *value, size_t pos)
 {
-	if (i == env->capacity - 1)
-		increase_env_capacity(env);
-	env->data[i] = strjoinall(3, var_name, "=", value);
-	env->data[i + 1] = NULL;
+	if (pos == env->capacity - 1)
+		if (increase_env_capacity(env))
+			return (1);
+	env->data[pos] = strjoinall(3, var_name, "=", value);
+	env->data[pos + 1] = NULL;
+	if (!env->data[pos])
+		return (1);
 	return (0);
 }
 
@@ -49,11 +52,11 @@ int	env_set(t_env *env, char *var_name, char *value)
 {
 	const size_t	name_len = ft_strlen(var_name);
 	char			**env_tab;
-	char			**unsetted_var;
+	char			**replaced_var;
 	size_t			i;
 
 	env_tab = env->data;
-	unsetted_var = NULL;
+	replaced_var = NULL;
 	i = 0;
 	while (env_tab[i])
 	{
@@ -65,10 +68,10 @@ int	env_set(t_env *env, char *var_name, char *value)
 				return (replace_var(env_tab + i, var_name, value));
 		}
 		if (!ft_strchr(env_tab[i], '='))
-			unsetted_var = env_tab + i;
+			replaced_var = env_tab + i;
 		++i;
 	}
-	if (unsetted_var)
-		return (replace_var(unsetted_var, var_name, value));
+	if (replaced_var)
+		return (replace_var(replaced_var, var_name, value));
 	return (push_var(env, var_name, value, i));
 }
