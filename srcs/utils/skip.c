@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   skip.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:54:47 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/12 11:36:19 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/07/21 23:56:26 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "heredoc.h"
 #include "utils.h"
 
 #include <stdio.h>
