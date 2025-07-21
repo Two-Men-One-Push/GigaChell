@@ -6,13 +6,14 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:54:47 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/21 23:56:26 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/21 23:59:47 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stddef.h>
 
+#include "heredoc.h"
 #include "utils.h"
 
 #include <stdio.h>
