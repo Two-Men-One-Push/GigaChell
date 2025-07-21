@@ -6,15 +6,17 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/18 05:56:34 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/21 22:19:37 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
+#include "ft_readline.h"
 #include "defs/hd_node.h"
 #include "defs/configs.h"
 #include "env.h"
@@ -58,10 +60,11 @@ static int	main_loop(void)
 	char	*line;
 
 	old_status = 0;
+	rl_outstream = stderr;
 	while (true)
 	{
 		handling_prompt_signal();
-		line = readline(GIGACHELL_PROMPT);
+		line = ft_readline(GIGACHELL_PROMPT);
 		handling_execution_signal();
 		if (!line)
 			return (old_status);
