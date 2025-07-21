@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/21 22:19:37 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/21 23:31:25 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,14 @@ int	main(int ac, char **av, char **envp)
 
 	(void)av;
 	(void)ac;
+	if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO))
+	{
+		write(2, "Error: Use a tty\n", 17);
+		return (1);
+	}
 	if (ft_initenv(envp))
 	{
-		perror("gigachell: ft_initenv");
+		perror("gigachell");
 		return (1);
 	}
 	status = main_loop();
