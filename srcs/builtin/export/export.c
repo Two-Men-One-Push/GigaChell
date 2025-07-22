@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:24:33 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/17 03:16:21 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/23 00:41:44 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,40 @@
 #include <unistd.h>
 #include "env.h"
 #include "builtins.h"
+#include "libft.h"
+
+void	export_var(int argi, char **argv)
+{
+	int		j;
+
+	j = 0;
+	while (argv[argi][j])
+	{
+		if (argv[argi][j] == '=')
+		{
+			argv[argi][j] = '\0';
+			ft_setenv(argv[argi], &argv[argi][j + 1]);
+			break ;
+		}
+		if (j == 0 && !is_env_var_start(argv[argi][j]))
+		{
+			write(2, "bash: export: `", 16);
+			write(2, argv[argi], ft_strlen(argv[argi]));
+			write(2, "': not a valid identifier\n", 27);
+		}
+		++j;
+	}
+}
 
 int	ft_export(int argc, char **argv, t_redirect_fd *redirect)
 {
 	int		i;
-	int		j;
 
 	(void)redirect;
 	i = 1;
 	while (i < argc)
 	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (argv[i][j] == '=')
-			{
-				argv[i][j] = '\0';
-				ft_setenv(argv[i], &argv[i][j + 1]);
-				break ;
-			}
-			++j;
-		}
+		export_var(i, argv);
 		++i;
 	}
 	return (0);
