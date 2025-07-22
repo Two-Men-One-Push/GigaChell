@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:36:59 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 22:00:12 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/21 20:33:06 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	realloc_env(t_env *env, size_t new_capacity)
 	new_data[i] = NULL;
 	free(env->data);
 	env->data = new_data;
+	env->capacity = new_capacity;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:52:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/30 23:06:29 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/19 23:36:52 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	env_init(t_env *env, char **envp)
 	capacity = ENV_MIN_CAPACITY;
 	i = -1;
 	while (envp[++i])
-		if (i > capacity - 1)
+		if (i >= capacity - 1)
 			capacity *= 2;
-	env->data = malloc(capacity * sizeof(char *));
+	env->data = malloc((capacity + 1) * sizeof(char *));
 	if (!env->data)
 		return (1);
 	env->capacity = capacity;

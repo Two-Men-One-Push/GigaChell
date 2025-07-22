@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   configs.h                                          :+:      :+:    :+:   */
+/*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 07:15:10 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/18 05:56:23 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/07/21 22:13:00 by ebini             #+#    #+#             */
+/*   Updated: 2025/07/21 22:15:10 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONFIGS_H
-# define CONFIGS_H
+#include <readline/readline.h>
+#include <unistd.h>
 
-# define GIGACHELL_PROMPT "GigaChell> "
-# define HEREDOC_PROMPT "> "
-
-#endif
+char	*ft_readline(char *prompt)
+{
+	if (isatty(0))
+		return (readline(prompt));
+	else
+		return (readline(NULL));
+}

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/06/28 00:42:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/07/18 06:28:46 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ int	logic_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 		if (!cmd[i])
 			return (pipe_exec(str_extract(cmd, i), last_status, heredoc_list));
 		last_status = pipe_exec(str_extract(cmd, i), last_status, heredoc_list);
-		if (handle_status(last_status, cmd, &i, heredoc_list))
+		if (last_status < 0
+			|| handle_status(last_status, cmd, &i, heredoc_list))
 			return (last_status);
 		cmd += i;
 		i = 0;
