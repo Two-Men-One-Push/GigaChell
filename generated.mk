@@ -8,9 +8,7 @@ HEADERS =	\
 SRCS =	\
 	./srcs/alloc/smalloc.c\
 	./srcs/bin_exec.c\
-	./srcs/builtin/builtin_utils.c\
 	./srcs/builtin/cd/cd.c\
-	./srcs/builtin/cd/cd_utils.c\
 	./srcs/builtin/echo/echo.c\
 	./srcs/builtin/env/env.c\
 	./srcs/builtin/exit/exit.c\
@@ -30,8 +28,8 @@ SRCS =	\
 	./srcs/here_doc/heredoc.c\
 	./srcs/logic_exec.c\
 	./srcs/neutral_cmd_exec.c\
-	./srcs/parsing/expand/expand.c\
 	./srcs/parsing/expand/expand_core.c\
+	./srcs/parsing/expand/expand.c\
 	./srcs/parsing/skipto.c\
 	./srcs/parsing/syntax/syntax_operator.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_and.c\
@@ -71,19 +69,17 @@ SRCS =	\
 	./srcs/utils/identifiers/is_var_name.c\
 	./srcs/utils/parse_arg.c\
 	./srcs/utils/secure_close.c\
-	./srcs/utils/skip.c\
 	./srcs/utils/str_extract.c\
 	./srcs/utils/tab_utils.c\
 	./srcs/utils/unquote.c\
 	./srcs/utils/ft_readline.c\
+	./srcs/utils/skip.c\
 	./srcs/main.c
 
 OBJS =	\
 	./build/smalloc.o\
 	./build/bin_exec.o\
-	./build/builtin_utils.o\
 	./build/cd.o\
-	./build/cd_utils.o\
 	./build/echo.o\
 	./build/env.o\
 	./build/exit.o\
@@ -103,8 +99,8 @@ OBJS =	\
 	./build/heredoc.o\
 	./build/logic_exec.o\
 	./build/neutral_cmd_exec.o\
-	./build/expand.o\
 	./build/expand_core.o\
+	./build/expand.o\
 	./build/skipto.o\
 	./build/syntax_operator.o\
 	./build/syntax_and.o\
@@ -144,19 +140,17 @@ OBJS =	\
 	./build/is_var_name.o\
 	./build/parse_arg.o\
 	./build/secure_close.o\
-	./build/skip.o\
 	./build/str_extract.o\
 	./build/tab_utils.o\
 	./build/unquote.o\
 	./build/ft_readline.o\
+	./build/skip.o\
 	./build/main.o
 
 DEPS =	\
 	./build/smalloc.d\
 	./build/bin_exec.d\
-	./build/builtin_utils.d\
 	./build/cd.d\
-	./build/cd_utils.d\
 	./build/echo.d\
 	./build/env.d\
 	./build/exit.d\
@@ -176,8 +170,8 @@ DEPS =	\
 	./build/heredoc.d\
 	./build/logic_exec.d\
 	./build/neutral_cmd_exec.d\
-	./build/expand.d\
 	./build/expand_core.d\
+	./build/expand.d\
 	./build/skipto.d\
 	./build/syntax_operator.d\
 	./build/syntax_and.d\
@@ -217,11 +211,11 @@ DEPS =	\
 	./build/is_var_name.d\
 	./build/parse_arg.d\
 	./build/secure_close.d\
-	./build/skip.d\
 	./build/str_extract.d\
 	./build/tab_utils.d\
 	./build/unquote.d\
 	./build/ft_readline.d\
+	./build/skip.d\
 	./build/main.d
 
 $(BUILD_DIR):
@@ -235,15 +229,7 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/builtin_utils.o: ./srcs/builtin/builtin_utils.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
 ./build/cd.o: ./srcs/builtin/cd/cd.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
-./build/cd_utils.o: ./srcs/builtin/cd/cd_utils.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
@@ -323,11 +309,11 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/expand.o: ./srcs/parsing/expand/expand.c | $(BUILD_DIR)
+./build/expand_core.o: ./srcs/parsing/expand/expand_core.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/expand_core.o: ./srcs/parsing/expand/expand_core.c | $(BUILD_DIR)
+./build/expand.o: ./srcs/parsing/expand/expand.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
@@ -487,10 +473,6 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/skip.o: ./srcs/utils/skip.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
 ./build/str_extract.o: ./srcs/utils/str_extract.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
@@ -504,6 +486,10 @@ $(BUILD_DIR):
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/ft_readline.o: ./srcs/utils/ft_readline.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/skip.o: ./srcs/utils/skip.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 

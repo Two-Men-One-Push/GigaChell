@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 20:12:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 15:59:17 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/07/30 23:14:32 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	add_env_var(char *str, size_t *i, char **filename)
 	if (!new_filename)
 		return (1);
 	*filename = new_filename;
-	*i += 2;
+	*i += 1;
 	while (is_var_char(str[*i]))
 		++*i;
 	return (0);
