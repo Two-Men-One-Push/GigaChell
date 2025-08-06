@@ -31,7 +31,6 @@ SRCS =	\
 	./srcs/parsing/expand/expand_core.c\
 	./srcs/parsing/expand/expand.c\
 	./srcs/parsing/skipto.c\
-	./srcs/parsing/syntax/syntax_operator.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_and.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_append.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_close.c\
@@ -44,6 +43,7 @@ SRCS =	\
 	./srcs/parsing/syntax/syntax_operator/syntax_pipe.c\
 	./srcs/parsing/syntax/syntax_operator/syntax_squote.c\
 	./srcs/parsing/syntax/syntaxer.c\
+	./srcs/parsing/syntax/syntax_operator.c\
 	./srcs/pipe_exec.c\
 	./srcs/piped_cmd_exec.c\
 	./srcs/redirections/apply_redirection.c\
@@ -102,7 +102,6 @@ OBJS =	\
 	./build/expand_core.o\
 	./build/expand.o\
 	./build/skipto.o\
-	./build/syntax_operator.o\
 	./build/syntax_and.o\
 	./build/syntax_append.o\
 	./build/syntax_close.o\
@@ -115,6 +114,7 @@ OBJS =	\
 	./build/syntax_pipe.o\
 	./build/syntax_squote.o\
 	./build/syntaxer.o\
+	./build/syntax_operator.o\
 	./build/pipe_exec.o\
 	./build/piped_cmd_exec.o\
 	./build/apply_redirection.o\
@@ -173,7 +173,6 @@ DEPS =	\
 	./build/expand_core.d\
 	./build/expand.d\
 	./build/skipto.d\
-	./build/syntax_operator.d\
 	./build/syntax_and.d\
 	./build/syntax_append.d\
 	./build/syntax_close.d\
@@ -186,6 +185,7 @@ DEPS =	\
 	./build/syntax_pipe.d\
 	./build/syntax_squote.d\
 	./build/syntaxer.d\
+	./build/syntax_operator.d\
 	./build/pipe_exec.d\
 	./build/piped_cmd_exec.d\
 	./build/apply_redirection.d\
@@ -321,10 +321,6 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/syntax_operator.o: ./srcs/parsing/syntax/syntax_operator.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
 ./build/syntax_and.o: ./srcs/parsing/syntax/syntax_operator/syntax_and.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
@@ -370,6 +366,10 @@ $(BUILD_DIR):
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/syntaxer.o: ./srcs/parsing/syntax/syntaxer.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/syntax_operator.o: ./srcs/parsing/syntax/syntax_operator.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
