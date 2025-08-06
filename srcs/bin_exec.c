@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 06:46:12 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/04 14:03:10 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/06 22:36:21 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,10 @@ int	get_bin_path(char *cmd, char *path, char **result)
 	folders = ft_split(path, ':');
 	if (!folders)
 		return (1);
-	if (!*folders)
-	{
-		free(folders);
-		return (127);
-	}
-	if (*cmd)
+	if (*folders && *cmd)
 		status = find_bin(folders, cmd, result);
 	else
-		ft_dprintf(STDERR_FILENO, "gigachell: command not found: \n");
+		ft_dprintf(STDERR_FILENO, "gigachell: command not found: %s\n", cmd);
 	free_split(folders);
 	return (status);
 }
