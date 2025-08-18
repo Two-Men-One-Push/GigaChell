@@ -6,12 +6,13 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/21 23:56:10 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/18 19:00:12 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <strings.h>
 #include <unistd.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -21,8 +22,10 @@
 #include "defs/configs.h"
 #include "env.h"
 #include "gigachell.h"
+#include "readline_hack.h"
 #include "syntax.h"
 #include "signal_handling.h"
+#include "readline_hack.h"
 
 static int	run_command(char *line, int last_status)
 {
@@ -100,5 +103,7 @@ int	main(int ac, char **av, char **envp)
 	status = main_loop();
 	rl_clear_history();
 	ft_clearenv();
+	readline_clean_hack();
 	return (status);
 }
+
