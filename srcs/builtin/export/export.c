@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:24:33 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/23 00:41:44 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:17:38 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	export_var(int argi, char **argv)
 	{
 		if (argv[argi][j] == '=')
 		{
+			if (j < 1)
+				return ;
 			argv[argi][j] = '\0';
 			ft_setenv(argv[argi], &argv[argi][j + 1]);
 			break ;
