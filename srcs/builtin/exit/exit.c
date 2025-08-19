@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 19:47:47 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/06 14:11:09 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:47:01 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	ft_exit(int argc, char **argv, t_redirect_fd *redirect)
 	long	val;
 
 	(void)redirect;
+	ft_dprintf(STDERR_FILENO, "exit\n");
 	if (argc > 1)
 	{
 		if (isanumber(argv[1]) || satol(argv[1], &val))
