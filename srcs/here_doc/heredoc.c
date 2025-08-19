@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/18 05:29:16 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/19 16:29:13 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	handle_loop_end(char *line)
 		}
 		write(2, "warning: expected limiter before EOF\n", 37);
 	}
+	free(line);
 	return (0);
 }
 
