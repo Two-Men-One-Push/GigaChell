@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:25:26 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/30 23:06:14 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 00:09:20 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ int	ft_cd(int argc, char **argv, t_redirect_fd *redirect)
 		return (1);
 	}
 	new_pwd = getcwd(NULL, 0);
-	if (!new_pwd)
+	if (!new_pwd || ft_setenv("PWD", new_pwd))
 	{
 		perror("gigachell: cd");
+		free(new_pwd);
 		return (1);
 	}
+	free(new_pwd);
 	return (0);
 }
