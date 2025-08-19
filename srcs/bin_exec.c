@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 06:46:12 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/18 06:30:40 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/19 18:16:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	get_bin_path(char *cmd, char *path, char **result)
 	char	**folders;
 	int		status;
 
+	status = 127;
 	if (ft_strchr(cmd, '/'))
 		return (handle_path(cmd, result));
 	if (!*path)
@@ -81,13 +82,10 @@ int	get_bin_path(char *cmd, char *path, char **result)
 	folders = ft_split(path, ':');
 	if (!folders)
 		return (1);
-	if (*cmd)
+	if (*folders && *cmd)
 		status = find_bin(folders, cmd, result);
 	else
-	{
-		status = 127;
-		ft_dprintf(STDERR_FILENO, "gigachell: command not found: \n");
-	}
+		ft_dprintf(STDERR_FILENO, "gigachell: command not found: %s\n", cmd);
 	free_split(folders);
 	return (status);
 }
@@ -102,7 +100,14 @@ int	bin_exec(char **cmd)
 	if (path_result)
 		return (path_result);
 	envp = ft_getenvp();
+	if (!envp)
+	{
+		perror("gigachell");
+		return (1);
+	}
 	execve(bin_path, cmd, envp);
+	free(envp);
+	free(bin_path);
 	perror("gigachell");
 	return (1);
 }

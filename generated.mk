@@ -7,9 +7,14 @@ HEADERS =	\
 
 SRCS =	\
 	./srcs/alloc/smalloc.c\
+<<<<<<< HEAD
 	./srcs/builtin/cd/cd.c\
 	./srcs/builtin/cd/cd_utils.c\
 	./srcs/builtin/builtin_utils.c\
+=======
+	./srcs/bin_exec.c\
+	./srcs/builtin/cd/cd.c\
+>>>>>>> main
 	./srcs/builtin/echo/echo.c\
 	./srcs/builtin/env/env.c\
 	./srcs/builtin/exit/exit.c\
@@ -26,6 +31,12 @@ SRCS =	\
 	./srcs/here_doc/heredoc.c\
 	./srcs/here_doc/parse_heredoc.c\
 	./srcs/here_doc/tmp_fd.c\
+<<<<<<< HEAD
+=======
+	./srcs/here_doc/heredoc.c\
+	./srcs/logic_exec.c\
+	./srcs/neutral_cmd_exec.c\
+>>>>>>> main
 	./srcs/parsing/expand/expand_core.c\
 	./srcs/parsing/expand/expand.c\
 	./srcs/parsing/skipto.c\
@@ -42,6 +53,12 @@ SRCS =	\
 	./srcs/parsing/syntax/syntax_operator/syntax_squote.c\
 	./srcs/parsing/syntax/syntax_operator.c\
 	./srcs/parsing/syntax/syntaxer.c\
+<<<<<<< HEAD
+=======
+	./srcs/parsing/syntax/syntax_operator.c\
+	./srcs/pipe_exec.c\
+	./srcs/piped_cmd_exec.c\
+>>>>>>> main
 	./srcs/redirections/apply_redirection.c\
 	./srcs/redirections/clear_redirection.c\
 	./srcs/redirections/get_redirect_file.c\
@@ -63,10 +80,16 @@ SRCS =	\
 	./srcs/utils/get_heredoc_limiter.c\
 	./srcs/utils/parse_arg.c\
 	./srcs/utils/secure_close.c\
+<<<<<<< HEAD
+=======
+	./srcs/utils/str_extract.c\
+	./srcs/utils/tab_utils.c\
+>>>>>>> main
 	./srcs/utils/unquote.c\
 	./srcs/utils/tab_utils.c\
 	./srcs/utils/ft_readline.c\
 	./srcs/utils/skip.c\
+<<<<<<< HEAD
 	./srcs/handle_piped_segment.c\
 	./srcs/signal/signal_init.c\
 	./srcs/signal/handler.c\
@@ -83,6 +106,14 @@ OBJS =	\
 	./build/cd.o\
 	./build/cd_utils.o\
 	./build/builtin_utils.o\
+=======
+	./srcs/main.c
+
+OBJS =	\
+	./build/smalloc.o\
+	./build/bin_exec.o\
+	./build/cd.o\
+>>>>>>> main
 	./build/echo.o\
 	./build/env.o\
 	./build/exit.o\
@@ -99,6 +130,12 @@ OBJS =	\
 	./build/heredoc.o\
 	./build/parse_heredoc.o\
 	./build/tmp_fd.o\
+<<<<<<< HEAD
+=======
+	./build/heredoc.o\
+	./build/logic_exec.o\
+	./build/neutral_cmd_exec.o\
+>>>>>>> main
 	./build/expand_core.o\
 	./build/expand.o\
 	./build/skipto.o\
@@ -115,6 +152,12 @@ OBJS =	\
 	./build/syntax_squote.o\
 	./build/syntax_operator.o\
 	./build/syntaxer.o\
+<<<<<<< HEAD
+=======
+	./build/syntax_operator.o\
+	./build/pipe_exec.o\
+	./build/piped_cmd_exec.o\
+>>>>>>> main
 	./build/apply_redirection.o\
 	./build/clear_redirection.o\
 	./build/get_redirect_file.o\
@@ -136,10 +179,16 @@ OBJS =	\
 	./build/get_heredoc_limiter.o\
 	./build/parse_arg.o\
 	./build/secure_close.o\
+<<<<<<< HEAD
+=======
+	./build/str_extract.o\
+	./build/tab_utils.o\
+>>>>>>> main
 	./build/unquote.o\
 	./build/tab_utils.o\
 	./build/ft_readline.o\
 	./build/skip.o\
+<<<<<<< HEAD
 	./build/handle_piped_segment.o\
 	./build/signal_init.o\
 	./build/handler.o\
@@ -156,6 +205,14 @@ DEPS =	\
 	./build/cd.d\
 	./build/cd_utils.d\
 	./build/builtin_utils.d\
+=======
+	./build/main.o
+
+DEPS =	\
+	./build/smalloc.d\
+	./build/bin_exec.d\
+	./build/cd.d\
+>>>>>>> main
 	./build/echo.d\
 	./build/env.d\
 	./build/exit.d\
@@ -172,6 +229,12 @@ DEPS =	\
 	./build/heredoc.d\
 	./build/parse_heredoc.d\
 	./build/tmp_fd.d\
+<<<<<<< HEAD
+=======
+	./build/heredoc.d\
+	./build/logic_exec.d\
+	./build/neutral_cmd_exec.d\
+>>>>>>> main
 	./build/expand_core.d\
 	./build/expand.d\
 	./build/skipto.d\
@@ -188,6 +251,12 @@ DEPS =	\
 	./build/syntax_squote.d\
 	./build/syntax_operator.d\
 	./build/syntaxer.d\
+<<<<<<< HEAD
+=======
+	./build/syntax_operator.d\
+	./build/pipe_exec.d\
+	./build/piped_cmd_exec.d\
+>>>>>>> main
 	./build/apply_redirection.d\
 	./build/clear_redirection.d\
 	./build/get_redirect_file.d\
@@ -209,10 +278,16 @@ DEPS =	\
 	./build/get_heredoc_limiter.d\
 	./build/parse_arg.d\
 	./build/secure_close.d\
+<<<<<<< HEAD
+=======
+	./build/str_extract.d\
+	./build/tab_utils.d\
+>>>>>>> main
 	./build/unquote.d\
 	./build/tab_utils.d\
 	./build/ft_readline.d\
 	./build/skip.d\
+<<<<<<< HEAD
 	./build/handle_piped_segment.d\
 	./build/signal_init.d\
 	./build/handler.d\
@@ -223,6 +298,9 @@ DEPS =	\
 	./build/logic_exec.d\
 	./build/main.d\
 	./build/pipe_exec.d
+=======
+	./build/main.d
+>>>>>>> main
 
 $(BUILD_DIR):
 	@mkdir -p $@
@@ -231,10 +309,18 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
+<<<<<<< HEAD
+=======
+./build/bin_exec.o: ./srcs/bin_exec.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+>>>>>>> main
 ./build/cd.o: ./srcs/builtin/cd/cd.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
+<<<<<<< HEAD
 ./build/cd_utils.o: ./srcs/builtin/cd/cd_utils.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
@@ -243,6 +329,8 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
+=======
+>>>>>>> main
 ./build/echo.o: ./srcs/builtin/echo/echo.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
@@ -311,6 +399,7 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
+<<<<<<< HEAD
 ./build/expand.o: ./srcs/parsing/expand/expand.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
@@ -319,6 +408,20 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
+=======
+./build/expand_core.o: ./srcs/parsing/expand/expand_core.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/expand.o: ./srcs/parsing/expand/expand.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/skipto.o: ./srcs/parsing/skipto.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+>>>>>>> main
 ./build/syntax_and.o: ./srcs/parsing/syntax/syntax_operator/syntax_and.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
@@ -371,6 +474,21 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
+<<<<<<< HEAD
+=======
+./build/syntax_operator.o: ./srcs/parsing/syntax/syntax_operator.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/pipe_exec.o: ./srcs/pipe_exec.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/piped_cmd_exec.o: ./srcs/piped_cmd_exec.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+>>>>>>> main
 ./build/apply_redirection.o: ./srcs/redirections/apply_redirection.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
@@ -455,7 +573,11 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
+<<<<<<< HEAD
 ./build/unquote.o: ./srcs/utils/unquote.c | $(BUILD_DIR)
+=======
+./build/str_extract.o: ./srcs/utils/str_extract.c | $(BUILD_DIR)
+>>>>>>> main
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
@@ -500,6 +622,10 @@ $(BUILD_DIR):
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/logic_exec.o: ./srcs/logic_exec.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/skip.o: ./srcs/utils/skip.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 

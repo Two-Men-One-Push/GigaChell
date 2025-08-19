@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 06:57:12 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/07/21 23:57:35 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/20 00:08:57 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,20 @@ char	**strtotab(char *str, size_t len)
 			++i;
 	}
 	tab[j] = NULL;
-	free(str);
 	return (tab);
 }
 
 char	**expand(char *cmd, int status)
 {
-	char	*tab;
+	char	**tab;
+	char	*str;
 	size_t	len;
 
 	len = expand_len(cmd, status);
-	if (smalloc((void **)&tab, (len + 1) * sizeof(char)))
+	if (smalloc((void **)&str, (len + 1) * sizeof(char)))
 		return (NULL);
-	expand_fill(tab, cmd, status);
-	return (strtotab(tab, len));
+	expand_fill(str, cmd, status);
+	tab = strtotab(str, len);
+	free(str);
+	return (tab);
 }
