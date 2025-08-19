@@ -6,7 +6,7 @@
 #    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/08/19 16:24:49 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/08/19 18:50:00 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ LIBFT_DIR			=	./libft/
 LIBFT_ARCHIVE		=	$(LIBFT_DIR)libft.a
 
 CC					=	cc
-CFLAGS				=	-fno-pie -Wall -Wextra -Werror -g3 $(CMD_CFLAGS)
-LDLIBS				=	-L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
+CFLAGS				=	-Wall -Wextra -Werror -g3 $(CMD_CFLAGS)
+LDLIBS				=	-lreadline -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
 
 NAME				=	minishell
 
@@ -33,7 +33,7 @@ all: $(NAME)
 -include $(MKCONFIGURE) $(MKGENERATED)
 
 $(NAME): $(OBJS) $(LIBFT_ARCHIVE)
-	@$(CC) $(CFLAGS) $(HEADERS) -o $@ $(OBJS) ./libreadline.a ./libncurses.a $(LDLIBS)
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ $(OBJS) $(LDLIBS)
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 $(LIBFT_ARCHIVE): FORCE

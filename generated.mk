@@ -22,8 +22,8 @@ SRCS =	\
 	./srcs/here_doc/heredoc_list/hd_pop.c\
 	./srcs/here_doc/heredoc_list/hd_move.c\
 	./srcs/here_doc/tmp_fd.c\
-	./srcs/here_doc/heredoc.c\
 	./srcs/here_doc/parse_heredoc.c\
+	./srcs/here_doc/heredoc.c\
 	./srcs/parsing/expand/expand_core.c\
 	./srcs/parsing/expand/expand.c\
 	./srcs/parsing/skipto.c\
@@ -68,14 +68,15 @@ SRCS =	\
 	./srcs/signal/signal_init.c\
 	./srcs/signal/handler.c\
 	./srcs/piped_cmd_exec.c\
-	./srcs/bin_exec.c\
 	./srcs/handle_piped_segment.c\
 	./srcs/logic_exec.c\
-	./srcs/main.c\
 	./srcs/neutral_cmd_exec.c\
 	./srcs/pipe_exec.c\
 	./srcs/subshell_exec.c\
-	./srcs/readline_hack.c
+	./srcs/bin_exec.c\
+	./srcs/main.c\
+	./srcs/readline_hack/patch_readline_leaks.c\
+	./srcs/readline_hack/find_readline_section.c
 
 OBJS =	\
 	./build/smalloc.o\
@@ -94,8 +95,8 @@ OBJS =	\
 	./build/hd_pop.o\
 	./build/hd_move.o\
 	./build/tmp_fd.o\
-	./build/heredoc.o\
 	./build/parse_heredoc.o\
+	./build/heredoc.o\
 	./build/expand_core.o\
 	./build/expand.o\
 	./build/skipto.o\
@@ -140,14 +141,15 @@ OBJS =	\
 	./build/signal_init.o\
 	./build/handler.o\
 	./build/piped_cmd_exec.o\
-	./build/bin_exec.o\
 	./build/handle_piped_segment.o\
 	./build/logic_exec.o\
-	./build/main.o\
 	./build/neutral_cmd_exec.o\
 	./build/pipe_exec.o\
 	./build/subshell_exec.o\
-	./build/readline_hack.o
+	./build/bin_exec.o\
+	./build/main.o\
+	./build/patch_readline_leaks.o\
+	./build/find_readline_section.o
 
 DEPS =	\
 	./build/smalloc.d\
@@ -166,8 +168,8 @@ DEPS =	\
 	./build/hd_pop.d\
 	./build/hd_move.d\
 	./build/tmp_fd.d\
-	./build/heredoc.d\
 	./build/parse_heredoc.d\
+	./build/heredoc.d\
 	./build/expand_core.d\
 	./build/expand.d\
 	./build/skipto.d\
@@ -212,14 +214,15 @@ DEPS =	\
 	./build/signal_init.d\
 	./build/handler.d\
 	./build/piped_cmd_exec.d\
-	./build/bin_exec.d\
 	./build/handle_piped_segment.d\
 	./build/logic_exec.d\
-	./build/main.d\
 	./build/neutral_cmd_exec.d\
 	./build/pipe_exec.d\
 	./build/subshell_exec.d\
-	./build/readline_hack.d
+	./build/bin_exec.d\
+	./build/main.d\
+	./build/patch_readline_leaks.d\
+	./build/find_readline_section.d
 
 $(BUILD_DIR):
 	@mkdir -p $@
@@ -288,11 +291,11 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/heredoc.o: ./srcs/here_doc/heredoc.c | $(BUILD_DIR)
+./build/parse_heredoc.o: ./srcs/here_doc/parse_heredoc.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/parse_heredoc.o: ./srcs/here_doc/parse_heredoc.c | $(BUILD_DIR)
+./build/heredoc.o: ./srcs/here_doc/heredoc.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
@@ -472,19 +475,11 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/bin_exec.o: ./srcs/bin_exec.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
 ./build/handle_piped_segment.o: ./srcs/handle_piped_segment.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/logic_exec.o: ./srcs/logic_exec.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
-./build/main.o: ./srcs/main.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
@@ -500,6 +495,18 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/readline_hack.o: ./srcs/readline_hack.c | $(BUILD_DIR)
+./build/bin_exec.o: ./srcs/bin_exec.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/main.o: ./srcs/main.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/patch_readline_leaks.o: ./srcs/readline_hack/patch_readline_leaks.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/find_readline_section.o: ./srcs/readline_hack/find_readline_section.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@

@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/19 16:50:29 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/19 22:03:57 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	main(int ac, char **av, char **envp)
 	status = main_loop();
 	rl_clear_history();
 	ft_clearenv();
-	patch_readline_leaks();
+	printf("main address at -> %p\n", (void *)main);
+	printf("bss sector at -> %p\n", find_bss_start((void *)main));
 	return (status);
 }
