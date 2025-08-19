@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 06:46:12 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/06 22:36:21 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/19 18:16:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,14 @@ int	bin_exec(char **cmd)
 	if (path_result)
 		return (path_result);
 	envp = ft_getenvp();
+	if (!envp)
+	{
+		perror("gigachell");
+		return (1);
+	}
 	execve(bin_path, cmd, envp);
+	free(envp);
+	free(bin_path);
 	perror("gigachell");
 	return (1);
 }
