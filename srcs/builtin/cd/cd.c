@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 01:25:26 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/20 04:08:12 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 04:10:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 int	update_env(char *new_pwd)
 {
-	int result;
+	int	result;
 
 	result = 0;
 	if (ft_setenv("OLDPWD", ft_getenv("PWD")))
