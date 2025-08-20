@@ -6,7 +6,7 @@
 #    By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/08/07 18:42:58 by ebini            ###   ########lyon.fr    #
+#    Updated: 2025/08/20 03:58:49 by ebini            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,10 @@ LIBFT_DIR			=	./libft/
 LIBFT_ARCHIVE		=	$(LIBFT_DIR)libft.a
 
 CC					=	cc
-CFLAGS				=	-Wall -Wextra -Werror -g3 $(CMD_CFLAGS)
+CFLAGS				=	-Wall -Wextra -Werror $(CMD_CFLAGS)
 LDLIBS				=	-lreadline -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
 
 NAME				=	minishell
-
 
 all: $(NAME)
 	@echo -e $(GREEN)Successfully Built $(NAME)$(RESET)
