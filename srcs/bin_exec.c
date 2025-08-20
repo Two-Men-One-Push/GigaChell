@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 06:46:12 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/20 03:49:34 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 04:03:02 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	bin_exec(char **cmd)
 	path_result = get_bin_path(*cmd, ft_getenv("PATH"), &bin_path);
 	if (path_result)
 		return (path_result);
-	envp = NULL;
+	envp = ft_getenvp();
 	if (!envp)
 	{
 		free(bin_path);
