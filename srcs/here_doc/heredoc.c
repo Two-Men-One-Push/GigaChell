@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/19 16:29:13 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 04:14:41 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <signal.h>
 #include <readline/readline.h>
 
 #include "libft.h"
@@ -82,9 +83,9 @@ static int	heredoc_loop(int fd, char *limiter, bool expand)
 	line = readline(HEREDOC_PROMPT);
 	while (line && ft_strcmp(line, limiter))
 	{
-		if (g_sigint)
+		if (g_signum == SIGINT)
 		{
-			g_sigint = 0;
+			g_signum = 0;
 			free(line);
 			return (-2);
 		}
