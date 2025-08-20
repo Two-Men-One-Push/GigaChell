@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 21:21:04 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/07/17 01:12:18 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 03:51:49 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,4 @@ void	handling_heredoc_signal(void)
 	sigemptyset(&sig_sa.sa_mask);
 	rl_event_hook = signal_event_hook;
 	sigaction(SIGINT, &sig_sa, NULL);
-	sigaction(SIGQUIT, &sig_sa, NULL);
 }
