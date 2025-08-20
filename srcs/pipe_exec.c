@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/18 06:29:19 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 04:38:56 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	swap_pipe(t_pipe_fd *pipe_fd, bool is_last)
 	}
 	if (pipe(fd_buffer))
 	{
-		perror("gigachell: pipe");
+		perror("gigachell");
 		secure_close(pipe_fd->next_in);
 		return (-1);
 	}
@@ -77,12 +77,12 @@ static int	wait_children(t_pipe_result pipe_result)
 
 	last_wait_result = waitpid(pipe_result.pid, &stat_loc, 0);
 	if (last_wait_result < 0)
-		perror("gigachell: waitpid");
+		perror("gigachell");
 	errno = 0;
 	while (wait(NULL) >= 0)
 		;
 	if (errno != ECHILD)
-		perror("gigachell: wait");
+		perror("gigachell");
 	if (errno != ECHILD || last_wait_result < 0)
 		return (-1);
 	if (WIFEXITED(stat_loc))

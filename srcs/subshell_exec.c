@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:39:50 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 17:38:53 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 04:41:21 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ t_pipe_result	subshell_exec(char *cmd, int last_satus, t_pipe_fd *pipe_fd,
 	pid = fork();
 	if (pid)
 	{
+		if (pid < 0)
+			perror("gigachell");
 		hd_clear(&subshell_heredoc_list);
 		return ((t_pipe_result){.type = PROC_MAIN, .pid = pid});
 	}

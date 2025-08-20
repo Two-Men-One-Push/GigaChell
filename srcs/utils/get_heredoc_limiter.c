@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 06:16:34 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/11 05:38:59 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 05:10:24 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_limiter(char *cmd, size_t *i, bool *expand)
 	limiter = ft_strndup(lim_start, lim_len);
 	if (!limiter)
 	{
-		perror("gigachell: get_limiter");
+		perror("gigachell");
 		return (NULL);
 	}
 	str_unquote(limiter);

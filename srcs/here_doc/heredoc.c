@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/20 04:14:41 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 05:15:47 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,20 @@ int	write_line(int fd, char *line, bool parse)
 	size_t	line_len;
 
 	if (parse)
+	{
 		line = parse_arg(line, false);
+		if (!line)
+		{
+			perror("gigachell");
+			return (-1);
+		}
+	}
 	line_len = ft_strlen(line);
 	line[line_len] = '\n';
 	++line_len;
 	if (write(fd, line, line_len) != (ssize_t)line_len)
 	{
-		perror("gigachell: write");
+		perror("gigachell");
 		if (parse)
 			free(line);
 		return (-1);
@@ -120,9 +127,10 @@ int	create_here_doc(char *limiter, bool expand)
 		return (heredoc_loop_result);
 	}
 	fd = open(filename, O_RDONLY);
-	unlink(filename);
-	free(filename);
 	if (fd < 0)
 		perror("minishell");
+	if (unlink(filename))
+		perror("minishell");
+	free(filename);
 	return (fd);
 }

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 06:46:12 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/20 04:03:02 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 04:23:16 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ int	get_bin_path(char *cmd, char *path, char **result)
 	}
 	folders = ft_split(path, ':');
 	if (!folders)
+	{
+		perror("gigachell");
 		return (1);
+	}
 	if (*folders && *cmd)
 		status = find_bin(folders, cmd, result);
 	else
