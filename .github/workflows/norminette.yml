@@ -8,24 +8,17 @@ jobs:
   norminette-check:
     runs-on: ubuntu-latest
     name: "Norminette Check"
-
     steps:
-      - name: Checkout user code
-        uses: actions/checkout@v3
-
-      - name: Install Python3
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-            python-version: "3.10"
-
-      - name: Install Norminette using pip
-        run: |
-            python3 -m pip install -U norminette
-
-      - name: Execute Norminette
-        run: |
-            output=$(norminette -RCheckForbiddenSourceHeader 2>&1 | grep "Error:")
-            if [ -n "$output" ]; then
-                echo "Norm Error"
-                exit 1
-            fi
+          python-version: '3.13'
+      - run: python3 -m pip install --break-system-packages -U norminette
+      - run: |
+          if [ -n "$(norminette -RCheckForbiddenSourceHeader 2>&1 | grep 'Error:')" ]; then
+              echo "Error 1"
+              exit 1
+          else
+              echo "Error 2"
+              exit 0
+          fi
