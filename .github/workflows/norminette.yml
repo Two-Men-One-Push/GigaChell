@@ -25,9 +25,8 @@ jobs:
 
       - name: Execute Norminette
         run: |
-            output=$(norminette -RCheckForbiddenSourceHeader 2>&1)
-            echo "$output"
-            if echo "$output" | grep -q "Error"; then
-                echo "::error::Norminette detected errors in your code."
+            output=$(norminette -RCheckForbiddenSourceHeader 2>&1 | grep "Error:")
+            if [ -n "$output" ]; then
+                echo "Norm Error"
                 exit 1
             fi
