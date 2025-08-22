@@ -35,10 +35,10 @@ SRCS =	\
 	./srcs/handle_piped_segment.c\
 	./srcs/logic_exec.c\
 	./srcs/main.c\
-	./srcs/readline_hack/r_debug.c\
-	./srcs/readline_hack/bss.c\
-	./srcs/readline_hack/elf.c\
 	./srcs/readline_hack/patch_readline_leaks.c\
+	./srcs/readline_hack/memory_hack/r_debug.c\
+	./srcs/readline_hack/memory_hack/bss.c\
+	./srcs/readline_hack/memory_hack/elf.c\
 	./srcs/redirections/apply_redirection.c\
 	./srcs/redirections/get_redirect_file.c\
 	./srcs/redirections/get_redirection.c\
@@ -110,10 +110,10 @@ OBJS =	\
 	./build/handle_piped_segment.o\
 	./build/logic_exec.o\
 	./build/main.o\
+	./build/patch_readline_leaks.o\
 	./build/r_debug.o\
 	./build/bss.o\
 	./build/elf.o\
-	./build/patch_readline_leaks.o\
 	./build/apply_redirection.o\
 	./build/get_redirect_file.o\
 	./build/get_redirection.o\
@@ -185,10 +185,10 @@ DEPS =	\
 	./build/handle_piped_segment.d\
 	./build/logic_exec.d\
 	./build/main.d\
+	./build/patch_readline_leaks.d\
 	./build/r_debug.d\
 	./build/bss.d\
 	./build/elf.d\
-	./build/patch_readline_leaks.d\
 	./build/apply_redirection.d\
 	./build/get_redirect_file.d\
 	./build/get_redirection.d\
@@ -349,19 +349,19 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/r_debug.o: ./srcs/readline_hack/r_debug.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
-./build/bss.o: ./srcs/readline_hack/bss.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
-./build/elf.o: ./srcs/readline_hack/elf.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
 ./build/patch_readline_leaks.o: ./srcs/readline_hack/patch_readline_leaks.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/r_debug.o: ./srcs/readline_hack/memory_hack/r_debug.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/bss.o: ./srcs/readline_hack/memory_hack/bss.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/elf.o: ./srcs/readline_hack/memory_hack/elf.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
