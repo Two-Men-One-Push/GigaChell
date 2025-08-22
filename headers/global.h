@@ -6,13 +6,13 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 00:36:06 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/17 01:16:50 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 04:24:06 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GLOBAL_H
 # define GLOBAL_H
 
-extern int	g_sigint;
+extern int	g_signum;
 
 #endif

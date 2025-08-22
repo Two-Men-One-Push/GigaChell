@@ -78,7 +78,7 @@ char	*tmp_path(void)
 		free(random_string);
 		if (!path)
 		{
-			perror("gigachell: tmp_path");
+			perror("gigachell");
 			return (NULL);
 		}
 		if (access(path, F_OK) == -1 && errno == ENOENT)

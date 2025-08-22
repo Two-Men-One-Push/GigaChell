@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 10:13:14 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/07/19 23:34:08 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/23 00:23:43 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline/readline.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <signal.h>
 
 #include "global.h"
 
-int	g_sigint = 0;
+int	g_signum = 0;
 
 void	sigint_handler(int code)
 {
@@ -36,12 +37,12 @@ void	sigquit_handler(int code)
 void	hd_sigint_handler(int code)
 {
 	(void)code;
-	g_sigint = 1;
+	g_signum = SIGINT;
 }
 
 int	signal_event_hook(void)
 {
-	if (g_sigint)
+	if (g_signum == SIGINT)
 	{
 		rl_done = 1;
 		return (0);
