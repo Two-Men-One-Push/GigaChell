@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/19 22:03:57 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/22 07:47:16 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int ac, char **av, char **envp)
 	status = main_loop();
 	rl_clear_history();
 	ft_clearenv();
-	printf("main address at -> %p\n", (void *)main);
-	printf("bss sector at -> %p\n", find_bss_start((void *)main));
+	printf("readline elf at -> %p\n", find_elf_byname("libreadline"));
+	printf("readline bss at -> %p\n", get_bss(find_elf_byname("libreadline")));
 	return (status);
 }

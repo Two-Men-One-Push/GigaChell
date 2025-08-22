@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
+#    By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/08/20 00:12:30 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/08/22 09:02:31 by CyberOneFR       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
