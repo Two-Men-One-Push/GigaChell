@@ -20,8 +20,7 @@ jobs:
 
       - name: Install Norminette using pip
         run: |
-            python3 -m pip install --upgrade pip setuptools
-            python3 -m pip install norminette
+            python3 -m pip install -U norminette
 
       - name: Execute Norminette
         run: |
