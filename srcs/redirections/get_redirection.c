@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 17:57:08 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/11 04:31:01 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 05:16:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ static int	redirect_in(char *cmd, size_t *i, t_redirect_fd *redirect)
 	arg_start = cmd + *i;
 	file = get_redirect_file(arg_start, &arg_len);
 	if (!file)
+	{
+		perror("gigachell");
 		return (1);
+	}
 	if (redirect->in > -1)
 		secure_close(redirect->in);
 	redirect->in = open(file, O_RDONLY);
@@ -79,7 +82,10 @@ static int	redirect_out(char *cmd, size_t *i, t_redirect_fd *redirect,
 	arg_start = cmd + *i;
 	file = get_redirect_file(arg_start, &arg_len);
 	if (!file)
+	{
+		perror("gigachell");
 		return (1);
+	}
 	if (redirect->out > -1)
 		secure_close(redirect->out);
 	redirect->out = open(file, O_WRONLY | O_CREAT

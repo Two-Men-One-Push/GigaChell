@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 09:37:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/07/18 05:47:14 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/20 04:36:06 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static t_pipe_result	handle_bin_exec(char **argv, t_redirect_fd *redirect)
 	pid_t	pid;
 
 	pid = fork();
-	if (pid < 0)
-		perror("gigachell");
 	if (pid)
 	{
+		if (pid < 0)
+			perror("gigachell");
 		clear_redirect(redirect);
 		return ((t_pipe_result){.type = PROC_MAIN, .pid = pid});
 	}
