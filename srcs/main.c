@@ -6,7 +6,7 @@
 /*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:05:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/22 07:47:16 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/08/22 09:30:00 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ int	main(int ac, char **av, char **envp)
 	ft_clearenv();
 	printf("readline elf at -> %p\n", find_elf_byname("libreadline"));
 	printf("readline bss at -> %p\n", get_bss(find_elf_byname("libreadline")));
+	patch_readline_leaks();
 	return (status);
 }

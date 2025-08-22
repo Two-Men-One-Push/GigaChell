@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   readline_hack.c                                    :+:      :+:    :+:   */
+/*   patch_readline_leaks.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:57:02 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/19 19:05:08 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/22 09:57:06 by CyberOneFR       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,21 @@ void	free_keymap(Keymap map)
 	}
 }
 
-void	tricky_free(void)
+void	free_readline_internal(void)
 {
-	// void				**readline_bss_address;
-	struct s_line_state	*line_state_ptr;
+	const void		*bss = get_bss(find_elf_byname("libreadline"));
+	t_line_state	*line_state_array;
 
-	line_state_ptr = (struct s_line_state *)0x000000000046f460;
-	free(line_state_ptr[0].lbreaks);
-	free(line_state_ptr[0].lface);
-	free(line_state_ptr[0].line);
-	free(line_state_ptr[1].lbreaks);
-	free(line_state_ptr[1].lface);
-	free(line_state_ptr[1].line);
-	free(*(void **)(0x00000000004706d0));
-	free(*(void **)(0x00000000004706c8));
-	free(*(void **)(0x0000000000470350));
-	free(*(void **)(0x0000000000470348));
-	free(*(void **)(0x000000000046f4e8));
-	free(*(void **)(0x000000000046f4f0));
-	free(*(void **)(0x000000000046f520));
-	free(*(void **)(0x00000000004706d0));
+	line_state_array = (t_line_state *)(bss + 0xa0);
+	printf("line_state_array at -> %p\n", line_state_array);
+	// free(line_state_array[0].lbreaks);
+	// free(line_state_array[0].lface);
+	// free(line_state_array[0].line);
+	// free(line_state_array[0].wrapped_line);
+	// free(line_state_array[1].lbreaks);
+	// free(line_state_array[1].lface);
+	// free(line_state_array[1].line);
+	// free(line_state_array[1].wrapped_line);
 }
 //nm --demangle ./minishell | grep line_state_array
 //nm --demangle ./minishell | grep _nc_cap_table
@@ -84,7 +79,6 @@ void	tricky_free(void)
 //nm --demangle ./minishell | grep local_prompt
 //nm --demangle ./minishell | grep local_prompt_prefix
 //nm --demangle ./minishell | grep local_prompt_newlines
-//nm --demangle ./minishell | grep _nc_cap_table
 
 void	patch_readline_leaks(void)
 {
@@ -104,5 +98,5 @@ void	patch_readline_leaks(void)
 	free_keymap(emacs_standard_keymap);
 	free_keymap(vi_movement_keymap);
 	free_keymap(vi_insertion_keymap);
-	tricky_free();
+	free_readline_internal();
 }
