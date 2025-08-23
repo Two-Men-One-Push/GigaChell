@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:58:25 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/23 06:58:34 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/23 07:55:33 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,24 +130,24 @@ typedef struct r_debug
 	t_elf64_addr	r_ldbase;
 }	t_r_debug;
 
-typedef struct	s_termtype
+typedef struct s_termtype
 {
 	char			*term_names;
 	char			*str_table;
-	char			*Booleans;
-	short			*Numbers;
-	char			**Strings;
+	char			*booleans;
+	short			*numbers;
+	char			**strings;
 	char			*ext_str_table;
-	char			**ext_Names;
-	unsigned short	num_Booleans;
-	unsigned short	num_Numbers;
-	unsigned short	num_Strings;
-	unsigned short	ext_Booleans;
-	unsigned short	ext_Numbers;
-	unsigned short	ext_Strings;
+	char			**ext_names;
+	unsigned short	num_booleans;
+	unsigned short	num_numbers;
+	unsigned short	num_strings;
+	unsigned short	ext_booleans;
+	unsigned short	ext_numbers;
+	unsigned short	ext_strings;
 }	t_termtype;
 
-typedef struct	s_term
+typedef struct s_term
 {
 	t_termtype	type;
 }	t_term;

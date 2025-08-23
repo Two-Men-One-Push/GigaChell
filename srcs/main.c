@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/08/23 05:16:04 by ethebaul         ###   ########.fr       */
+/*   Created: 2025/08/23 07:54:07 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/08/23 07:54:09 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stdio.h>
 #include <stdlib.h>
