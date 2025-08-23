@@ -40,12 +40,12 @@ SHELL		= /bin/sh
 
 DESTDIR		= 
 srcdir		= .
-prefix		= /usr
+prefix		= /usr/local
 exec_prefix	= ${prefix}
 datarootdir	= ${prefix}/share
 datadir		= ${datarootdir}
 mandir		= ${datarootdir}/man
-includesubdir	= 
+includesubdir	= /ncurses
 
 INCLUDEDIR	= $(DESTDIR)$(includedir)$(includesubdir)
 
@@ -99,8 +99,8 @@ mostlyclean :
 clean:	mostlyclean
 	rm -f terminfo.5
 
-../edit_man.sed : make_sed.sh /home/ethebaul/Documents/Github/GigaChell/ncurses-6.3/man/man_db.renames
-	$(SHELL) $(srcdir)/make_sed.sh /home/ethebaul/Documents/Github/GigaChell/ncurses-6.3/man/man_db.renames >../edit_man.sed
+../edit_man.sed : make_sed.sh /home/cyber/workenv/GigaChell/.ncurses-6.3/man/man_db.renames
+	$(SHELL) $(srcdir)/make_sed.sh /home/cyber/workenv/GigaChell/.ncurses-6.3/man/man_db.renames >../edit_man.sed
 
 distclean realclean: clean
 	rm -f Makefile *-config.1 ../edit_man.* ../man_alias.*

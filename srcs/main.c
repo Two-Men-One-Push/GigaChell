@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/08/23 00:31:34 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/08/23 05:16:04 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ int	main(int ac, char **av, char **envp)
 	status = main_loop();
 	rl_clear_history();
 	ft_clearenv();
-	printf("readline elf at -> %p\n", find_elf_byname("libreadline"));
-	printf("readline bss at -> %p\n", get_bss(find_elf_byname("libreadline")));
 	patch_readline_leaks();
 	return (status);
 }

@@ -48,24 +48,24 @@ NCURSES_PATCH	= 20211021
 top_srcdir	= .
 srcdir		= .
 
-prefix		= /usr
+prefix		= /usr/local
 exec_prefix	= ${prefix}
 datarootdir	= ${prefix}/share
 
 bindir		= ${exec_prefix}/bin
-ticdir		= /usr/share/terminfo
+ticdir		= /usr/local/share/terminfo
 includedir	= ${prefix}/include
-includesubdir	= 
+includesubdir	= /ncurses
 libdir		= ${exec_prefix}/lib
 mandir		= ${datarootdir}/man
-pkgdir		= /usr/lib/x86_64-linux-gnu/pkgconfig
+pkgdir		= 
 
 include_dir	= ${includedir}${includesubdir}
 
 INSTALL		= /usr/bin/install -c
 INSTALL_DATA	= ${INSTALL} -m 644
 
-DIRS_TO_MAKE	= lib objects obj_g
+DIRS_TO_MAKE	= lib obj_s objects obj_g
 
 .PHONY :	all
 .PHONY :	check

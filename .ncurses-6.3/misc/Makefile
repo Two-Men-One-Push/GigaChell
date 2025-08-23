@@ -53,18 +53,18 @@ CF_MFLAGS 	=
 DESTDIR		= 
 top_srcdir	= ..
 srcdir		= .
-prefix		= /usr
+prefix		= /usr/local
 exec_prefix	= ${prefix}
 bindir		= ${exec_prefix}/bin
 libdir		= ${exec_prefix}/lib
 datarootdir	= ${prefix}/share
 datadir		= ${datarootdir}
-includesubdir	= 
+includesubdir	= /ncurses
 
 INCLUDEDIR	= $(DESTDIR)$(includedir)$(includesubdir)
 
 tabsetdir	= $(datadir)/tabset
-ticdir		= /usr/share/terminfo
+ticdir		= /usr/local/share/terminfo
 ticfile		= $(ticdir).db
 source		= ${top_srcdir}/misc/terminfo.src
 
@@ -73,7 +73,7 @@ INSTALL_PROGRAM	= ${INSTALL}
 INSTALL_SCRIPT	= ${INSTALL}
 INSTALL_DATA	= ${INSTALL} -m 644
 
-PKG_CONFIG_LIBDIR = /usr/lib/x86_64-linux-gnu/pkgconfig
+PKG_CONFIG_LIBDIR = 
 
 ################################################################################
 
@@ -135,7 +135,7 @@ install.libs :: $(DESTDIR)$(bindir) ncurses-config
 # Make a list of the files that gen-pkgconfig might create:
 #PC_FILES = \
 #	ncurses.pc \
-#	ncurses.pc \
+#	tinfo.pc \
 #	tic.pc \
 #	panel.pc \
 #	menu.pc \
@@ -204,7 +204,7 @@ uninstall.libs :
 
 tags :
 
-TAGS :
+#TAGS :
 
 mostlyclean :
 	-rm -f terminfo.tmp

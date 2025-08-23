@@ -37,7 +37,7 @@ SRCS =	\
 	./srcs/main.c\
 	./srcs/readline_hack/patch_readline_leaks.c\
 	./srcs/readline_hack/memory_hack/r_debug.c\
-	./srcs/readline_hack/memory_hack/bss.c\
+	./srcs/readline_hack/memory_hack/data.c\
 	./srcs/readline_hack/memory_hack/elf.c\
 	./srcs/redirections/apply_redirection.c\
 	./srcs/redirections/get_redirect_file.c\
@@ -112,7 +112,7 @@ OBJS =	\
 	./build/main.o\
 	./build/patch_readline_leaks.o\
 	./build/r_debug.o\
-	./build/bss.o\
+	./build/data.o\
 	./build/elf.o\
 	./build/apply_redirection.o\
 	./build/get_redirect_file.o\
@@ -187,7 +187,7 @@ DEPS =	\
 	./build/main.d\
 	./build/patch_readline_leaks.d\
 	./build/r_debug.d\
-	./build/bss.d\
+	./build/data.d\
 	./build/elf.d\
 	./build/apply_redirection.d\
 	./build/get_redirect_file.d\
@@ -357,7 +357,7 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/bss.o: ./srcs/readline_hack/memory_hack/bss.c | $(BUILD_DIR)
+./build/data.o: ./srcs/readline_hack/memory_hack/data.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
@@ -522,21 +522,5 @@ $(BUILD_DIR):
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/pwd.o: ./srcs/builtin/pwd/pwd.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
-./build/neutral_cmd_exec.o: ./srcs/neutral_cmd_exec.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
-./build/pipe_exec.o: ./srcs/pipe_exec.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
-./build/subshell_exec.o: ./srcs/subshell_exec.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
-./build/bin_exec.o: ./srcs/bin_exec.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@

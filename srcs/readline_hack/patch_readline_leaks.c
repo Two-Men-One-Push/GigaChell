@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   patch_readline_leaks.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/13 21:57:02 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/22 09:57:06 by CyberOneFR       ###   ########.fr       */
+/*   Created: 2025/08/13 21:57:02 by ethebaul          #+#    #+#             */
+/*   Updated: 2025/08/23 07:48:38 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,30 +55,24 @@ void	free_keymap(Keymap map)
 	}
 }
 
+void	free_tinfo_internal(void)
+{
+	char		*base;
+
+	base = find_elf_byname("libtinfo");
+	printf("ncurses at -> %p\n", base);
+	free(*(void **)(base + 0x46b50));
+}
+
 void	free_readline_internal(void)
 {
-	const void		*bss = get_bss(find_elf_byname("libreadline"));
-	t_line_state	*line_state_array;
+	char	*base;
 
-	line_state_array = (t_line_state *)(bss + 0xa0);
-	printf("line_state_array at -> %p\n", line_state_array);
-	// free(line_state_array[0].lbreaks);
-	// free(line_state_array[0].lface);
-	// free(line_state_array[0].line);
-	// free(line_state_array[0].wrapped_line);
-	// free(line_state_array[1].lbreaks);
-	// free(line_state_array[1].lface);
-	// free(line_state_array[1].line);
-	// free(line_state_array[1].wrapped_line);
+	base = find_elf_byname("libreadline");
+	printf("readline at -> %p\n", base);
+	free(*(void **)(base + 0x60708));
+	free(*(void **)(base + 0x60710));
 }
-//nm --demangle ./minishell | grep line_state_array
-//nm --demangle ./minishell | grep _nc_cap_table
-//nm --demangle ./minishell | grep _nc_info_table
-//nm --demangle ./minishell | grep term_string_buffer
-//nm --demangle ./minishell | grep term_buffer
-//nm --demangle ./minishell | grep local_prompt
-//nm --demangle ./minishell | grep local_prompt_prefix
-//nm --demangle ./minishell | grep local_prompt_newlines
 
 void	patch_readline_leaks(void)
 {
@@ -99,4 +93,5 @@ void	patch_readline_leaks(void)
 	free_keymap(vi_movement_keymap);
 	free_keymap(vi_insertion_keymap);
 	free_readline_internal();
+	free_tinfo_internal();
 }

@@ -36,7 +36,7 @@ LANGUAGE=C;	export LANGUAGE
 LC_ALL=C;	export LC_ALL
 LC_CTYPE=C;	export LC_CTYPE
 
-prefix="/usr"
+prefix="/usr/local"
 exec_prefix="${prefix}"
 
 bindir="${exec_prefix}/bin"
@@ -47,7 +47,7 @@ datadir="${datarootdir}"
 mandir="${datarootdir}/man"
 
 THIS="ncurses"
-TINFO_LIB="ncurses"
+TINFO_LIB="tinfo"
 RPATH_LIST="${libdir}"
 
 includesubdir="${prefix}/include/${THIS}"
@@ -79,7 +79,7 @@ fi
 # with --disable-overwrite, we installed into a subdirectory, but transformed
 # the headers to include like this:
 #	<ncurses/curses.h>
-if [ xyes = xno ]; then
+if [ xno = xno ]; then
 	case $includedir in
 	$prefix/include/ncurses)
 		includedir=`echo "$includedir" | sed -e 's,/[^/]*$,,'`
@@ -88,7 +88,7 @@ if [ xyes = xno ]; then
 fi
 
 LIBS=""
-if [ "ncurses" = "ncurses" ]; then
+if [ "tinfo" = "ncurses" ]; then
 	LIBS="-l${THIS} $LIBS"
 else
 	LIBS="-l${THIS} -l${TINFO_LIB} $LIBS"
@@ -184,7 +184,7 @@ while [ $# -gt 0 ]; do
 	# compile/link
 	--cflags)
 		INCS=" -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600"
-		if [ "xyes" = xno ]; then
+		if [ "xno" = xno ]; then
 			INCS="$INCS -I${includesubdir}"
 		fi
 		if [ "${includedir}" != /usr/include ]; then
@@ -263,7 +263,7 @@ ENDECHO
 		;;
 	--includedir)
 		INCS=
-		if [ "xyes" = xno ]; then
+		if [ "xno" = xno ]; then
 			INCS="${includesubdir}"
 		elif [ "${includedir}" != /usr/include ]; then
 			INCS="${includedir}"
@@ -277,10 +277,10 @@ ENDECHO
 		echo "${mandir}"
 		;;
 	--terminfo)
-		echo "/usr/share/terminfo"
+		echo "/usr/local/share/terminfo"
 		;;
 	--terminfo-dirs)
-		echo "/usr/share/terminfo"
+		echo "/usr/local/share/terminfo"
 		;;
 	--termpath)
 		echo ""

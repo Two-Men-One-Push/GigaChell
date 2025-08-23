@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline_hack.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:58:25 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/22 09:05:35 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/08/23 06:58:34 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,28 @@ typedef struct r_debug
 	}	e_r_state;
 	t_elf64_addr	r_ldbase;
 }	t_r_debug;
+
+typedef struct	s_termtype
+{
+	char			*term_names;
+	char			*str_table;
+	char			*Booleans;
+	short			*Numbers;
+	char			**Strings;
+	char			*ext_str_table;
+	char			**ext_Names;
+	unsigned short	num_Booleans;
+	unsigned short	num_Numbers;
+	unsigned short	num_Strings;
+	unsigned short	ext_Booleans;
+	unsigned short	ext_Numbers;
+	unsigned short	ext_Strings;
+}	t_termtype;
+
+typedef struct	s_term
+{
+	t_termtype	type;
+}	t_term;
 
 int			elf_magic(t_elf64_ehdr *eh);
 void		*elf_base(void *any_code_addr);
