@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:58:25 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/23 15:29:00 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:35:46 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,7 +302,7 @@ typedef struct s_ncglob
 	int					safeprint_rows;
 }	t_ncurses_globals;
 
-typedef struct	s_tparm_data
+typedef struct s_tparm_data
 {
 	const char	*format;
 	int			num_actual;
