@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   patch_readline_leaks.c                             :+:      :+:    :+:   */
+/*   patch_readline_exposed_leaks.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:57:02 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/23 07:48:38 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:27:48 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,6 @@ void	free_keymap(Keymap map)
 		}
 		++i;
 	}
-}
-
-void	free_tinfo_internal(void)
-{
-	char		*base;
-
-	base = find_elf_byname("libtinfo");
-	printf("ncurses at -> %p\n", base);
-	free(*(void **)(base + 0x46b50));
-}
-
-void	free_readline_internal(void)
-{
-	char	*base;
-
-	base = find_elf_byname("libreadline");
-	printf("readline at -> %p\n", base);
-	free(*(void **)(base + 0x60708));
-	free(*(void **)(base + 0x60710));
 }
 
 void	patch_readline_leaks(void)

@@ -153,7 +153,7 @@ struct DriverTCB; /* Terminal Control Block forward declaration */
 /*
  * Global data which is not specific to a screen.
  */
-typedef struct {
+typedef struct{
 	SIG_ATOMIC_T	have_sigtstp;
 	SIG_ATOMIC_T	have_sigwinch;
 	SIG_ATOMIC_T	cleanup_nested;
