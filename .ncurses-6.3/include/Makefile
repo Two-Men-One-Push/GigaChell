@@ -46,7 +46,7 @@ THIS		= Makefile
 
 DESTDIR		= 
 srcdir		= .
-prefix		= /usr/local
+prefix		= /home/ethebaul/local
 exec_prefix	= ${prefix}
 includedir	= ${prefix}/include
 includesubdir	= /ncurses
@@ -63,8 +63,8 @@ CC		= gcc
 CFLAGS		= -g3 -O0 --param max-inline-insns-single=1200 
 CPPFLAGS	= -DHAVE_CONFIG_H -I. -I. -I../include -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600 -DNDEBUG
 
-CTAGS		= 
-ETAGS		= 
+CTAGS		= ctags
+ETAGS		= etags
 
 VERSION		= 6.3
 
@@ -146,8 +146,8 @@ config.h:
 tags:
 	$(CTAGS) *.[ch]
 
-#TAGS:
-#	$(ETAGS) *.[ch]
+TAGS:
+	$(ETAGS) *.[ch]
 
 mostlyclean ::
 	-rm -f core tags TAGS *~ *.bak *.i *.ln *.atac trace

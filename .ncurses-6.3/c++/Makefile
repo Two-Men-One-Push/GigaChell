@@ -47,7 +47,7 @@ MODEL		= ../obj_s
 DESTDIR		= 
 top_srcdir	= ..
 srcdir		= .
-prefix		= /usr/local
+prefix		= /home/ethebaul/local
 exec_prefix	= ${prefix}
 bindir		= ${exec_prefix}/bin
 libdir		= ${exec_prefix}/lib
@@ -91,8 +91,8 @@ CXXLIBS		=
 INCDIR		= ../include
 CPPFLAGS	= -DHAVE_CONFIG_H -DBUILDING_NCURSES_CXX -I../c++ -I. -I../include -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600 -DNDEBUG
 
-CTAGS		= 
-ETAGS		= 
+CTAGS		= ctags
+ETAGS		= etags
 
 CC		= ${CXX}
 CCFLAGS		= $(CPPFLAGS) $(CXXFLAGS)
@@ -110,7 +110,7 @@ NCURSES_MINOR	= 3
 REL_VERSION     = 6.3
 ABI_VERSION	= 6
 
-LOCAL_LIBDIR	= /home/cyber/workenv/GigaChell/.ncurses-6.3/lib
+LOCAL_LIBDIR	= /home/ethebaul/Documents/Github/GigaChell/.ncurses-6.3/lib
 
 LINK		=  $(LIBTOOL_LINK) 
 SHLIB_DIRS	= -L../lib

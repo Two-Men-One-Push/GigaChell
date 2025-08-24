@@ -21,7 +21,7 @@ RL_LIBRARY_VERSION = 8.1
 SHELL = /bin/sh
 RM = rm -f
 
-prefix = /usr/local
+prefix = /home/ethebaul/local
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share
@@ -32,7 +32,7 @@ datadir = ${datarootdir}
 
 top_srcdir = ..
 #BUILD_DIR = .
-BUILD_DIR = /home/cyber/workenv/GigaChell/.readline-8.1
+BUILD_DIR = /home/ethebaul/Documents/Github/GigaChell/.readline-8.1
 installdir = $(datadir)/readline
 
 INSTALL = /usr/bin/install -c

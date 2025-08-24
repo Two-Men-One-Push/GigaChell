@@ -54,7 +54,7 @@ MODEL		= shared
 DESTDIR		= 
 top_srcdir	= ..
 srcdir		= .
-prefix		= /usr/local
+prefix		= /home/ethebaul/local
 exec_prefix	= ${prefix}
 bindir		= ${exec_prefix}/bin
 libdir		= ${exec_prefix}/lib
@@ -87,8 +87,8 @@ AWK		= mawk
 LD		= ld
 LN_S		= ln -s -f
 
-CTAGS		= 
-ETAGS		= 
+CTAGS		= ctags
+ETAGS		= etags
 
 CC		= gcc
 CPP		= gcc -E
@@ -186,8 +186,8 @@ HEADER_DEPS = \
 tags:
 	$(CTAGS) *.[ch]
 
-#TAGS:
-#	$(ETAGS) *.[ch]
+TAGS:
+	$(ETAGS) *.[ch]
 
 mostlyclean ::
 	-rm -f core tags TAGS *~ *.bak *.i *.ln *.atac trace

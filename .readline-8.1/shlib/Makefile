@@ -32,7 +32,7 @@ datarootdir = ${prefix}/share
 srcdir = .
 VPATH = ..
 topdir = ..
-BUILD_DIR = /home/cyber/workenv/GigaChell/.readline-8.1
+BUILD_DIR = /home/ethebaul/Documents/Github/GigaChell/.readline-8.1
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}
@@ -52,7 +52,7 @@ SHELL = /bin/sh
 host_os = linux-gnu
 host_vendor = pc
 
-prefix = /usr/local
+prefix = /home/ethebaul/local
 exec_prefix = ${prefix}
 includedir = ${prefix}/include
 bindir = ${exec_prefix}/bin

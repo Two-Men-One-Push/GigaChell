@@ -44,7 +44,7 @@ echo "** Building terminfo database, please wait..."
 
 : ${suffix:=}
 : ${DESTDIR:=}
-: ${prefix:=/usr/local}
+: ${prefix:=/home/ethebaul/local}
 : ${exec_prefix:=${prefix}}
 : ${bindir:=${exec_prefix}/bin}
 : ${top_srcdir:=..}
@@ -52,7 +52,7 @@ echo "** Building terminfo database, please wait..."
 : ${datarootdir:=${prefix}/share}
 : ${datadir:=${datarootdir}}
 : ${TIC_PATH:=tic}
-: ${ticdir:=/usr/local/share/terminfo}
+: ${ticdir:=/home/ethebaul/local/share/terminfo}
 : ${source:=${top_srcdir}/misc/terminfo.src}
 : ${LN_S:="ln -s -f"}
 : ${cross_compiling:=no}

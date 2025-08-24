@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline_hack.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:58:25 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/23 15:35:46 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/23 21:52:38 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define PT_DYNAMIC 2
 
 # define ELFCLASS64 2
+# define ET_EXEC 2
 # define ET_DYN 3
 # define EI_CLASS 4
 

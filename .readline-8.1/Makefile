@@ -31,7 +31,7 @@ PACKAGE_TARNAME = readline
 srcdir = .
 
 top_srcdir = .
-BUILD_DIR = /home/cyber/workenv/GigaChell/.readline-8.1
+BUILD_DIR = /home/ethebaul/Documents/Github/GigaChell/.readline-8.1
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}
@@ -48,7 +48,7 @@ MV = mv
 
 SHELL = /bin/sh
 
-prefix = /usr/local
+prefix = /home/ethebaul/local
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share

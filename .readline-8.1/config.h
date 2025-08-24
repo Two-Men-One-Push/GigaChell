@@ -146,7 +146,7 @@
 #define HAVE_WCWIDTH 1
 
 /* and whether it works */
-#define WCWIDTH_BROKEN 1
+/* #undef WCWIDTH_BROKEN */
 
 #define STDC_HEADERS 1
 

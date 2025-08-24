@@ -47,7 +47,7 @@ o		= .o
 MODEL		= ../obj_s
 top_srcdir	= ..
 srcdir		= .
-prefix		= /usr/local
+prefix		= /home/ethebaul/local
 exec_prefix	= ${prefix}
 datarootdir	= ${prefix}/share
 
@@ -78,8 +78,8 @@ INSTALL_DATA	= ${INSTALL} -m 644
 transform	= s,x,x,
 TRANSFORM	= sed 's/$x$$//'|sed '$(transform)'|sed 's/$$/$x/'
 
-CTAGS		= 
-ETAGS		= 
+CTAGS		= ctags
+ETAGS		= etags
 
 CC		= gcc
 CPP		= gcc -E
@@ -99,7 +99,7 @@ CFLAGS_DEFAULT	= $(CFLAGS_SHARED)
 
 REL_VERSION	= 6.3
 ABI_VERSION	= 6
-LOCAL_LIBDIR	= /home/cyber/workenv/GigaChell/.ncurses-6.3/lib
+LOCAL_LIBDIR	= /home/ethebaul/Documents/Github/GigaChell/.ncurses-6.3/lib
 LOCAL_LIBS	= ../lib/libform.so ../lib/libmenu.so ../lib/libpanel.so ../lib/libncurses.so ../lib/libtinfo.so
 MATH_LIB	= -lm
 TEST_LIBS	= -lutil 

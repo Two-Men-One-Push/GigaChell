@@ -48,17 +48,17 @@ NCURSES_PATCH	= 20211021
 top_srcdir	= .
 srcdir		= .
 
-prefix		= /usr/local
+prefix		= /home/ethebaul/local
 exec_prefix	= ${prefix}
 datarootdir	= ${prefix}/share
 
 bindir		= ${exec_prefix}/bin
-ticdir		= /usr/local/share/terminfo
+ticdir		= /home/ethebaul/local/share/terminfo
 includedir	= ${prefix}/include
 includesubdir	= /ncurses
 libdir		= ${exec_prefix}/lib
 mandir		= ${datarootdir}/man
-pkgdir		= 
+pkgdir		= /usr/lib/x86_64-linux-gnu/pkgconfig
 
 include_dir	= ${includedir}${includesubdir}
 

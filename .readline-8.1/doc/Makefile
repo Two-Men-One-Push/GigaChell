@@ -22,7 +22,7 @@ topdir = ..
 srcdir = .
 
 
-prefix = /usr/local
+prefix = /home/ethebaul/local
 
 datarootdir = ${prefix}/share
 
@@ -49,7 +49,7 @@ RM = rm -f
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-BUILD_DIR = /home/cyber/workenv/GigaChell/.readline-8.1
+BUILD_DIR = /home/ethebaul/Documents/Github/GigaChell/.readline-8.1
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo

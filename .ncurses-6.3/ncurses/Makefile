@@ -60,7 +60,7 @@ MODEL		= shared
 DESTDIR		= 
 top_srcdir	= ..
 srcdir		= .
-prefix		= /usr/local
+prefix		= /home/ethebaul/local
 exec_prefix	= ${prefix}
 bindir		= ${exec_prefix}/bin
 libdir		= ${exec_prefix}/lib
@@ -94,8 +94,8 @@ LD		= ld
 LN_S		= ln -s -f
 NM		= nm
 
-CTAGS		= 
-ETAGS		= 
+CTAGS		= ctags
+ETAGS		= etags
 
 CC		= gcc
 CPP		= gcc -E
@@ -159,7 +159,7 @@ USE_BIG_STRINGS	= 1
 TERMINFO_CAPS	= $(top_srcdir)/include/Caps
 CAPLIST		= $(TERMINFO_CAPS) $(top_srcdir)/include/Caps-ncurses
 
-TERMINFO	= /usr/local/share/terminfo
+TERMINFO	= /home/ethebaul/local/share/terminfo
 TERMINFO_SRC	= ${top_srcdir}/misc/terminfo.src
 TIC_PATH	= tic
 INFOCMP_PATH	= infocmp
@@ -208,7 +208,7 @@ TEST_PROGS = \
 	link_test$x \
 	report_hashing$x
 
-LOCAL_LIBDIR	= /home/cyber/workenv/GigaChell/.ncurses-6.3/lib
+LOCAL_LIBDIR	= /home/ethebaul/Documents/Github/GigaChell/.ncurses-6.3/lib
 
 base	 = $(srcdir)/base
 serial	 = $(srcdir)/tty
@@ -302,8 +302,8 @@ report_offsets$(BUILD_EXEEXT) : \
 tags:
 	$(CTAGS) *.[ch] */*.[ch]
 
-#TAGS:
-#	$(ETAGS) *.[ch] */*.[ch]
+TAGS:
+	$(ETAGS) *.[ch] */*.[ch]
 
 mostlyclean ::
 	-rm -f core tags TAGS *~ *.bak *.i *.ln *.atac

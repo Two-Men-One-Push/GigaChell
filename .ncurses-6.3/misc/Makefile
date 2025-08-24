@@ -53,7 +53,7 @@ CF_MFLAGS 	=
 DESTDIR		= 
 top_srcdir	= ..
 srcdir		= .
-prefix		= /usr/local
+prefix		= /home/ethebaul/local
 exec_prefix	= ${prefix}
 bindir		= ${exec_prefix}/bin
 libdir		= ${exec_prefix}/lib
@@ -64,7 +64,7 @@ includesubdir	= /ncurses
 INCLUDEDIR	= $(DESTDIR)$(includedir)$(includesubdir)
 
 tabsetdir	= $(datadir)/tabset
-ticdir		= /usr/local/share/terminfo
+ticdir		= /home/ethebaul/local/share/terminfo
 ticfile		= $(ticdir).db
 source		= ${top_srcdir}/misc/terminfo.src
 
@@ -73,7 +73,7 @@ INSTALL_PROGRAM	= ${INSTALL}
 INSTALL_SCRIPT	= ${INSTALL}
 INSTALL_DATA	= ${INSTALL} -m 644
 
-PKG_CONFIG_LIBDIR = 
+PKG_CONFIG_LIBDIR = /usr/lib/x86_64-linux-gnu/pkgconfig
 
 ################################################################################
 
@@ -204,7 +204,7 @@ uninstall.libs :
 
 tags :
 
-#TAGS :
+TAGS :
 
 mostlyclean :
 	-rm -f terminfo.tmp

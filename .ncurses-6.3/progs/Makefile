@@ -57,7 +57,7 @@ MODEL		= ../obj_s
 DESTDIR		= 
 top_srcdir	= ..
 srcdir		= .
-prefix		= /usr/local
+prefix		= /home/ethebaul/local
 exec_prefix	= ${prefix}
 bindir		= ${exec_prefix}/bin
 libdir		= ${exec_prefix}/lib
@@ -85,8 +85,8 @@ transform	= s,x,x,
 AWK		= mawk
 LN_S		= ln -s -f
 
-CTAGS		= 
-ETAGS		= 
+CTAGS		= ctags
+ETAGS		= etags
 
 CC		= gcc
 CPP		= gcc -E
@@ -107,7 +107,7 @@ CFLAGS_DEFAULT	= $(CFLAGS_SHARED)
 
 REL_VERSION	= 6.3
 ABI_VERSION	= 6
-LOCAL_LIBDIR	= /home/cyber/workenv/GigaChell/.ncurses-6.3/lib
+LOCAL_LIBDIR	= /home/ethebaul/Documents/Github/GigaChell/.ncurses-6.3/lib
 
 LD		= ld
 LINK		=  $(LIBTOOL_LINK)
@@ -319,8 +319,8 @@ termsort.h: $(srcdir)/MKtermsort.sh
 tags:
 	$(CTAGS) *.[ch]
 
-#TAGS:
-#	$(ETAGS) *.[ch]
+TAGS:
+	$(ETAGS) *.[ch]
 
 mostlyclean ::
 	-rm -f core tags TAGS *~ *.bak *.i *.ln *.atac trace
