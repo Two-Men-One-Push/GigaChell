@@ -3,6 +3,7 @@ HEADERS =	\
 	-I./headers/defs\
 	-I./headers/parsing\
 	-I./headers/types\
+	-I./headers/readline_hack\
 	-I./libft/include/
 
 SRCS =	\

@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 08:40:33 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/23 18:41:44 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/24 22:03:03 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,22 @@ int	elf_magic(t_elf64_ehdr *eh)
 		&& eh->e_ident[EI_MAG3] == ELFMAG3);
 }
 
-void	*elf_base(void *any_code_addr)
+void	*elf_base(void *any_addr)
 {
 	t_elf64_ehdr	*eh;
 	unsigned long	p;
 	int				i;
 
-	p = (unsigned long)any_code_addr & ~(unsigned long)(PAGE_SIZE - 1);
+	p = (unsigned long)any_addr & ~(unsigned long)(PAGE_SIZE - 1);
 	i = 0;
 	while (i < MAX_PAGES_SCAN)
 	{
 		eh = (t_elf64_ehdr *)p;
 		if (elf_magic(eh))
+		{
+			printf("found elf at -> %p\n", (void *)p);
 			return ((void *)p);
+		}
 		p -= PAGE_SIZE;
 		++i;
 	}

@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 09:14:58 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/24 20:19:40 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/24 22:00:29 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ t_r_debug	*get_r_debug(void *base)
 	t_elf64_dyn		*dyn;
 	int				i;
 
-	printf("base at -> %p\n", base);
 	eh = (t_elf64_ehdr *)base;
 	if (!base || !elf_magic(eh) || !eh->e_phoff || !eh->e_phnum)
 		return (NULL);
 	ph = (t_elf64_phdr *)((char *)base + eh->e_phoff);
+	printf("ph at -> %p\n", (void *)ph);
 	dyn = NULL;
 	i = 0;
 	while (i < eh->e_phnum && ph[i].p_type != PT_DYNAMIC)

@@ -6,7 +6,7 @@
 #    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/08/23 18:27:38 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/08/24 20:29:46 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFT_ARCHIVE		=	$(LIBFT_DIR)libft.a
 
 CC					=	cc
 CFLAGS				=	-Wall -Wextra -Werror -g3 $(CMD_CFLAGS)
-LDLIBS				=	-L/home/ethebaul/local/lib -Wl,-rpath,/home/ethebaul/local/lib -lreadline -lncurses -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
+LDLIBS				=	-lreadline -L$(LIBFT_DIR) -l$(patsubst lib%,%,$(notdir $(basename $(LIBFT_ARCHIVE))))
 
 NAME				=	minishell
 
