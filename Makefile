@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+         #
+#    By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 14:31:25 by ethebaul          #+#    #+#              #
-#    Updated: 2025/08/24 20:29:46 by ethebaul         ###   ########.fr        #
+#    Updated: 2025/08/25 21:54:22 by ethebaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ normcheck:
 	@echo -e -n $(RESET)
 
 clangd:
+	@rm -f compile_commands.json
 	@echo $(CC) $(CFLAGS) $(HEADERS) -o $(NAME) $(SRCS) $(LDLIBS) | compiledb
 
 clean:

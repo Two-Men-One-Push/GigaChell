@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:57:02 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/23 15:27:48 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/25 22:15:44 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,22 @@ void	free_keymap(Keymap map)
 
 void	patch_readline_leaks(void)
 {
-	int					i;
+	// int					i;
 
-	free(rl_prompt);
-	free(rl_line_buffer);
-	free(rl_executing_keyseq);
-	free(rl_executing_macro);
-	i = 0;
-	while (funmap[i])
-	{
-		free(funmap[i]);
-		++i;
-	}
-	free(funmap);
-	free_keymap(emacs_standard_keymap);
-	free_keymap(vi_movement_keymap);
-	free_keymap(vi_insertion_keymap);
-	free_readline_internal();
-	free_tinfo_internal();
+	// free(rl_prompt);
+	// free(rl_line_buffer);
+	// free(rl_executing_keyseq);
+	// free(rl_executing_macro);
+	// i = 0;
+	// while (funmap[i])
+	// {
+	// 	free(funmap[i]);
+	// 	++i;
+	// }
+	// free(funmap);
+	// free_keymap(emacs_standard_keymap);
+	// free_keymap(vi_movement_keymap);
+	// free_keymap(vi_insertion_keymap);
+	// free_readline_internal();
+	// free_tinfo_internal();
 }

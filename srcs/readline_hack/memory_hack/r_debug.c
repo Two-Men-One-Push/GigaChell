@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_debug.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 09:14:58 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/24 22:00:29 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/25 22:35:23 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,13 @@ t_r_debug	*get_r_debug(void *base)
 	if (!base || !elf_magic(eh) || !eh->e_phoff || !eh->e_phnum)
 		return (NULL);
 	ph = (t_elf64_phdr *)((char *)base + eh->e_phoff);
-	printf("ph at -> %p\n", (void *)ph);
 	dyn = NULL;
 	i = 0;
-	while (i < eh->e_phnum && ph[i].p_type != PT_DYNAMIC)
+	while (i < eh->e_phnum)
 	{
 		if (ph[i].p_type == PT_DYNAMIC)
 		{
-			if (eh->e_type == ET_EXEC)
-				dyn = (t_elf64_dyn *)((char *)base + ph[i].p_vaddr);
-			else if (eh->e_type == ET_DYN)
-				dyn = (t_elf64_dyn *)((char *)base + ph[i].p_offset);
+			dyn = (t_elf64_dyn *)((char *)base + ph[i].p_vaddr);
 			break ;
 		}
 		++i;

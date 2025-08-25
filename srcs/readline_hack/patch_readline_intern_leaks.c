@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   patch_readline_intern_leaks.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 15:27:54 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/23 18:05:32 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/25 21:24:30 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

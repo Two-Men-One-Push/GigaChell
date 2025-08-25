@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 07:54:07 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/23 07:54:09 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/25 22:38:26 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ static int	main_loop(void)
 	}
 }
 
+void	breakpoint(void)
+{
+	return ;
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	int		status;
@@ -104,5 +109,10 @@ int	main(int ac, char **av, char **envp)
 	rl_clear_history();
 	ft_clearenv();
 	patch_readline_leaks();
+	printf("found elf at -> %p\n", elf_base(&main));
+	printf("libc elf at -> %p\n", find_elf_byname("libc"));
+	printf("libtinfo elf at -> %p\n", find_elf_byname("libtinfo"));
+	printf("libreadline elf at -> %p\n", find_elf_byname("libreadline"));
+	breakpoint();
 	return (status);
 }
