@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 07:54:07 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/25 22:38:26 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/25 23:53:22 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+#include "ft_glibc.h"
 #include "ft_readline.h"
 #include "defs/hd_node.h"
 #include "defs/configs.h"
@@ -91,10 +92,13 @@ void	breakpoint(void)
 
 int	main(int ac, char **av, char **envp)
 {
-	int		status;
+	t_mchunkptr	mchunk;
+	int			status;
 
 	(void)av;
 	(void)ac;
+	mchunk = (t_mchunkptr)((char *)malloc(0x100) - (2 * sizeof(size_t)));
+	free((char *)mchunk + (2 * sizeof(size_t)));
 	if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO))
 	{
 		write(2, "Error: Use a tty\n", 17);
@@ -108,9 +112,10 @@ int	main(int ac, char **av, char **envp)
 	status = main_loop();
 	rl_clear_history();
 	ft_clearenv();
-	patch_readline_leaks();
+	// patch_readline_leaks();
 	printf("found elf at -> %p\n", elf_base(&main));
 	printf("libc elf at -> %p\n", find_elf_byname("libc"));
+	printf("malloc address at -> %p\n", &malloc);
 	printf("libtinfo elf at -> %p\n", find_elf_byname("libtinfo"));
 	printf("libreadline elf at -> %p\n", find_elf_byname("libreadline"));
 	breakpoint();
