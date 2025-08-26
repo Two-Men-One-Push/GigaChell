@@ -36,9 +36,9 @@ SRCS =	\
 	./srcs/handle_piped_segment.c\
 	./srcs/logic_exec.c\
 	./srcs/main.c\
-	./srcs/readline_hack/patch_readline_intern_leaks.c\
-	./srcs/readline_hack/patch_readline_exposed_leaks.c\
+	./srcs/readline_hack/readline_patch.c\
 	./srcs/readline_hack/memory_hack/r_debug.c\
+	./srcs/readline_hack/memory_hack/malloc.c\
 	./srcs/readline_hack/memory_hack/data.c\
 	./srcs/readline_hack/memory_hack/elf.c\
 	./srcs/redirections/apply_redirection.c\
@@ -112,9 +112,9 @@ OBJS =	\
 	./build/handle_piped_segment.o\
 	./build/logic_exec.o\
 	./build/main.o\
-	./build/patch_readline_intern_leaks.o\
-	./build/patch_readline_exposed_leaks.o\
+	./build/readline_patch.o\
 	./build/r_debug.o\
+	./build/malloc.o\
 	./build/data.o\
 	./build/elf.o\
 	./build/apply_redirection.o\
@@ -188,9 +188,9 @@ DEPS =	\
 	./build/handle_piped_segment.d\
 	./build/logic_exec.d\
 	./build/main.d\
-	./build/patch_readline_intern_leaks.d\
-	./build/patch_readline_exposed_leaks.d\
+	./build/readline_patch.d\
 	./build/r_debug.d\
+	./build/malloc.d\
 	./build/data.d\
 	./build/elf.d\
 	./build/apply_redirection.d\
@@ -353,15 +353,15 @@ $(BUILD_DIR):
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
-./build/patch_readline_intern_leaks.o: ./srcs/readline_hack/patch_readline_intern_leaks.c | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
-	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
-
-./build/patch_readline_exposed_leaks.o: ./srcs/readline_hack/patch_readline_exposed_leaks.c | $(BUILD_DIR)
+./build/readline_patch.o: ./srcs/readline_hack/readline_patch.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 
 ./build/r_debug.o: ./srcs/readline_hack/memory_hack/r_debug.c | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
+	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
+
+./build/malloc.o: ./srcs/readline_hack/memory_hack/malloc.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -MD -MP -o $@ -c $<
 	@echo -e $(BLUE)$(NAME)$(RESET) compiling: $@
 

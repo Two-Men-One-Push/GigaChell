@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 21:35:17 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/25 21:42:27 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/26 06:49:17 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_malloc_state
 
 typedef struct s_heap_info
 {
-	t_malloc_state*		ar_ptr;
-	struct s_heap_info*	prev;
+	t_malloc_state		*ar_ptr;
+	struct s_heap_info	*prev;
 	size_t				size;
 	size_t				mprotect_size;
 }	t_heap_info;

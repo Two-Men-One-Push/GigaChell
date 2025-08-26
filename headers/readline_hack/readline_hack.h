@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:58:25 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/25 22:14:19 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/26 06:53:19 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,6 @@ typedef struct s_elf64_phdr
 	t_elf64_xword	p_align;
 }	t_elf64_phdr;
 
-typedef struct s_line_state
-{
-	char	*line;
-	char	*lface;
-	int		*lbreaks;
-	int		lbsize;
-	int		wbsize;
-	int		*wrapped_line;
-}	t_line_state;
-
 typedef struct s_elf64_dyn
 {
 	t_elf64_sword	d_tag;
@@ -151,194 +141,30 @@ typedef struct r_debug
 	t_elf64_addr	r_ldbase;
 }	t_r_debug;
 
-typedef struct s_termtype
+typedef struct s_segment
 {
-	char			*term_names;
-	char			*str_table;
-	char			*booleans;
-	short			*numbers;
-	char			**strings;
-	char			*ext_str_table;
-	char			**ext_names;
-	unsigned short	num_inteans;
-	unsigned short	num_numbers;
-	unsigned short	num_strings;
-	unsigned short	ext_inteans;
-	unsigned short	ext_numbers;
-	unsigned short	ext_strings;
-}	t_termtype;
+	void	*base;
+	void	*data;
+	void	*data_end;
+}	t_segment;
 
-typedef struct s_stack_frame
-{
-	union
-	{
-		int		num;
-		char	*str;
-	} u_data;
-	int	num_type;
-}	t_stack_frame;
+int				elf_magic(t_elf64_ehdr *eh);
+void			*elf_base(void *any_addr);
+void			*find_elf_byname(const char *needle);
 
-typedef struct s_tparm_state
-{
-	const char		*tparam_base;
-	t_stack_frame	stack[20];
-	int				stack_ptr;
-	char			*out_buff;
-	size_t			out_size;
-	size_t			out_used;
-	char			*fmt_buff;
-	size_t			fmt_size;
-	int				static_vars[26];
-	const char		*tname;
-}	t_parm_state;
+t_r_debug		*get_r_debug(void);
 
-typedef struct s_termios
-{
-	t_tcflag_t		c_iflag;
-	t_tcflag_t		c_oflag;
-	t_tcflag_t		c_cflag;
-	t_tcflag_t		c_lflag;
-	char			c_line;
-	t_cc_t			c_cc[NCCS];
-	t_speed_t		c_ispeed;
-	t_speed_t		c_ospeed;
-}	t_termios;
+void			*get_seg_data(void *base);
+unsigned long	get_seg_data_size(void *base);
 
-typedef struct s_term
-{
-	t_termtype		type;
-	short			filedes;
-	t_termios		ot_termiosb;
-	t_termios		nt_termiosb;
-	int				_baudrate;
-	char			*_termname;
-	t_parm_state	tparm_state;
-}	t_term;
+void			free_keymap(Keymap map);
+void			remove_duplicate(Keymap map, int index, void *addr);
 
-typedef struct s_tgetent_cache
-{
-	long	sequence;
-	int		last_used;
-	char	*fix_sgr0;
-	char	*last_bufp;
-	t_term	*last_term;
-}	t_tgetent_cache;
+void			free_nc_global(const void *base);
+void			free_tinfo_internal(void);
+void			free_readline_internal(void);
 
-typedef struct s_iterators_vars
-{
-	const char	*name;
-	char		*value;
-}	t_iterators_vars;
-
-typedef struct s_ldat
-{
-	int		*text;
-	short	firstchar;
-	short	lastchar;
-	short	oldindex;
-}	t_ldat;
-
-typedef struct s_win_st
-{
-	short			_cury;
-	short			_curx;
-	short			_maxy;
-	short			_maxx;
-	short			_begy;
-	short			_begx;
-	short			_flags;
-	unsigned int	_attrs;
-	unsigned int	_bkgd;
-	char			_notimeout;
-	char			_clear;
-	char			_leaveok;
-	char			_scroll;
-	char			_idlok;
-	char			_idcok;
-	char			_immed;
-	char			_sync;
-	char			_use_keypad;
-	int				_delay;
-	struct ldat		*_line;
-	short			_regtop;
-	short			_regbottom;
-	int				_parx;
-	int				_pary;
-	struct _win_st	*_parent;
-	struct
-	{
-		short	_pad_y;
-		short	_pad_x;
-		short	_pad_top;
-		short	_pad_left;
-		short	_pad_bottom;
-		short	_pad_right;
-	}	s_pad;
-	short			_yoffset;
-}	t_win_st;
-
-typedef struct s_ncglob
-{
-	int					have_sigtstp;
-	int					have_sigwinch;
-	int					cleanup_nested;
-	char				init_signals;
-	char				init_screen;
-	char				*comp_sourcename;
-	char				*comp_termtype;
-	char				have_tic_directory;
-	char				keep_tic_directory;
-	const char			*tic_directory;
-	char				*dbi_list;
-	int					dbi_size;
-	char				*first_name;
-	char				**keyname_table;
-	int					init_keyname;
-	int					slk_format;
-	int					getstr_limit;
-	char				*safeprint_buf;
-	size_t				safeprint_used;
-	t_tgetent_cache		tgetent_cache[TGETENT_MAX];
-	int					tgetent_index;
-	long				tgetent_sequence;
-	char				*dbd_blob;
-	char				**dbd_list;
-	int					dbd_size;
-	long				dbd_time;
-	t_iterators_vars	dbd_vars[6];
-	void				*cached_tparm;
-	int					count_tparm;
-	t_win_st			*_nc_windowlist;
-	char				*home_terminfo;
-	int					safeprint_cols;
-	int					safeprint_rows;
-}	t_ncurses_globals;
-
-typedef struct s_tparm_data
-{
-	const char	*format;
-	int			num_actual;
-	int			tparm_type;
-	int			num_parsed;
-	int			num_popped;
-	long		param[NUM_PARM];
-	char		*p_is_s[NUM_PARM];
-}	t_tparm_data;
-
-int			elf_magic(t_elf64_ehdr *eh);
-void		*elf_base(void *any_addr);
-
-t_r_debug	*get_r_debug(void *base);
-void		*find_elf_byname(const char *needle);
-void		*get_seg_data(void *base);
-
-void		free_keymap(Keymap map);
-void		remove_duplicate(Keymap map, int index, void *addr);
-
-void		free_nc_global(const void *base);
-void		free_tinfo_internal(void);
-void		free_readline_internal(void);
-
-void		patch_readline_leaks(void);
+void			patch_readline_leaks(void);
+void			*find_main_arena(void);
 
 #endif

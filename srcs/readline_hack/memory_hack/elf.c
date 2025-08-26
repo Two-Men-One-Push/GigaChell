@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 08:40:33 by CyberOneFR        #+#    #+#             */
-/*   Updated: 2025/08/25 22:33:05 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/26 06:53:41 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*find_elf_byname(const char *needle)
 	t_r_debug	*rd;
 	t_link_map	*lm;
 
-	rd = get_r_debug(elf_base((void *)&find_elf_byname));
+	rd = get_r_debug();
 	if (!rd)
 		return (NULL);
 	lm = rd->r_map;
