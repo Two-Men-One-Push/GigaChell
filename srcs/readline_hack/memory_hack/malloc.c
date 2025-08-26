@@ -6,7 +6,7 @@
 /*   By: ethebaul <ethebaul@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 06:16:02 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/26 06:33:26 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/26 07:02:34 by ethebaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	*find_main_arena(void)
 	segments.data = get_seg_data(segments.base);
 	segments.data_end = segments.data + get_seg_data_size(segments.base);
 	if (!segments.base || !segments.data || !segments.data_end || !ptr)
+	{
+		free((void *)ptr);
 		return (NULL);
+	}
 	mchunk = (t_malloc_chunk *)(ptr - (2 * sizeof(size_t)));
 	free((void *)ptr);
 	while (segments.data < segments.data_end)
