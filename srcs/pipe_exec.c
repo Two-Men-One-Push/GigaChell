@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 01:48:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/27 20:59:48 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/27 21:14:05 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ static int	wait_children(t_pipe_result pipe_result)
 		return (1);
 }
 
-static int	exit_pipe(t_pipe_result pipe_result, t_pipe_fd *pipe_fd)
+static int	exit_pipe(t_pipe_result pipe_result, t_pipe_fd *pipe_fd,
+	int last_status)
 {
 	if (pipe_result.type == PROC_BUILTIN)
 		return (pipe_result.status);
@@ -105,8 +106,10 @@ static int	exit_pipe(t_pipe_result pipe_result, t_pipe_fd *pipe_fd)
 	}
 	if (pipe_fd->in > -1)
 		secure_close(pipe_fd->in);
-	if (pipe_result.pid < 0)
+	if (pipe_result.pid == -1)
 		return (1);
+	if (pipe_result.pid == -2)
+		return (last_status);
 	return (wait_children(pipe_result));
 }
 
@@ -132,7 +135,7 @@ int	pipe_exec(char *cmd, int last_status, t_hd_node **heredoc_list)
 		pipe_result = handle_piped_segment(str_extract(cmd, i), last_status,
 				&pipe_fd, heredoc_list);
 		if (last_cmd || pipe_result.type == PROC_FORK)
-			return (exit_pipe(pipe_result, &pipe_fd));
+			return (exit_pipe(pipe_result, &pipe_fd, last_status));
 		cmd += ++i;
 		i = 0;
 	}

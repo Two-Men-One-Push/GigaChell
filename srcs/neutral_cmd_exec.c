@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 09:37:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/08/20 04:36:06 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/08/27 21:13:18 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_pipe_result	neutral_cmd_exec(char *cmd, int last_status,
 	{
 		clear_redirect(&redirect);
 		if (!argv)
-			return ((t_pipe_result){.type = PROC_MAIN, .pid = -1});
+			return ((t_pipe_result){.type = PROC_MAIN, .pid = -2});
 		free(argv);
 		return ((t_pipe_result){.type = PROC_BUILTIN, .status = 0});
 	}
