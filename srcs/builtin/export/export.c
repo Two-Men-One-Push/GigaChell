@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethebaul <ethebaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:24:33 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/19 16:17:38 by ethebaul         ###   ########.fr       */
+/*   Updated: 2025/08/27 21:00:38 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	export_var(int argi, char **argv)
 			write(2, "bash: export: `", 16);
 			write(2, argv[argi], ft_strlen(argv[argi]));
 			write(2, "': not a valid identifier\n", 27);
+			return ;
 		}
 		++j;
 	}
