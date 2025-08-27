@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CyberOneFR <noyoudont@gmail.com>           +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:36:18 by ethebaul          #+#    #+#             */
-/*   Updated: 2025/08/22 21:09:32 by CyberOneFR       ###   ########.fr       */
+/*   Updated: 2025/08/27 21:03:32 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,9 @@ int	ft_echo(int argc, char **argv, t_redirect_fd *redirect)
 	}
 	while (i < argc)
 	{
-		if (i != 1 + !newline)
-			ft_dprintf(redirect->out, " %s", argv[i]);
-		else
-			ft_dprintf(redirect->out, "%s", argv[i]);
+		ft_dprintf(redirect->out, "%s", argv[i]);
+		if (i < argc -1)
+			ft_dprintf(redirect->out, " ");
 		++i;
 	}
 	if (newline)
